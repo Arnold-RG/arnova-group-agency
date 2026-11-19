@@ -1,0 +1,33 @@
+name: Cross-platform concept site checks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'concepts/**'
+      - 'scripts/check-concepts.mjs'
+      - '.github/workflows/concept-platform-checks.yml'
+  pull_request:
+    paths:
+      - 'concepts/**'
+      - 'scripts/check-concepts.mjs'
+      - '.github/workflows/concept-platform-checks.yml'
+  workflow_dispatch:
+
+jobs:
+  static-site-smoke:
+    name: Node static check · ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check concept pages
+        run: node scripts/check-concepts.mjs
