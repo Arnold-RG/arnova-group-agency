@@ -150,3 +150,24 @@ body{background:var(--night);color:var(--cream)}
 .blog-card>span,.article small{color:var(--forest)}
 @media(max-width:850px){.mobile-nav nav{background:var(--night);border-color:var(--caramel)}.mobile-nav nav a{color:var(--cream)}}
 @media(max-width:570px){.site-header{background:rgba(11,13,12,.98)}.article-body,.prose{border-radius:0}}
+
+/* ArnovaGroup Kigali concept collection: independent visual directions per business. */
+.prospect-intro{display:flex;justify-content:space-between;align-items:end;gap:2rem;margin:3.4rem 0 1.6rem;padding-top:2rem;border-top:1px solid currentColor}
+.prospect-intro h3{font-size:clamp(1.6rem,3vw,2.5rem);line-height:1.16;letter-spacing:-.055em;margin:.5rem 0}
+.prospect-intro p{max-width:42rem;margin:.5rem 0;color:inherit;opacity:.82}
+.prospect-intro .btn{flex-shrink:0}
+.prospect-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-bottom:1.2rem}
+.prospect-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:1.15rem;border:1px solid #9b8b7555;text-decoration:none;background:#D5C4AE;color:#3A2418;transition:transform .2s ease,box-shadow .2s ease}
+.prospect-card:hover{transform:translateY(-5px);box-shadow:0 16px 36px #0002}
+.prospect-card:focus-visible{outline:3px solid #A88462;outline-offset:4px}
+.prospect-photo{display:flex;align-items:flex-end;padding:1.4rem;min-height:12.5rem;font-size:.75rem;letter-spacing:.17em;font-weight:800;background:#d7b4a4;color:#38221b}
+.prospect-salon{background:radial-gradient(circle at 75% 20%,#f4e2d7 0%,transparent 44%),linear-gradient(125deg,#c58b81,#ead0bc)}
+.prospect-cafe{background:radial-gradient(circle at 75% 20%,#d5e8b2 0%,transparent 42%),linear-gradient(125deg,#557750,#d7bc8d);color:#142c1c}
+.prospect-fashion{background:radial-gradient(circle at 75% 20%,#f3e9df 0%,transparent 42%),linear-gradient(125deg,#a88e85,#d7cbc1)}
+.prospect-copy{display:flex;flex-direction:column;gap:.65rem;padding:1.35rem}
+.prospect-copy small{font-size:.65rem;letter-spacing:.13em;font-weight:800}
+.prospect-copy strong{font-size:1.35rem;line-height:1.15;letter-spacing:-.035em}
+.prospect-copy>span{font-size:.8rem;font-weight:700}
+@media(max-width:800px){.prospect-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.prospect-intro{align-items:flex-start;flex-direction:column}}
+@media(max-width:530px){.prospect-grid{grid-template-columns:1fr}.prospect-photo{min-height:10rem}}
+@media(prefers-reduced-motion:reduce){.prospect-card{transition:none}.prospect-card:hover{transform:none}}
