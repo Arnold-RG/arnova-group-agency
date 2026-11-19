@@ -4,6 +4,10 @@
 
 ArnovaGroup is a Rwanda-focused digital services and career-support brand. We help people and small businesses with websites, mobile/web apps, business dashboards, data collection and analysis, information research, job application preparation and student technical project mentorship.
 
+## Client website design policy
+
+Every business website must have its **own visual identity**, informed by its logo, signage, approved photographs, audience and industry. ArnovaGroup's own brand colors and page template must **not** be reused automatically for clients. Start with a client-specific creative brief; vary color palette, layout, typography and content. Use business images only with proper permission and do not present unapproved concepts as official sites. See [Client Website Design Standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md).
+
 ## Services
 - Websites, business directories, online catalogues and booking sites
 - Small-business apps and inventory, sales and appointment dashboards
