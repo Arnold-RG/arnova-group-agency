@@ -32,3 +32,24 @@ https://arnold-rg.github.io/vira/
 Contact via the Rwanda WhatsApp number linked on the website. A company-domain email inbox is not active yet, so no email address is advertised.
 
 No claims of guaranteed employment, invented customer contracts or independently completed academic coursework.
+
+---
+
+## ArnovaGroup service delivery and client approval
+
+The agency offers distinct, business-specific digital projects, including websites, custom e-commerce storefronts, branded logos and identity systems, Google Maps/Business Profile optimization and maintainable documentation.
+
+| Service | Quality and approval requirements |
+| --- | --- |
+| Website and conversion design | Research the audience, build mobile-first navigation and clear contact/quote actions, measure performance, verify accessibility |
+| Brand identity and logos | Prefer a business owner's approved assets; any invented logo for an unsolicited proposal is marked **concept branding**, not official |
+| Local visibility | Check existing Google Business Profiles, accuracy of name/address/phone, categories, opening hours, photos, listings and local landing pages; obtain owner authorization before changes |
+| E-commerce | Verify catalog/inventory/pricing with the owner, design real order lifecycles, use secure hosted payment providers and server-side authorization; no fake paid orders |
+| Hosting and DevOps | Environment separation, CI quality checks, dependency and security review, release rollback and runtime monitoring as appropriate |
+| Project READMEs | Truthful architecture, verified setup, privacy/security notes, testing evidence, operational ownership and a prioritized roadmap |
+
+**Approval gate:** public client releases, domain changes, Google Maps profile edits, invoices, sales outreach and live payment activation require the business owner's permission. Uncommissioned concepts must be labeled clearly, avoid copying unauthorized photographs or logos and must not imply affiliation.
+
+**Delivery approach:** Elvora proposes business requirements and content; Forge implements; Harold reviews independently; Jarvis performs final acceptance checks. These are defined workflow roles, not a claim that autonomous agents are running all actions.
+
+See [client design standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md), [cross-platform guidance](docs/CROSS_PLATFORM_WEBSITE_SUPPORT.md) and [public repo compatibility audit](docs/GITHUB_PLATFORM_AUDIT.md).
