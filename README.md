@@ -53,3 +53,13 @@ The agency offers distinct, business-specific digital projects, including websit
 **Delivery approach:** Elvora proposes business requirements and content; Forge implements; Harold reviews independently; Jarvis performs final acceptance checks. These are defined workflow roles, not a claim that autonomous agents are running all actions.
 
 See [client design standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md), [cross-platform guidance](docs/CROSS_PLATFORM_WEBSITE_SUPPORT.md) and [public repo compatibility audit](docs/GITHUB_PLATFORM_AUDIT.md).
+
+## Kigali business concept collection (November 2026)
+
+Three independently designed prospect sites have been added to the [ArnovaGroup website's work section](https://arnold-rg.github.io/vira/#examples). The working demos are published in the [portfolio concept gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/):
+
+- [NIK Salon Kicukiro — beauty](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/nik-salon.html)
+- [Marine Coffee Shop — hospitality](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/marine-coffee.html)
+- [La Belle Boutique — fashion retail](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/la-belle-boutique.html)
+
+These are **uncommissioned concept designs**, not verified clients or authorized business websites. Before onboarding any business, verify the map listing, establish owner contact and permission, confirm copy and real images, agree on scope and a price, and only then publish a business-owned production site. No client payments or bookings are processed by the concepts.
