@@ -15,7 +15,7 @@ ArnovaGroup is a Rwanda-focused digital services and career-support brand. We he
 Ambition, Reliability, New Ideas, Opportunities, Value and Advancement.
 
 ## Official colors
-Deep forest-black `#101B16` · Deep evergreen `#102F25` · Chocolate `#3A2418` · Forest green `#245C3F` · Caramel `#A88462` · Cream beige `#D5C4AE` · Soft leaf green `#B8D0B0`.
+Dark Black `#0B0D0C` · Dark Green `#163E2E` · Brown `#6B4A2E` · Caramel `#A88462` · Cream Beige `#D5C4AE` · Chocolate `#3A2418`.
 
 ## Public website
 https://arnold-rg.github.io/vira/
