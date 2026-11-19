@@ -26,14 +26,39 @@ Preferred order:
 
 For each client specify a primary, secondary, accent, background, text and CTA color with hex codes, plus light/dark usage and contrast tests. Choose the colors afresh; **no universal ArnovaGroup palette**.
 
-Example directions only — never fixed templates:
-- Café or bakery: warm espresso, oat, terracotta and restrained brass.
-- Pharmacy or clinic: reassuring navy or teal with clean neutral backgrounds.
-- Boutique or cosmetics: soft stone, aubergine, rose, olive, or a palette drawn from packaging.
-- Hotel or travel: landscape-derived blues, warm sand and suitable premium accents.
-- Automotive workshop: graphite, electric blue, amber or garage brand colors.
-- Local grocery or supermarket: lively but legible produce-inspired colors, tied to signage.
-These are prompts to explore, not mandatory category schemes.
+## Color variety and visual appeal
+
+The **whole portfolio** should show deliberate color diversity. Consider the full color spectrum, including **blue, deep black, red, pink, orange, yellow, rose, indigo, silver, green, chocolate, white, cream, purple, teal, gold, coral, burgundy and more**. These are options, **not a checklist to include in every single site**.
+
+Choose a palette that looks strong *for the client* and draws visitors toward a useful primary action: call, buy, book, visit, request a quote, or WhatsApp.
+
+- Start with the company's actual identity: approved brand assets take priority over arbitrary trends and favorite palettes.
+- Avoid giving unrelated businesses the same green, brown, beige or chocolate visual theme simply because ArnovaGroup uses those colors.
+- Build an intentional color hierarchy: typically a dominant background/surface, a foreground/typography color, one clear primary action color, and one or two controlled accents. Add more only if the design supports it.
+- Combine warm/cool, dark/light, saturated/muted and metallic/neutral tones with purpose; provide enough visual breathing room.
+- Use neutral colors such as **white, cream, silver, graphite or chocolate** to support bright **red, orange, rose, pink, yellow, emerald, teal, blue or indigo**, not compete with them.
+- Make calls to action stand out through contrast and placement, not loud colors everywhere. Check readable text contrast, focus indicators, buttons, forms, hover states and mobile screens.
+- A business with a blue logo may benefit from blue + ivory + orange; a pink logo may benefit from pink + plum + cream; a red logo may benefit from black + white + red. Do not overwrite established brand identities to force a preset pairing.
+- Compare new concepts with previously created sites. If two unrelated sites have nearly identical color families, page hierarchy, typography and imagery treatment, rethink at least the design elements **unless client branding genuinely requires the similarity**.
+
+### Example inspiration palettes — concepts only, not client brand claims
+
+| Possible client type | Primary | Secondary / background | Accent / CTA idea | Palette direction |
+| --- | --- | --- | --- | --- |
+| Tech / electronics | Midnight `#0B1020` | Silver `#CBD5E1`, white `#FFFFFF` | Cobalt `#2457D6` | Crisp, technical blue with restrained metallic neutrals |
+| Beauty salon | Plum `#4B2648` | Blush `#F5DCE5`, ivory `#FFF9F4` | Rose `#C55E85` | Elegant pink and rose without oversaturation |
+| Café / bakery | Chocolate `#4A2A1E` | Cream `#FFF8ED` | Butter yellow `#F7CC67`, terracotta `#C56A64` | Cozy, warm and food-focused |
+| Automobile service | Near-black `#15181C` | Steel silver `#AAB3BD`, white `#F7F9FC` | Red `#C73C45` | Bold red on industrial dark neutrals |
+| Grocery / supermarket | Leaf green `#236845` | Warm ivory `#FFF9EA` | Orange `#F28B31` | Fresh, bright, product-led |
+| Education / kids | Indigo `#4B3AA8` | White `#FFFFFF` | Yellow `#F5BD37`, cyan `#32B2C0` | Energetic, friendly, navigable |
+| Travel / hospitality | Deep teal `#174F54` | Sand `#E7D6B8`, cream `#FFF7E9` | Copper `#A7643C` | Welcoming, sophisticated, destination-led |
+| Fashion boutique | Espresso `#392B29` | Silk `#EEE3DC` | Pink `#D775A0`, gold `#C2A374` | Editorial, distinctive, luxurious |
+| Fitness / sports | Navy `#121B33` | Cool silver `#D6E1EB`, white `#FFFFFF` | Vermilion `#E14E37` | High-energy and strongly directional |
+| Florist / gifts | Olive `#44583A` | Cream `#F8F1E6` | Rose `#D88E9B`, orange `#CB7448` | Natural, creative, gift-friendly |
+| Law / accounting | Slate `#233044` | Ivory `#F7F3EB` | Burgundy `#712F45`, brass `#C2A77B` | Restrained, professional and polished |
+| Creative studio | Electric blue `#3056C8` | Black `#14121A`, white `#FFFFFF` | Punchy coral `#FF6E67` | Playful, modern, portfolio-forward |
+
+Each row is an **inspiration palette**, not a finished UI specification or a claim about a real business. Adapt colors to verified branding, perform contrast checks, and choose which is used for text vs CTA appropriately.
 
 ## 3. Do not repeat the same page layout
 
@@ -61,7 +86,8 @@ Never impersonate a business, claim official affiliation or publish a real busin
 - Online presence: what was checked and what is missing or unknown.
 - Distinctive cues: logo colors, signage, photography, products or atmosphere; mark observations vs assumptions.
 - Concept: one sentence describing the unique creative direction.
-- Palette: primary, secondary, accent, background, text, CTA (hex).
+- Palette: primary, secondary, accent, background, text, CTA (hex), with a brief explanation of why the colors fit this specific client and where each will be used.
+- Palette individuality: check against earlier ArnovaGroup demos and clients; explicitly avoid automatic color reuse and one-size-fits-all styling.
 - Typography and composition: what makes this site distinguishable.
 - First-screen message and primary action: tailored to this customer's likely visitor.
 - Core sections (only needed sections), media permission status, mobile behavior and accessibility requirements.
@@ -73,6 +99,8 @@ Never impersonate a business, claim official affiliation or publish a real busin
 - [ ] Does the design visibly match the business's real identity, if one exists?
 - [ ] Are layout, typography and section architecture business-specific?
 - [ ] Are text and controls readable with accessible contrast on desktop and mobile?
+- [ ] Have we considered different color families (blue, pink, red, orange, yellow, indigo, silver, green, etc.) and selected colors for this brand rather than by habit?
+- [ ] Is the hierarchy clear, with a prominent CTA, calm background areas and purposeful accents rather than too many loud colors?
 - [ ] Does the primary CTA work, and are the links and details verified?
 - [ ] Were photographs, logos and claims used only with appropriate permission?
 - [ ] Is an unapproved concept clearly labeled as such?
