@@ -20,7 +20,7 @@ Sage grey `#8B988C` · Cream beige `#F2E9DB` · Chocolate `#50372C`.
 ## Public website
 https://arnold-rg.github.io/vira/
 
-**Migration note:** This project replaces the former Vira website. GitHub repository renaming is a separate administrator action. The previous version is preserved in the `backup/vira-pre-arnovagroup-20261119` branch.
+**Migration note:** The ArnovaGroup website has replaced the former public site. The repository slug still awaits renaming through GitHub repository settings. The previous version is preserved in the `backup/vira-pre-arnovagroup-20261119` branch.
 
 ## Contact
 Contact via the Rwanda WhatsApp number linked on the website. A company-domain email inbox is not active yet, so no email address is advertised.
