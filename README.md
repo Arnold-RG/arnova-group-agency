@@ -20,6 +20,8 @@ Dark Green `#163E2E` · Brown `#6B4A2E` · Caramel `#A88462` · Cream Beige `#D5
 ## Public website
 https://arnold-rg.github.io/vira/
 
+**Selected future domain:** `arnovagroupagency.com` (available at last check, **not purchased or connected**). See [custom-domain setup](docs/CUSTOM_DOMAIN_SETUP.md).
+
 **Migration note:** The ArnovaGroup website has replaced the former public site. The repository slug still awaits renaming through GitHub repository settings. The previous version is preserved in the `backup/vira-pre-arnovagroup-20261119` branch.
 
 ## Contact
