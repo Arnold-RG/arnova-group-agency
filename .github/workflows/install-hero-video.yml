@@ -13,25 +13,33 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Download cottonbro studio Pexels video
+      - name: Install video download and processing tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install --user --upgrade yt-dlp
+      - name: Download Pexels cottonbro studio video
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p assets/video
-          for quality in             '6804109-hd_1920_1080_25fps.mp4'             '6804109-hd_1280_720_25fps.mp4'             '6804109-uhd_4096_2160_25fps.mp4'; do
-            url="https://videos.pexels.com/video-files/6804109/$quality"
-            echo "Trying $url"
-            if curl -fL --retry 3 --connect-timeout 20 --max-time 240 "$url" -o /tmp/arnova-source.mp4 && ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 /tmp/arnova-source.mp4; then
-              break
-            fi
-            rm -f /tmp/arnova-source.mp4
-          done
-          test -s /tmp/arnova-source.mp4
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
+          if ! python -m yt_dlp --no-playlist --merge-output-format mp4 -f 'best[height<=1080]/best' -o '/tmp/arnova-source.%(ext)s' 'https://www.pexels.com/video/people-coding-on-computer-6804109/'; then
+            echo 'Page extraction unavailable, attempting official video delivery URLs'
+          fi
+          if [ ! -s /tmp/arnova-source.mp4 ]; then
+            for quality in '6804109-hd_1920_1080_25fps.mp4' '6804109-hd_1280_720_25fps.mp4' '6804109-uhd_4096_2160_25fps.mp4'; do
+              if curl --fail --location --retry 2 --connect-timeout 15 --max-time 180 "https://videos.pexels.com/video-files/6804109/$quality" -o /tmp/arnova-source.mp4; then
+                if ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 /tmp/arnova-source.mp4; then break; fi
+              fi
+              rm -f /tmp/arnova-source.mp4
+            done
+          fi
+          if [ ! -s /tmp/arnova-source.mp4 ]; then
+            echo "::error::Pexels refused automated video retrieval. No video was installed."
+            exit 1
+          fi
           ffmpeg -hide_banner -loglevel error -y -i /tmp/arnova-source.mp4 -t 14 -vf 'scale=1280:-2,fps=24' -an -c:v libx264 -preset medium -crf 29 -pix_fmt yuv420p -movflags +faststart assets/video/arnova-cottonbro-6804109.mp4
-          test -s assets/video/arnova-cottonbro-6804109.mp4
-          ls -lh assets/video/arnova-cottonbro-6804109.mp4
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 assets/video/arnova-cottonbro-6804109.mp4
       - name: Commit website-hosted video
         run: |
           git config user.name "github-actions[bot]"
