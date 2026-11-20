@@ -59,6 +59,19 @@
   Font tokens:
     --font-sans
     --font-display
+
+  Type scale (used where the size already matches):
+    --text-xs
+    --text-sm
+    --text-md
+    --text-lg
+    --text-xl
+    --text-2xl
+    --text-3xl
+    --text-4xl
+    --text-5xl
+    --font-leading-tight
+    --font-leading-body
 */
 
 *,
@@ -82,8 +95,8 @@ html {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: var(--text-md);
+  line-height: var(--font-leading-body);
   padding-top: var(--space-header-offset);
   padding-bottom: 0;
   -webkit-font-smoothing: antialiased;
@@ -156,10 +169,22 @@ html {
   outline-offset: 3px;
 }
 
-.pricing-eyebrow {
+
+.pricing-main a:not(.pricing-btn) {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.pricing-main a:not(.pricing-btn):hover {
+  color: var(--color-link-hover);
+}
+
+
+.pricing-main .pricing-eyebrow {
   margin: 0 0 var(--space-sm);
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: var(--text-xs);
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -172,7 +197,7 @@ html {
   font-family: var(--font-display);
   font-weight: 750;
   letter-spacing: -0.04em;
-  line-height: 1.15;
+  line-height: var(--font-leading-tight);
   color: var(--color-text);
   margin: 0 0 var(--space-md);
 }
@@ -223,22 +248,23 @@ html {
   gap: var(--space-xs);
   min-height: 3rem;
   padding: var(--space-sm) var(--space-lg);
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-bg-cta);
   border-radius: var(--space-radius-pill);
-  background: var(--color-accent);
-  color: var(--color-accent-text);
+  background: var(--color-bg-cta);
+  color: var(--color-text-on-cta);
   font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 750;
   line-height: 1.2;
   text-decoration: none;
   text-align: center;
-  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+  transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease, filter 0.18s ease;
 }
 
 .pricing-btn:hover {
-  background: var(--color-accent-hover);
-  border-color: var(--color-accent-hover);
+  background: var(--color-bg-cta);
+  border-color: var(--color-bg-cta);
+  filter: brightness(1.12);
 }
 
 .pricing-btn--ghost {
@@ -248,9 +274,10 @@ html {
 }
 
 .pricing-btn--ghost:hover {
-  background: var(--color-bg-subtle);
+  background: color-mix(in srgb, var(--color-text-on-hero) 14%, transparent);
   color: var(--color-text-on-hero);
-  border-color: var(--color-border-strong);
+  border-color: var(--color-text-on-hero);
+  filter: none;
 }
 
 .pricing-btn--block {
@@ -288,10 +315,28 @@ html {
   max-width: 38rem;
 }
 
+.pricing-hero .pricing-btn:not(.pricing-btn--ghost) {
+  background: var(--color-text-on-hero);
+  color: var(--color-bg-hero);
+  border-color: var(--color-text-on-hero);
+}
+
+.pricing-hero .pricing-btn:not(.pricing-btn--ghost):hover {
+  background: var(--color-text-on-hero);
+  border-color: var(--color-text-on-hero);
+  filter: brightness(0.96);
+}
+
 /* Currency */
 .pricing-currency {
   padding: var(--space-lg) 0 0;
   background: var(--color-bg);
+}
+
+@media (max-width: 900px) {
+  .pricing-currency {
+    padding-bottom: var(--space-dock-offset);
+  }
 }
 
 .pricing-currency-label {
@@ -415,7 +460,7 @@ html {
   font-size: clamp(1.8rem, 3vw, 2.15rem);
   font-weight: 800;
   letter-spacing: -0.05em;
-  line-height: 1.15;
+  line-height: var(--font-leading-tight);
   color: var(--color-text-accent);
 }
 
@@ -463,6 +508,7 @@ html {
 }
 
 .pricing-table-wrap {
+  position: relative;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   max-width: 100%;
@@ -598,7 +644,7 @@ html {
 .pricing-icon {
   display: inline-flex;
   margin: 0;
-  font-size: 1.25rem;
+  font-size: var(--text-xl);
   line-height: 1;
 }
 
@@ -609,8 +655,8 @@ html {
   width: 2rem;
   height: 2rem;
   border-radius: var(--space-radius-pill);
-  background: var(--color-accent);
-  color: var(--color-accent-text);
+  background: var(--color-bg-cta);
+  color: var(--color-text-on-cta);
   font-weight: 800;
   font-size: 0.85rem;
 }
@@ -694,7 +740,27 @@ html {
   max-width: 36rem;
 }
 
+.pricing-cta .pricing-btn {
+  background: var(--color-text-on-cta);
+  color: var(--color-bg-cta);
+  border-color: var(--color-text-on-cta);
+}
+
+.pricing-cta .pricing-btn:hover {
+  background: var(--color-text-on-cta);
+  border-color: var(--color-text-on-cta);
+  filter: brightness(0.96);
+}
+
 .pricing-cta .pricing-btn--ghost {
+  background: transparent;
   color: var(--color-text-on-cta);
   border-color: var(--color-text-on-cta);
+}
+
+.pricing-cta .pricing-btn--ghost:hover {
+  background: color-mix(in srgb, var(--color-text-on-cta) 14%, transparent);
+  color: var(--color-text-on-cta);
+  border-color: var(--color-text-on-cta);
+  filter: none;
 }
