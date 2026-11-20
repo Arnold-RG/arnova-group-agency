@@ -1,6 +1,7 @@
 name: Install locally hosted ArnovaGroup background video
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/install-hero-video.yml'
   workflow_dispatch:
