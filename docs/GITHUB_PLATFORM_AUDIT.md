@@ -6,7 +6,7 @@ This is an initial **source-layout audit** across 20 public repositories availab
 
 | Repository | Observed stack / clues | Best delivery model | Verified so far | Next required verification |
 | --- | --- | --- | --- | --- |
-| [vira](https://github.com/Arnold-RG/vira) | HTML/CSS/JS plus concept pages | Website; browser on desktop/mobile | Concept static tests PASS on Windows/macOS/Ubuntu; Pages SUCCESS | Actual Safari iOS / Chrome Android / desktop visual QA |
+| [arnova-group-agency](https://github.com/Arnold-RG/arnova-group-agency) | HTML/CSS/JS plus concept pages | Website; browser on desktop/mobile | Concept static tests PASS on Windows/macOS/Ubuntu; Pages SUCCESS | Actual Safari iOS / Chrome Android / desktop visual QA |
 | [Boutique-la-difference](https://github.com/Arnold-RG/Boutique-la-difference) | Static shop front end, data and assets | Website; browser on desktop/mobile | Static CI PASS on Windows/macOS/Ubuntu; Pages SUCCESS | Browser tests of cart, catalogue, links and mobile checkout-like features |
 | [hamwe](https://github.com/Arnold-RG/hamwe) | React/Vite/TypeScript travel app | Website; browser on desktop/mobile | TypeScript/Vite build PASS on Windows/macOS/Ubuntu; Pages SUCCESS | Real Safari/Chrome mobile tests, routes, booking states and payments |
 | [study-atlas](https://github.com/Arnold-RG/study-atlas) | Browser study portal, Python research/tests | Browser lessons + independent Python environment | Web static checks PASS on three OSes; Pages SUCCESS | Browser interactive tests; Python scientific stack environment matrix |

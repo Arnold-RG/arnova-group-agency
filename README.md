@@ -22,11 +22,11 @@ Ambition, Reliability, New Ideas, Opportunities, Value and Advancement.
 Dark Green `#163E2E` · Brown `#6B4A2E` · Caramel `#A88462` · Cream Beige `#D5C4AE` · Chocolate `#3A2418`.
 
 ## Public website
-https://arnold-rg.github.io/vira/
+https://arnold-rg.github.io/arnova-group-agency/
 
 **Selected future domain:** `arnovagroupagency.com` (available at last check, **not purchased or connected**). See [custom-domain setup](docs/CUSTOM_DOMAIN_SETUP.md).
 
-**Migration note:** The ArnovaGroup website has replaced the former public site. The repository slug still awaits renaming through GitHub repository settings. The previous version is preserved in the `backup/vira-pre-arnovagroup-20261119` branch.
+**Migration note:** The previous version is preserved in the `backup/vira-pre-arnovagroup-20261119` branch.
 
 ## Contact
 Contact via the Rwanda WhatsApp number linked on the website. A company-domain email inbox is not active yet, so no email address is advertised.
@@ -56,7 +56,7 @@ See [client design standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md), [cross-p
 
 ## Kigali business concept collection (November 2026)
 
-Three independently designed prospect sites have been added to the [ArnovaGroup website's work section](https://arnold-rg.github.io/vira/#examples). The working demos are published in the [portfolio concept gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/):
+Three independently designed prospect sites have been added to the [ArnovaGroup website's work section](https://arnold-rg.github.io/arnova-group-agency/#examples). The working demos are published in the [portfolio concept gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/):
 
 - [NIK Salon Kicukiro — beauty](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/nik-salon.html)
 - [Marine Coffee Shop — hospitality](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/marine-coffee.html)
