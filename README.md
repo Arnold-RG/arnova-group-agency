@@ -50,7 +50,7 @@ The agency offers distinct, business-specific digital projects, including websit
 
 **Approval gate:** public client releases, domain changes, Google Maps profile edits, invoices, sales outreach and live payment activation require the business owner's permission. Uncommissioned concepts must be labeled clearly, avoid copying unauthorized photographs or logos and must not imply affiliation.
 
-**Delivery approach:** Elvora proposes business requirements and content; Forge implements; Harold reviews independently; Jarvis performs final acceptance checks. These are defined workflow roles, not a claim that autonomous agents are running all actions.
+**Delivery approach:** The team researches requirements and content, implements the work, reviews it independently, and performs final acceptance checks.
 
 See [client design standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md), [cross-platform guidance](docs/CROSS_PLATFORM_WEBSITE_SUPPORT.md) and [public repo compatibility audit](docs/GITHUB_PLATFORM_AUDIT.md).
 
