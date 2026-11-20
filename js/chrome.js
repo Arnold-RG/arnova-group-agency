@@ -100,28 +100,148 @@
   function pageKey() {
     var path = (window.location.pathname || "").replace(/\/+$/, "");
     if (/\/pricing(?:\/index\.html)?$/.test(path)) return "pricing";
-    if (/\/blog\//.test(path) || /\/blog$/.test(path)) return "insights";
-    if (/\/privacy(?:\/|\.html)?$/.test(path)) return "privacy";
     var hash = (window.location.hash || "").replace(/^#/, "");
     if (hash === "contact") return "contact";
-    if (hash === "about") return "about";
-    if (hash === "solutions") return "solutions";
     if (hash === "services" || hash.indexOf("service-") === 0) return "services";
-    if (hash === "top" || hash === "") return "home";
+    if (hash === "top" || hash === "" || hash === "about" || hash === "solutions" || hash === "principles" || hash === "process" || hash === "faq") {
+      if (/\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path)) return "";
+      return "home";
+    }
+    if (/\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path)) return "";
     return "home";
   }
 
   function markActive() {
     var key = pageKey();
     document.querySelectorAll("[data-nav]").forEach(function (el) {
-      if (el.getAttribute("data-nav") === key) el.setAttribute("aria-current", "page");
+      if (key && el.getAttribute("data-nav") === key) el.setAttribute("aria-current", "page");
       else el.removeAttribute("aria-current");
     });
     document.querySelectorAll("[data-dock-link]").forEach(function (el) {
-      if (el.getAttribute("data-dock-link") === key) el.setAttribute("aria-current", "page");
+      if (el.classList.contains("arnova-mobile-dock__cta")) {
+        el.removeAttribute("aria-current");
+        return;
+      }
+      if (key && el.getAttribute("data-dock-link") === key) el.setAttribute("aria-current", "page");
       else el.removeAttribute("aria-current");
     });
+    placeDockIndicator();
   }
+
+  var dock = document.querySelector(".arnova-mobile-dock");
+  var sheet = document.querySelector(".arnova-dock-sheet");
+  var servicesBtn = dock ? dock.querySelector('[data-dock-link="services"]') : null;
+  var sheetClose = sheet ? sheet.querySelector(".arnova-dock-sheet__close") : null;
+  var sheetBackdrop = sheet ? sheet.querySelector(".arnova-dock-sheet__backdrop") : null;
+  var sheetPanel = sheet ? sheet.querySelector(".arnova-dock-sheet__panel") : null;
+  var lastFocus = null;
+
+  function placeDockIndicator() {
+    if (!dock) return;
+    var bar = dock.querySelector(".arnova-mobile-dock__bar");
+    var ind = dock.querySelector(".arnova-mobile-dock__indicator");
+    if (!bar || !ind) return;
+    var active = bar.querySelector("[data-dock-link][aria-current='page']");
+    if (!active) {
+      ind.style.opacity = "0";
+      return;
+    }
+    var br = bar.getBoundingClientRect();
+    var ar = active.getBoundingClientRect();
+    var left = ar.left - br.left + (ar.width - Math.min(ar.width - 8, 28)) / 2;
+    var width = Math.min(ar.width - 8, 28);
+    ind.style.opacity = "1";
+    ind.style.width = width + "px";
+    ind.style.transform = "translateX(" + left + "px)";
+  }
+
+  function isSheetOpen() {
+    return !!(sheet && !sheet.hidden);
+  }
+
+  function openSheet() {
+    if (!sheet || !servicesBtn) return;
+    lastFocus = document.activeElement;
+    sheet.hidden = false;
+    sheet.classList.add("is-open");
+    servicesBtn.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+    if (sheetClose) sheetClose.focus();
+    else if (sheetPanel) {
+      var first = sheetPanel.querySelector("a,button");
+      if (first) first.focus();
+    }
+    if (dock) dock.classList.remove("is-away");
+  }
+
+  function closeSheet() {
+    if (!sheet || !servicesBtn) return;
+    sheet.hidden = true;
+    sheet.classList.remove("is-open");
+    servicesBtn.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+    if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+  }
+
+  if (servicesBtn && sheet) {
+    servicesBtn.addEventListener("click", function () {
+      if (isSheetOpen()) closeSheet();
+      else openSheet();
+    });
+    if (sheetClose) sheetClose.addEventListener("click", closeSheet);
+    if (sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
+    sheet.addEventListener("click", function (event) {
+      if (event.target.closest(".arnova-dock-sheet__list a")) closeSheet();
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && isSheetOpen()) {
+        event.preventDefault();
+        closeSheet();
+      }
+    });
+    sheet.addEventListener("keydown", function (event) {
+      if (!isSheetOpen() || event.key !== "Tab" || !sheetPanel) return;
+      var items = Array.prototype.slice.call(
+        sheetPanel.querySelectorAll('a,button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')
+      ).filter(function (el) { return !el.disabled && el.offsetParent !== null; });
+      if (!items.length) return;
+      var first = items[0];
+      var last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    });
+  }
+
+  var lastY = window.scrollY || 0;
+  var scrollTicking = false;
+  function onDockScroll() {
+    if (!dock) return;
+    var y = window.scrollY || 0;
+    if (isSheetOpen()) {
+      dock.classList.remove("is-away");
+      lastY = y;
+      return;
+    }
+    if (y > lastY + 10 && y > 48) dock.classList.add("is-away");
+    else if (y < lastY - 10) dock.classList.remove("is-away");
+    lastY = y;
+  }
+  window.addEventListener("scroll", function () {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    window.requestAnimationFrame(function () {
+      onDockScroll();
+      scrollTicking = false;
+    });
+  }, { passive: true });
+
+  window.addEventListener("resize", placeDockIndicator);
   markActive();
   window.addEventListener("hashchange", markActive);
+  window.addEventListener("load", placeDockIndicator);
 })();

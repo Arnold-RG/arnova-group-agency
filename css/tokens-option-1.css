@@ -68,7 +68,7 @@
   --space-card-gap:1.25rem;
   --space-header-offset:76px;
   --space-header-offset-narrow:66px;
-  --space-dock-offset:calc(94px + env(safe-area-inset-bottom,0px));
+  --space-dock-offset:calc(120px + env(safe-area-inset-bottom,0px));
   --space-radius-sm:.5rem;
   --space-radius-md:.75rem;
   --space-radius-lg:1.25rem;

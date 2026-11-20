@@ -258,48 +258,159 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .original-logo{width:36px;height:36px}
 }
 
-/* ---------- Mobile dock (existing behaviour, retokenized colours) ---------- */
-.arnova-mobile-dock{display:none}
+/* ---------- Mobile dock (Glassy Navigation Tabs, third variant) ---------- */
+/* Floating glass pill, notched centre CTA, home-indicator line.
+   Class name .arnova-mobile-dock is kept so Mentor's pricing page can reuse it. */
+.arnova-mobile-dock,
+.arnova-dock-sheet{display:none}
+
 @media(max-width:900px){
   .arnova-mobile-dock{
-    position:fixed!important;
-    display:flex!important;
-    left:50%!important;
-    bottom:calc(12px + env(safe-area-inset-bottom,0px))!important;
-    transform:translateX(-50%)!important;
-    width:min(94vw,480px)!important;
-    min-height:67px!important;
-    padding:7px 9px!important;
-    z-index:2147483001!important;
-    align-items:center!important;
-    justify-content:space-around!important;
-    gap:3px!important;
-    background:color-mix(in srgb,var(--color-bg) 78%,transparent)!important;
-    border:1px solid color-mix(in srgb,var(--color-bg-elevated) 78%,transparent)!important;
-    border-radius:25px!important;
-    box-shadow:0 14px 38px var(--color-shadow),inset 0 1px rgba(255,255,255,.65)!important;
-    backdrop-filter:blur(24px) saturate(175%)!important;
-    -webkit-backdrop-filter:blur(24px) saturate(175%)!important;
+    --dock-notch:42px;
+    --dock-cta:56px;
+    --dock-bar-h:64px;
+    position:fixed;
+    left:50%;
+    bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:430px;
+    z-index:2147483002;
+    display:block;
+    pointer-events:none;
+    transition:transform .28s ease,opacity .28s ease;
   }
-  .arnova-mobile-dock a{
-    flex:1;
+  .arnova-mobile-dock.is-away{
+    transform:translateX(-50%) translateY(calc(100% + 24px));
+    opacity:0;
+    pointer-events:none;
+  }
+  .arnova-mobile-dock__bar,
+  .arnova-mobile-dock__cta,
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{pointer-events:auto}
+
+  .arnova-mobile-dock__bar{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    height:var(--dock-bar-h);
+    padding:0 4px 10px;
+    box-sizing:border-box;
+    border-radius:32px;
+    isolation:isolate;
+  }
+  .arnova-mobile-dock__glass{
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    z-index:0;
+    -webkit-mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
+    mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-position:0 0;
+    mask-position:0 0;
+  }
+  .arnova-mobile-dock__glass::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background:color-mix(in srgb,var(--color-bg-elevated) 64%,transparent);
+    border:1px solid color-mix(in srgb,var(--color-bg-elevated) 70%,var(--color-border));
+    box-shadow:
+      0 14px 36px var(--color-shadow),
+      inset 0 1px 0 color-mix(in srgb,var(--color-bg-elevated) 85%,transparent);
+    backdrop-filter:blur(24px) saturate(180%);
+    -webkit-backdrop-filter:blur(24px) saturate(180%);
+  }
+  .arnova-mobile-dock__notch-stroke{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:calc(var(--dock-notch) * 2);
+    height:calc(var(--dock-notch) * 2);
+    transform:translate(-50%,-50%);
+    border:1px solid color-mix(in srgb,var(--color-bg-elevated) 70%,var(--color-border));
+    border-radius:50%;
+    clip-path:inset(50% 0 0 0);
+    pointer-events:none;
+    z-index:1;
+  }
+  html[data-theme="dark"] .arnova-mobile-dock__glass::before{
+    background:color-mix(in srgb,var(--color-bg-elevated) 72%,transparent);
+    border-color:color-mix(in srgb,var(--color-border) 80%,transparent);
+    box-shadow:
+      0 16px 40px var(--color-shadow),
+      inset 0 1px 0 color-mix(in srgb,var(--color-text) 12%,transparent);
+  }
+  html[data-theme="dark"] .arnova-mobile-dock__notch-stroke{
+    border-color:color-mix(in srgb,var(--color-border) 80%,transparent);
+  }
+
+  .arnova-mobile-dock__indicator{
+    position:absolute;
+    left:0;
+    bottom:12px;
+    height:3px;
+    width:28px;
+    border-radius:var(--space-radius-pill);
+    background:var(--color-accent);
+    box-shadow:0 0 10px color-mix(in srgb,var(--color-accent) 70%,transparent);
+    transform:translateX(0);
+    transition:transform .28s ease,width .28s ease,opacity .2s ease;
+    z-index:2;
+    pointer-events:none;
+    opacity:0;
+  }
+  .arnova-mobile-dock__home-line{
+    position:absolute;
+    left:50%;
+    bottom:5px;
+    width:88px;
+    height:4px;
+    transform:translateX(-50%);
+    border-radius:var(--space-radius-pill);
+    background:color-mix(in srgb,var(--color-text) 28%,transparent);
+    z-index:2;
+    pointer-events:none;
+  }
+
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{
+    appearance:none;
+    border:0;
+    background:transparent;
+    position:relative;
+    z-index:3;
+    flex:1 1 0;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:3px;
-    min-width:0;
-    min-height:52px;
-    border-radius:17px;
-    color:var(--color-text)!important;
-    text-decoration:none!important;
-    font-size:10px!important;
-    line-height:1.2!important;
-    font-weight:750!important;
-    letter-spacing:0!important;
-    transition:background .2s ease,transform .2s ease;
+    gap:2px;
+    min-width:44px;
+    min-height:44px;
+    margin-bottom:6px;
+    padding:0 2px;
+    color:var(--color-text-muted);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:10px;
+    font-weight:700;
+    line-height:1.1;
+    letter-spacing:0;
+    white-space:nowrap;
+    border-radius:var(--space-radius-sm);
+    transition:color .2s ease;
   }
-  .arnova-mobile-dock a svg{
+  .arnova-mobile-dock__bar a svg,
+  .arnova-mobile-dock__bar button svg{
     width:22px;
     height:22px;
     stroke:currentColor;
@@ -308,30 +419,187 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     stroke-linecap:round;
     stroke-linejoin:round;
   }
-  .arnova-mobile-dock a:hover,
-  .arnova-mobile-dock a:focus-visible,
-  .arnova-mobile-dock a[aria-current="page"]{
-    background:color-mix(in srgb,var(--color-text) 14%,transparent)!important;
+  .arnova-mobile-dock__bar a:hover,
+  .arnova-mobile-dock__bar button:hover,
+  .arnova-mobile-dock__bar a:focus-visible,
+  .arnova-mobile-dock__bar button:focus-visible,
+  .arnova-mobile-dock__bar a[aria-current="page"],
+  .arnova-mobile-dock__bar button[aria-current="page"],
+  .arnova-mobile-dock__bar button[aria-expanded="true"]{
+    color:var(--color-text);
+  }
+  .arnova-mobile-dock__bar a:focus-visible,
+  .arnova-mobile-dock__bar button:focus-visible,
+  .arnova-mobile-dock__cta:focus-visible{
+    outline:3px solid var(--color-focus);
     outline-offset:2px;
   }
-  html[data-theme="dark"] .arnova-mobile-dock{
-    background:color-mix(in srgb,var(--color-bg-elevated) 78%,transparent)!important;
-    border-color:color-mix(in srgb,var(--color-border) 80%,transparent)!important;
+  .arnova-mobile-dock__spacer{
+    flex:0 0 calc(var(--dock-notch) * 2);
+    width:calc(var(--dock-notch) * 2);
+    min-width:calc(var(--dock-notch) * 2);
+    pointer-events:none;
   }
-  html[data-theme="dark"] .arnova-mobile-dock a{color:var(--color-text)!important}
-  html[data-theme="dark"] .arnova-mobile-dock a:hover,
-  html[data-theme="dark"] .arnova-mobile-dock a:focus-visible,
-  html[data-theme="dark"] .arnova-mobile-dock a[aria-current="page"]{
-    background:color-mix(in srgb,var(--color-accent) 18%,transparent)!important;
+
+  .arnova-mobile-dock__cta{
+    position:absolute;
+    left:50%;
+    top:0;
+    z-index:4;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:1px;
+    width:var(--dock-cta);
+    height:var(--dock-cta);
+    min-width:44px;
+    min-height:44px;
+    transform:translate(-50%,-52%);
+    border-radius:50%;
+    background:var(--color-bg-cta);
+    color:var(--color-text-on-cta);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:9px;
+    font-weight:750;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    line-height:1;
+    box-shadow:
+      0 0 0 2px color-mix(in srgb,var(--color-accent) 55%,transparent),
+      0 0 18px color-mix(in srgb,var(--color-accent) 55%,transparent),
+      0 8px 18px var(--color-shadow);
+    transition:transform .2s ease,box-shadow .2s ease;
   }
+  .arnova-mobile-dock__cta:hover,
+  .arnova-mobile-dock__cta:focus-visible{
+    box-shadow:
+      0 0 0 4px color-mix(in srgb,var(--color-accent) 40%,transparent),
+      0 0 28px color-mix(in srgb,var(--color-accent) 70%,transparent),
+      0 8px 18px var(--color-shadow);
+  }
+  .arnova-mobile-dock__cta svg{
+    width:22px;
+    height:22px;
+    stroke:currentColor;
+    fill:none;
+    stroke-width:1.9;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
+  /* Bottom sheet: lists service pages, sits above the dock */
+  .arnova-dock-sheet{
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:2147483000;
+    pointer-events:none;
+  }
+  .arnova-dock-sheet[hidden]{display:none}
+  .arnova-dock-sheet.is-open{pointer-events:auto}
+  .arnova-dock-sheet__backdrop{
+    position:absolute;
+    inset:0;
+    background:color-mix(in srgb,var(--color-bg-hero) 45%,transparent);
+    border:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    appearance:none;
+    cursor:pointer;
+  }
+  .arnova-dock-sheet__panel{
+    position:absolute;
+    left:50%;
+    bottom:var(--space-dock-offset);
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:430px;
+    max-height:min(70vh,calc(100% - var(--space-dock-offset) - var(--space-header-offset-narrow) - 16px));
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+    box-sizing:border-box;
+    padding:var(--space-sm) var(--space-md) var(--space-md);
+    background:var(--color-bg-elevated);
+    color:var(--color-text);
+    border:1px solid var(--color-border);
+    border-radius:var(--space-radius-lg) var(--space-radius-lg) var(--space-radius-md) var(--space-radius-md);
+    box-shadow:0 16px 40px var(--color-shadow);
+  }
+  .arnova-dock-sheet__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--space-sm);
+    margin-bottom:var(--space-xs);
+    position:sticky;
+    top:0;
+    background:var(--color-bg-elevated);
+    z-index:1;
+    padding-top:var(--space-xs);
+  }
+  .arnova-dock-sheet__head h2{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:var(--text-xl);
+    font-weight:650;
+  }
+  .arnova-dock-sheet__close{
+    appearance:none;
+    border:1px solid var(--color-border);
+    background:var(--color-bg-subtle);
+    color:var(--color-text);
+    min-width:44px;
+    min-height:44px;
+    border-radius:var(--space-radius-pill);
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:700;
+    padding:0 var(--space-sm);
+  }
+  .arnova-dock-sheet__list{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+  }
+  .arnova-dock-sheet__list a{
+    display:flex;
+    align-items:center;
+    min-height:44px;
+    padding:var(--space-xs) var(--space-2xs);
+    color:var(--color-text);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:600;
+    border-bottom:1px solid var(--color-border);
+  }
+  .arnova-dock-sheet__list a:last-child{border-bottom:0}
+  .arnova-dock-sheet__list a:hover,
+  .arnova-dock-sheet__list a:focus-visible{color:var(--color-text-accent)}
 }
+
 @media(max-width:360px){
-  .arnova-mobile-dock{width:97vw!important;padding:5px!important}
-  .arnova-mobile-dock a{font-size:9px!important}
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{font-size:9px;padding:0 1px}
+  .arnova-mobile-dock__cta{font-size:8px}
+  .arnova-mobile-dock__home-line{width:72px}
 }
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  header.arnova-site-header,.pill,.arnova-mobile-dock a{transition:none!important}
+  header.arnova-site-header,.pill,
+  .arnova-mobile-dock,
+  .arnova-mobile-dock__indicator,
+  .arnova-mobile-dock__cta,
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button,
+  .arnova-dock-sheet__backdrop,
+  .arnova-dock-sheet__panel{transition:none!important}
   .pill:hover{transform:none}
 }
 
