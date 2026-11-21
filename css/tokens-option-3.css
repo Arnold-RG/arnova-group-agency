@@ -58,6 +58,18 @@
   --color-dock-item:var(--color-text-muted);
   --color-dock-item-active:var(--color-accent-text);
 
+  /* Live mobile nav (glassy bar + centre FAB). */
+  --color-nav-glow:#3FA4BB;
+  --color-fab-bg:#3FA4BB;
+  --color-fab-text:#111113;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-nav-item:var(--color-text-muted);
+  --color-nav-item-active:var(--color-accent-text);
+  --color-nav-indicator:var(--color-nav-glow);
+  --color-nav-mask:#000000;
+
   --space-2xs:.25rem;
   --space-xs:.5rem;
   --space-sm:.75rem;
@@ -71,7 +83,7 @@
   --space-card-gap:1.25rem;
   --space-header-offset:76px;
   --space-header-offset-narrow:66px;
-  --space-dock-offset:calc(92px + env(safe-area-inset-bottom,0px));
+  --space-dock-offset:calc(144px + env(safe-area-inset-bottom,0px));
   --space-radius-sm:.5rem;
   --space-radius-md:.75rem;
   --space-radius-lg:1.25rem;
@@ -127,5 +139,13 @@ html[data-theme="dark"]{
   --color-badge-text:#7EC8D6;
   --color-link:#7EC8D6;
   --color-link-hover:#F4F4F1;
+
+  --color-nav-glow:#3FA4BB;
+  --color-fab-bg:#3FA4BB;
+  --color-fab-text:#111113;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+
   color-scheme:dark;
 }
