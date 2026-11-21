@@ -6,24 +6,73 @@
   } catch (e) {}
 
   var reveals = document.querySelectorAll(".arnova-reveal");
-  if (reduceMotion) {
+
+  function markInView(el) {
+    if (el) el.classList.add("is-inview");
+  }
+
+  function revealAlreadySeen() {
+    var vh = window.innerHeight || document.documentElement.clientHeight || 0;
     Array.prototype.forEach.call(reveals, function (el) {
-      el.classList.add("is-inview");
+      var rect = el.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top < vh) markInView(el);
     });
+  }
+
+  function revealHashTarget() {
+    var id = (window.location.hash || "").replace(/^#/, "");
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+    var top = target.getBoundingClientRect().top;
+    Array.prototype.forEach.call(reveals, function (el) {
+      if (target === el || target.contains(el) || el.contains(target) || el.getBoundingClientRect().top <= top + 1) {
+        markInView(el);
+      }
+    });
+  }
+
+  function bootReveal() {
+    revealAlreadySeen();
+    revealHashTarget();
+  }
+
+  if (reduceMotion) {
+    Array.prototype.forEach.call(reveals, markInView);
   } else if (reveals.length && "IntersectionObserver" in window) {
     var rio = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add("is-inview");
+          markInView(entry.target);
           rio.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.16, rootMargin: "0px 0px -8% 0px" });
+    }, { threshold: 0, rootMargin: "0px 0px -8px 0px" });
     Array.prototype.forEach.call(reveals, function (el) { rio.observe(el); });
-  } else {
-    Array.prototype.forEach.call(reveals, function (el) {
-      el.classList.add("is-inview");
+    bootReveal();
+    window.addEventListener("hashchange", bootReveal);
+    window.addEventListener("load", bootReveal);
+    var revealTick = false;
+    window.addEventListener("scroll", function () {
+      if (revealTick) return;
+      revealTick = true;
+      window.requestAnimationFrame(function () {
+        revealAlreadySeen();
+        revealTick = false;
+      });
+    }, { passive: true });
+    document.addEventListener("click", function (event) {
+      var link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+      var id = (link.getAttribute("href") || "").replace(/^#/, "");
+      if (!id) return;
+      window.requestAnimationFrame(function () {
+        revealHashTarget();
+        revealAlreadySeen();
+      });
     });
+  } else {
+    Array.prototype.forEach.call(reveals, markInView);
   }
 
   var steps = document.querySelectorAll(".arnova-process-list > li");

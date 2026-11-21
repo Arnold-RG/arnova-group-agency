@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self' https://open.er-api.com; form-action 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; img-src 'self'; script-src 'self'; connect-src 'self'; form-action 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F7F7F5">
 <meta name="description" content="Arnova Group Agency builds websites, digital products and practical business tools for businesses in Rwanda.">
@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="css/tokens.css">
 <link rel="stylesheet" href="css/layout.css"><link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/home.css">
+<noscript><link rel="stylesheet" href="css/reveal-fallback.css"></noscript>
 <script src="js/theme-boot.js"></script>
 </head>
 <body><a class="skip" href="#main">Skip to content</a><header class="wrap nav arnova-site-header" aria-label="Site"><a class="brand" href="#top" aria-label="Arnova Group Agency home"><img src="assets/brand/option-1/mark-light.svg" alt="" class="original-logo original-logo--light" width="48" height="48"><img src="assets/brand/option-1/mark-dark.svg" alt="" class="original-logo original-logo--dark" width="48" height="48"><span class="agency-brand-name">Arnova Group <span>Agency</span></span></a><nav class="nav-links" aria-label="Desktop navigation"><a href="#top" data-nav="home">Home</a><div class="nav-dropdown"><button type="button" class="nav-dropdown__toggle" aria-expanded="false" aria-controls="ag-services-menu" id="ag-services-button">Services</button><div class="nav-dropdown__menu" id="ag-services-menu" hidden role="menu" aria-labelledby="ag-services-button"><a class="nav-dropdown__all" href="#services" role="menuitem">All services</a><a href="#service-websites" role="menuitem">Business websites</a><a href="#service-shops" role="menuitem">Online shops & catalogues</a><a href="#service-apps" role="menuitem">Mobile applications</a><a href="#service-dashboards" role="menuitem">Business dashboards</a><a href="#service-ux" role="menuitem">UI/UX & brand experiences</a><a href="#service-redesign" role="menuitem">Website redesign & maintenance</a><a href="#service-automation" role="menuitem">Automation & integrations</a><a href="#service-data" role="menuitem">Data analysis & reporting</a><a href="#service-security" role="menuitem">Cybersecurity & IT support</a><a href="#service-ai" role="menuitem">AI-assisted digital tools</a><a href="#service-training" role="menuitem">Training & digital guidance</a><a href="#service-portfolio" role="menuitem">Portfolio & career websites</a><a href="#pricing" role="menuitem">Website packages</a></div></div><a href="#pricing" data-nav="pricing">Pricing</a><a href="#about" data-nav="about">About</a><a href="#faq" data-nav="faq">FAQ</a><a href="#contact" data-nav="contact">Contact</a><a class="pill" href="#pricing">See prices</a></nav><button class="theme-toggle" type="button" aria-label="Switch to dark theme" aria-pressed="false">◐ <span>Dark</span></button></header><nav class="arnova-mobile-dock" aria-label="Mobile quick navigation"><div class="arnova-mobile-dock__bar"><span class="arnova-mobile-dock__indicator" aria-hidden="true"></span><a href="#top" data-dock-link="home" aria-label="Home" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.5 12 4l8 7.5"/><path d="M6.5 10.2V20h11V10.2"/></svg><span>Home</span></a><button type="button" class="arnova-mobile-dock__services" data-dock-link="services" aria-expanded="false" aria-controls="arnova-dock-sheet" aria-haspopup="dialog" aria-label="Services"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.2"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.2"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.2"/></svg><span>Services</span></button><span class="arnova-mobile-dock__fab-space" aria-hidden="true"></span><a href="#pricing" data-dock-link="pricing" aria-label="Pricing"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.2 4.5H7.2A1 1 0 0 0 6.2 5.5v5.1a1 1 0 0 0 .3.7l7.4 7.4a1 1 0 0 0 1.4 0l5.1-5.1a1 1 0 0 0 0-1.4l-7.4-7.4a1 1 0 0 0-.8-.3z"/><circle cx="9.1" cy="8.6" r="1.15"/></svg><span>Pricing</span></a><a href="#about" data-dock-link="about" aria-label="About"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.25"/><path d="M5.6 19.5c.9-3.4 3.3-5.1 6.4-5.1s5.5 1.7 6.4 5.1"/></svg><span>About</span></a></div><a class="arnova-mobile-dock__fab" href="#contact" data-dock-link="contact" aria-label="Start a project"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span class="arnova-visually-hidden">Start a project</span></a></nav><div class="arnova-dock-sheet" id="arnova-dock-sheet" hidden><button type="button" class="arnova-dock-sheet__backdrop" tabindex="-1" aria-label="Close services"></button><div class="arnova-dock-sheet__panel" role="dialog" aria-modal="true" aria-labelledby="arnova-dock-sheet-title"><div class="arnova-dock-sheet__head"><h2 id="arnova-dock-sheet-title">Services</h2><button type="button" class="arnova-dock-sheet__close">Close</button></div><ul class="arnova-dock-sheet__list"><li><a href="#services">All services</a></li><li><a href="#service-websites">Business websites</a></li><li><a href="#service-shops">Online shops & catalogues</a></li><li><a href="#service-apps">Mobile applications</a></li><li><a href="#service-dashboards">Business dashboards</a></li><li><a href="#service-ux">UI/UX & brand experiences</a></li><li><a href="#service-redesign">Website redesign & maintenance</a></li><li><a href="#service-automation">Automation & integrations</a></li><li><a href="#service-data">Data analysis & reporting</a></li><li><a href="#service-security">Cybersecurity & IT support</a></li><li><a href="#service-ai">AI-assisted digital tools</a></li><li><a href="#service-training">Training & digital guidance</a></li><li><a href="#service-portfolio">Portfolio & career websites</a></li><li><a href="#pricing">Pricing</a></li></ul><div class="arnova-dock-sheet__footer"><a href="https://wa.me/250794607518?text=Hello%20Arnova%20Group%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.4L3.5 20.5l1.6-4.3A8.5 8.5 0 1 1 20.5 11.6z"/><path d="M9.2 9.6c.2-.5.3-.5.6-.5h.5c.2 0 .4.1.5.4l.6 1.5c.1.2 0 .4-.1.6l-.4.4a6 6 0 0 0 2.6 2.6l.4-.4c.2-.2.4-.2.6-.1l1.5.6c.3.1.4.3.4.5v.5c0 .3 0 .4-.5.6a4.2 4.2 0 0 1-2.2.3 8 8 0 0 1-4.6-3.5 4.2 4.2 0 0 1 .1-2.1z"/></svg><span>Get a quote on WhatsApp</span></a></div></div></div><main id="main">
@@ -51,18 +52,18 @@
         <p>We discuss requirements before work begins. Features, costs, timelines, hosting and ongoing support are agreed for each project rather than promised without review.</p>
       </div>
     </div>
-    <div class="arnova-key-grid arnova-reveal">
-      <article class="arnova-key-card">
+    <div class="arnova-key-grid">
+      <article class="arnova-key-card arnova-reveal">
         <span>01</span>
         <h3>Websites</h3>
         <p>Business information, mobile layouts, contact links, location details, basic search visibility and content handover.</p>
       </article>
-      <article class="arnova-key-card">
+      <article class="arnova-key-card arnova-reveal">
         <span>02</span>
         <h3>Apps</h3>
         <p>App interface design, Flutter-based prototypes, navigation, forms and data connections where scoped.</p>
       </article>
-      <article class="arnova-key-card">
+      <article class="arnova-key-card arnova-reveal">
         <span>03</span>
         <h3>Automation</h3>
         <p>Form workflows, notifications, APIs and third-party connections subject to available access and provider support.</p>
@@ -80,8 +81,8 @@
     </div>
     <p>From a first business website to a more useful digital workflow, every project starts with the real problem.</p>
   </div>
-  <div class="arnova-category-grid arnova-reveal">
-    <article class="arnova-category">
+  <div class="arnova-category-grid">
+    <article class="arnova-category arnova-reveal">
       <h3>Websites</h3>
       <div class="service" id="service-websites">
         <h4>Business websites</h4>
@@ -100,7 +101,7 @@
         <p>Personal introductions, project galleries, CV links, contact information and mobile-friendly layouts.</p>
       </div>
     </article>
-    <article class="arnova-category">
+    <article class="arnova-category arnova-reveal">
       <h3>Apps</h3>
       <div class="service" id="service-apps">
         <h4>Mobile applications</h4>
@@ -111,7 +112,7 @@
         <p>Sales and stock views, filters, charts, reporting screens and data import or export where required.</p>
       </div>
     </article>
-    <article class="arnova-category">
+    <article class="arnova-category arnova-reveal">
       <h3>Automation</h3>
       <div class="service" id="service-automation">
         <h4>Automation &amp; integrations</h4>
@@ -122,7 +123,7 @@
         <p>Data validation, cleaning, tables, visual reports and business metric summaries using supplied data.</p>
       </div>
     </article>
-    <article class="arnova-category">
+    <article class="arnova-category arnova-reveal">
       <h3>Tech support</h3>
       <div class="service" id="service-security">
         <h4>Cybersecurity &amp; IT support</h4>
@@ -133,14 +134,14 @@
         <p>Guided walkthroughs, documentation, website administration basics and tailored technical learning material.</p>
       </div>
     </article>
-    <article class="arnova-category">
+    <article class="arnova-category arnova-reveal">
       <h3>AI creation</h3>
       <div class="service" id="service-ai">
         <h4>AI-assisted digital tools</h4>
         <p>Prototypes for assistants, content classification and workflow support with human review and clear limitations.</p>
       </div>
     </article>
-    <article class="arnova-category">
+    <article class="arnova-category arnova-reveal">
       <h3>Design</h3>
       <div class="service" id="service-ux">
         <h4>UI/UX &amp; brand experiences</h4>
@@ -161,21 +162,21 @@
     </div>
   </div>
   <div class="arnova-concept-scroller" tabindex="0" aria-label="Concept site gallery">
-    <button type="button" class="arnova-concept-card" data-concept="117-cafe" aria-haspopup="dialog" aria-controls="concept-117-cafe">
+    <button type="button" class="arnova-concept-card arnova-reveal" data-concept="117-cafe" aria-haspopup="dialog" aria-controls="concept-117-cafe">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/117-cafe.webp" width="1600" height="1100" alt="Laptop and phone mockup of the 117 Cafe and Restaurant concept site." loading="lazy">
       <h3>117 Cafe and Restaurant</h3>
       <p>A warm, editorial site for a Kigali café.</p>
       <span class="arnova-concept-card__more">View concept</span>
     </button>
-    <button type="button" class="arnova-concept-card" data-concept="shisha-supermarket" aria-haspopup="dialog" aria-controls="concept-shisha-supermarket">
+    <button type="button" class="arnova-concept-card arnova-reveal" data-concept="shisha-supermarket" aria-haspopup="dialog" aria-controls="concept-shisha-supermarket">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/shisha-supermarket.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Shisha Supermarket concept site." loading="lazy">
       <h3>Shisha Supermarket</h3>
       <p>A clear, lively grocery catalogue concept.</p>
       <span class="arnova-concept-card__more">View concept</span>
     </button>
-    <button type="button" class="arnova-concept-card" data-concept="royal-relay-electronics" aria-haspopup="dialog" aria-controls="concept-royal-relay-electronics">
+    <button type="button" class="arnova-concept-card arnova-reveal" data-concept="royal-relay-electronics" aria-haspopup="dialog" aria-controls="concept-royal-relay-electronics">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/royal-relay-electronics.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Royal Relay Electronics concept site." loading="lazy">
       <h3>Royal Relay Electronics</h3>
@@ -222,23 +223,23 @@
       <p>A clear path, with the scope and price agreed before build work starts.</p>
     </div>
     <p class="arnova-process-counter" aria-live="polite">01 / 04</p>
-    <ol class="process-grid arnova-process-list arnova-reveal">
-      <li>
+    <ol class="process-grid arnova-process-list">
+      <li class="arnova-reveal">
         <span>01</span>
         <h3>Understand</h3>
         <p>We talk through your business, the pages you need and any constraints.</p>
       </li>
-      <li>
+      <li class="arnova-reveal">
         <span>02</span>
         <h3>Plan</h3>
         <p>We agree a written scope, a layout direction and a price before the build begins.</p>
       </li>
-      <li>
+      <li class="arnova-reveal">
         <span>03</span>
         <h3>Build</h3>
         <p>We implement the agreed work and review it on desktop and phone.</p>
       </li>
-      <li>
+      <li class="arnova-reveal">
         <span>04</span>
         <h3>Launch</h3>
         <p>After your approval, we publish the site and hand over what you need to run it.</p>
@@ -281,9 +282,10 @@
         <option value="PLN">PLN</option>
       </select>
       <span id="fx-status" class="currency-feedback" role="status" aria-live="polite"></span>
+      <p class="currency-note" id="fx-note">Approximate conversion, as of 21 November 2026. Final amount confirmed in your quote.</p>
     </div>
-    <div class="grid arnova-pricing-grid arnova-reveal">
-      <article class="card">
+    <div class="grid arnova-pricing-grid">
+      <article class="card arnova-reveal">
         <span class="label">Get online</span>
         <h3>Starter</h3>
         <div class="price">35,000 RWF</div>
@@ -297,7 +299,7 @@
         </ul>
         <a class="btn" href="https://wa.me/250794607518?text=Hello%2C%20I%20want%20the%20Starter%20website%20package.">Choose Starter</a>
       </article>
-      <article class="card featured">
+      <article class="card featured arnova-reveal">
         <span class="label">Popular choice</span>
         <h3>Business</h3>
         <div class="price">65,000 RWF</div>
@@ -311,7 +313,7 @@
         </ul>
         <a class="btn" href="https://wa.me/250794607518?text=Hello%2C%20I%20want%20the%20Business%20website%20package.">Choose Business</a>
       </article>
-      <article class="card">
+      <article class="card arnova-reveal">
         <span class="label">More room to grow</span>
         <h3>Professional</h3>
         <div class="price">110,000 RWF</div>
@@ -325,7 +327,7 @@
         </ul>
         <a class="btn" href="https://wa.me/250794607518?text=Hello%2C%20I%20want%20the%20Professional%20website%20package.">Choose Professional</a>
       </article>
-      <article class="card">
+      <article class="card arnova-reveal">
         <span class="label">Show your products</span>
         <h3>Product Catalog</h3>
         <div class="price">120,000 RWF</div>
@@ -342,10 +344,10 @@
     </div>
     <p class="muted spaced">Custom booking systems, ecommerce checkout, databases, paid integrations, content creation and additional pages are quoted separately. Minor revisions mean small changes within the agreed design, not a full redesign.</p>
 
-    <div class="arnova-pricing-extra arnova-reveal">
+    <div class="arnova-pricing-extra">
       <h3>What happens after the first year?</h3>
       <p>A website purchase is not the same as paying for a domain forever. Your first year includes eligible .co.rw domain and static hosting; keeping the site online requires renewal after that.</p>
-      <div class="table-scroll" tabindex="0">
+      <div class="table-scroll arnova-reveal" tabindex="0">
         <table class="cost-table">
           <thead>
             <tr>
@@ -385,32 +387,27 @@
       </div>
       <p class="muted spaced-sm">These are indicative prices, not live domain availability or a guaranteed registrar quote. Domain taxes, provider charges and non-static hosting requirements may change the final price.</p>
 
-      <!--
-        [CONFIRM WITH ATECK] Daily care policy still open: any minimum number of days,
-        and the invoicing cadence (for example weekly, monthly in arrears, or prepaid).
-        Do not publish those terms until they are confirmed.
-      -->
       <div class="arnova-daily-care" id="daily-care">
         <h3>Optional daily care</h3>
         <p>Care is optional. The prices below are listed per day, with Polish złoty as the base price. Other currencies are shown as approximate conversions.</p>
         <ul>
-          <li>
+          <li class="arnova-reveal">
             <h4><span data-pln="24">24 PLN</span> / day</h4>
             <p>Content and text edits and uptime checks.</p>
           </li>
-          <li>
+          <li class="arnova-reveal">
             <h4><span data-pln="30">30 PLN</span> / day</h4>
             <p>The previous tier, plus image and section updates.</p>
           </li>
-          <li>
+          <li class="arnova-reveal">
             <h4><span data-pln="40">40 PLN</span> / day</h4>
             <p>The previous tier, plus small new sections and monthly backups.</p>
           </li>
-          <li>
+          <li class="arnova-reveal">
             <h4><span data-pln="55">55 PLN</span> / day</h4>
             <p>The previous tier, plus priority fixes and basic SEO tweaks.</p>
           </li>
-          <li>
+          <li class="arnova-reveal">
             <h4><span data-pln="64">64 PLN</span> / day</h4>
             <p>The previous tier, plus same-day priority and integration or form support.</p>
           </li>
@@ -425,15 +422,15 @@
         <h3>Accepted payment methods</h3>
         <p>We accept MTN Mobile Money, BLIK and bank transfer. Ask for confirmed payment details and your invoice before sending money.</p>
         <div class="arnova-pay-grid">
-          <article>
+          <article class="arnova-reveal">
             <h4>MTN Mobile Money</h4>
             <p>Pay conveniently using MTN MoMo. Contact us for the verified receiving number and payment reference.</p>
           </article>
-          <article>
+          <article class="arnova-reveal">
             <h4>BLIK</h4>
-            <p>For customers using BLIK in Poland. Request the supported payment instructions before transferring funds.</p>
+            <p>Pay using BLIK. Request the supported payment instructions before transferring funds.</p>
           </article>
-          <article>
+          <article class="arnova-reveal">
             <h4>Bank transfer</h4>
             <p>Pay by bank transfer using the account and reference provided on your confirmed invoice. International bank fees may apply.</p>
           </article>
@@ -445,15 +442,15 @@
         <h3>One-time, monthly or yearly</h3>
         <p>Choose the payment arrangement that suits your business. These are different options, not three compulsory fees. A written quote confirms eligibility and exact terms.</p>
         <ol>
-          <li id="one-time">
+          <li class="arnova-reveal" id="one-time">
             <h4>One-time website payment</h4>
             <p><strong>From <span data-rwf="35000">35,000 RWF</span> once.</strong> Pay the agreed build price for your selected package. First-year eligible domain and static hosting are included. No mandatory monthly maintenance. Domain and hosting renewals apply after year one.</p>
           </li>
-          <li id="monthly">
+          <li class="arnova-reveal" id="monthly">
             <h4>Monthly payment plan</h4>
             <p><strong>Request a custom monthly installment quote.</strong> Spread an approved website build over agreed monthly payments instead of paying the full amount upfront. The number of months, total price, deposit, site ownership, support and cancellation terms must be agreed before work begins. Monthly maintenance is separate and optional.</p>
           </li>
-          <li id="yearly">
+          <li class="arnova-reveal" id="yearly">
             <h4>Yearly renewal payment</h4>
             <p><strong>From <span data-rwf="18000">18,000 RWF</span> per year</strong> for an eligible .co.rw domain plus static-hosting administration after the included first year. A .com renewal with hosting administration is estimated at <strong><span data-rwf="38000">38,000 RWF</span>/year</strong>. These renewals are not a new website-build fee.</p>
           </li>
@@ -471,48 +468,48 @@
         <h2>Good questions. <em>Clear</em> answers.</h2>
       </div>
     </div>
-    <div class="faq-list arnova-reveal">
-      <details>
+    <div class="faq-list">
+      <details class="arnova-reveal">
         <summary>Can you build a website for a small business in Rwanda?</summary>
         <p>Yes. We can discuss a clear, mobile-friendly website sized to your business needs and budget.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Can customers contact my business through WhatsApp?</summary>
         <p>We can design a WhatsApp enquiry flow where it suits your business. Messaging requires a working number and customer consent.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Do you provide online payments or booking systems?</summary>
         <p>These can be scoped where suitable, but payment and booking integrations depend on the providers, requirements and approvals involved.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Can you improve an existing website?</summary>
         <p>Yes. We can review its structure, visual design, mobile experience and maintainability before proposing changes.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>How do we get started?</summary>
         <p>Send a short description of your business and what you want the website or digital tool to accomplish.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Can I pay in euros, dollars or Polish złoty?</summary>
         <p>Yes, request a quote in EUR, USD or PLN. We confirm the exchange rate, exact invoice amount and available receiving channel before payment.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Do I have to pay every month?</summary>
         <p>No. Our standard website packages are one-time builds. Daily care and other maintenance are optional. Domain and hosting renewal costs apply when the first-year period ends.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Can I pay in two parts?</summary>
         <p>You can request an approved staged payment plan. We will write the amounts, due dates and delivery conditions in the quotation before starting work.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>What if I need more pages or online payments?</summary>
         <p>We provide a custom quote for added pages, booking systems, databases, online checkout, integrations and other features outside the selected package.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>Who owns my website?</summary>
         <p>Ownership, domain registration, access credentials, third-party subscriptions and any transfer arrangements are defined in your written agreement before payment.</p>
       </details>
-      <details>
+      <details class="arnova-reveal">
         <summary>What should be on a first website?</summary>
         <p>For many local businesses, a clear one-page site is a good start. It can list your real services, a working phone number or WhatsApp link, your correct location, photos you have permission to use, and one clear next step — contact, book, enquire or visit.</p>
       </details>
@@ -544,12 +541,14 @@
       <p>If you use the theme switch, your browser may keep a single preference (<code>arnova-theme</code>) in local storage so the site can remember light or dark mode. You can clear it at any time in your browser settings.</p>
       <h3>Getting in touch</h3>
       <p>Contact links open WhatsApp, which is operated by a third party. Anything you send there is handled under WhatsApp’s own terms and is not stored by this website. This site does not collect a mailing list and does not have an on-site enquiry form at present.</p>
+      <h3>Currency conversions</h3>
+      <p>If you switch the displayed currency, amounts are converted with approximate rates bundled in this website (as of 21 November 2026). No third-party rate service is contacted. The amount you pay is the figure confirmed in your written quote.</p>
       <h3>Embedded or linked services</h3>
-      <p>Some pages may link to GitHub or other public sites. Those services have their own privacy practices once you leave this website.</p>
+      <p>Some pages may link to GitHub, Pexels or other public sites. Those services have their own privacy practices once you leave this website.</p>
       <h3>Contact</h3>
       <p>Questions about this notice can be sent through the WhatsApp link on the site. We serve businesses in Rwanda. This website does not list a street address.</p>
     </div>
   </div>
 </section>
 </main>
-<footer class="agency-footer" aria-label="Arnova Group Agency footer"><div class="wrap agency-footer-grid"><div class="agency-footer-intro"><a class="agency-footer-brand" href="#top">Arnova Group <span>Agency</span></a><p>Thoughtful websites and practical digital solutions for businesses in Rwanda.</p><a class="agency-footer-cta" href="#contact">Let's discuss your project ↗</a></div><div class="agency-footer-column"><h3>Services</h3><a href="#services">All services</a><a href="#pricing">Website packages</a><a href="#services">Websites and shops</a><a href="#services">Apps and dashboards</a></div><div class="agency-footer-column"><h3>Company</h3><a href="#about">About</a><a href="#faq">FAQ</a><a href="#work">Concept work</a><a href="https://github.com/Arnold-RG/arnova-group-agency" target="_blank" rel="noopener noreferrer">GitHub</a></div><div class="agency-footer-column"><h3>Contact</h3><a href="https://wa.me/250794607518?text=Hello%20Arnova%20Group%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp</a><p>Rwanda</p><span>Business hours</span><strong>9:00 AM – 10:00 PM</strong><small>Rwanda time (CAT, UTC+2)</small></div></div><div class="wrap agency-footer-bottom"><span>© 2026 Arnova Group Agency</span><span class="agency-footer-legal"><a href="#privacy">Privacy</a></span></div></footer><script src="js/chrome.js" defer></script><script src="js/nav.js" defer></script><script src="js/hero-video.js" defer></script><script src="js/home-showcase.js" defer></script><script src="js/pricing-currency.js" defer></script></body></html>
+<footer class="agency-footer" aria-label="Arnova Group Agency footer"><div class="wrap agency-footer-grid"><div class="agency-footer-intro"><a class="agency-footer-brand" href="#top">Arnova Group <span>Agency</span></a><p>Thoughtful websites and practical digital solutions for businesses in Rwanda.</p><a class="agency-footer-cta" href="#contact">Let's discuss your project ↗</a></div><div class="agency-footer-column"><h3>Services</h3><a href="#services">All services</a><a href="#pricing">Website packages</a><a href="#services">Websites and shops</a><a href="#services">Apps and dashboards</a></div><div class="agency-footer-column"><h3>Company</h3><a href="#about">About</a><a href="#faq">FAQ</a><a href="#work">Concept work</a><a href="https://github.com/Arnold-RG/arnova-group-agency" target="_blank" rel="noopener noreferrer">GitHub</a></div><div class="agency-footer-column"><h3>Contact</h3><a href="https://wa.me/250794607518?text=Hello%20Arnova%20Group%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp</a><p>Rwanda</p><span>Business hours</span><strong>9:00 AM – 10:00 PM</strong><small>Rwanda time (CAT, UTC+2)</small></div></div><div class="wrap agency-footer-bottom"><span>© 2026 Arnova Group Agency</span><span class="agency-footer-legal"><a href="#privacy">Privacy</a><span aria-hidden="true"> · </span>Hero film by <a href="https://www.pexels.com/video/people-coding-on-computer-6804109/" target="_blank" rel="noopener noreferrer">cottonbro studio, Pexels</a></span></div></footer><script src="js/chrome.js" defer></script><script src="js/nav.js" defer></script><script src="js/hero-video.js" defer></script><script src="js/home-showcase.js" defer></script><script src="js/fx-rates.js" defer></script><script src="js/pricing-currency.js" defer></script></body></html>

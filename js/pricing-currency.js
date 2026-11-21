@@ -1,10 +1,17 @@
-(function(){
+(function () {
   var select = document.getElementById("currency-choice");
-  var fxStatus = document.getElementById("fx-status");
-  if (!select || !fxStatus) return;
+  if (!select) return;
+
+  var bundled = window.ARNOVA_FX_RATES && window.ARNOVA_FX_RATES.rates;
+  var rates = bundled || { RWF: 1, EUR: 0.000615, USD: 0.000676, PLN: 0.002718 };
+
+  function hasRate(code) {
+    return rates && Number.isFinite(rates[code]) && rates[code] > 0;
+  }
+
+  var currency = hasRate(select.value) ? select.value : "RWF";
   var cards = Array.prototype.slice.call(document.querySelectorAll(".card .price"));
   var base = [35000, 65000, 110000, 120000];
-  var rates = null;
 
   function fmt(n, c) {
     return new Intl.NumberFormat("en-US", {
@@ -14,58 +21,31 @@
     }).format(n);
   }
 
-  function fromRwf(amount, currency) {
-    if (currency === "RWF") return amount;
-    if (rates && Number.isFinite(rates[currency]) && rates[currency] > 0) return amount * rates[currency];
-    return null;
+  function fromRwf(amount, c) {
+    if (c === "RWF") return amount;
+    return amount * rates[c];
   }
 
-  function fromPln(amount, currency) {
-    if (currency === "PLN") return amount;
-    if (!rates || !Number.isFinite(rates.PLN) || rates.PLN <= 0) return null;
-    if (currency === "RWF") return amount / rates.PLN;
-    if (Number.isFinite(rates[currency]) && rates[currency] > 0) return amount * rates[currency] / rates.PLN;
-    return null;
+  function fromPln(amount, c) {
+    if (c === "PLN") return amount;
+    if (c === "RWF") return amount / rates.PLN;
+    return amount * rates[c] / rates.PLN;
   }
 
   function render() {
-    var c = select.value;
+    var c = hasRate(select.value) ? select.value : "RWF";
+    currency = c;
     cards.forEach(function (el, i) {
-      var converted = fromRwf(base[i], c);
-      el.textContent = converted == null ? fmt(base[i], "RWF") : fmt(converted, c);
+      el.textContent = fmt(fromRwf(base[i], c), c);
     });
     document.querySelectorAll("[data-rwf]").forEach(function (el) {
-      var amount = Number(el.getAttribute("data-rwf"));
-      var converted = fromRwf(amount, c);
-      el.textContent = converted == null ? fmt(amount, "RWF") : fmt(converted, c);
+      el.textContent = fmt(fromRwf(Number(el.getAttribute("data-rwf")), c), c);
     });
     document.querySelectorAll("[data-pln]").forEach(function (el) {
-      var amount = Number(el.getAttribute("data-pln"));
-      var converted = fromPln(amount, c);
-      el.textContent = converted == null ? fmt(amount, "PLN") : fmt(converted, c);
+      el.textContent = fmt(fromPln(Number(el.getAttribute("data-pln")), c), c);
     });
-    if (c === "RWF") fxStatus.textContent = "";
-    else if (rates && (c === "PLN" || (Number.isFinite(rates[c]) && rates[c] > 0))) fxStatus.textContent = "Estimated conversion";
-    else fxStatus.textContent = "Rates unavailable — showing original prices";
   }
 
   select.addEventListener("change", render);
   render();
-  fetch("https://open.er-api.com/v6/latest/RWF", { mode: "cors" })
-    .then(function (r) {
-      if (!r.ok) throw Error("Rate service unavailable");
-      return r.json();
-    })
-    .then(function (data) {
-      if (data.result !== "success" || !data.rates) throw Error("Missing rates");
-      if (!["EUR", "USD", "PLN"].every(function (code) {
-        return Number.isFinite(data.rates[code]) && data.rates[code] > 0;
-      })) throw Error("Missing rates");
-      rates = data.rates;
-      render();
-    })
-    .catch(function () {
-      rates = null;
-      render();
-    });
 })();

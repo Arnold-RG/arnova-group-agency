@@ -90,13 +90,12 @@
     var pad = parseFloat(rootStyle.scrollPaddingTop) || 0;
     /* Landings use html scroll-padding-top only, so the probe sits just below that line. */
     var probe = Math.max(header + 20, pad + 24, window.innerHeight * 0.25);
-    var sections = [
-      { key: "home", el: document.getElementById("top") },
-      { key: "services", el: document.getElementById("services") },
-      { key: "pricing", el: document.getElementById("pricing") },
-      { key: "about", el: document.getElementById("about") },
-      { key: "contact", el: document.getElementById("contact") }
-    ].filter(function (s) { return !!s.el; });
+    var keyForId = { top: "home", about: "about", services: "services", pricing: "pricing", contact: "contact" };
+    var sections = [];
+    document.querySelectorAll("#top, #about, #services, #pricing, #contact").forEach(function (el) {
+      var key = keyForId[el.id];
+      if (key) sections.push({ key: key, el: el });
+    });
     var key = sections.length ? sections[0].key : "home";
     for (var i = 0; i < sections.length; i++) {
       if (sections[i].el.getBoundingClientRect().top <= probe + 1) key = sections[i].key;

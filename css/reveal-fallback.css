@@ -1,0 +1,7 @@
+/* Used only when JavaScript is disabled, so scroll-reveal content stays visible. */
+.arnova-reveal,
+.arnova-reveal.is-inview{
+  opacity:1 !important;
+  transform:none !important;
+  transition:none !important;
+}

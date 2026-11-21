@@ -1010,10 +1010,18 @@
 }
 
 /* ---------- Scroll reveal ---------- */
-.arnova-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-.arnova-reveal.is-inview{opacity:1;transform:none}
+/* Visible by default. The fade only applies after js/theme-boot.js sets html.js */
+.arnova-reveal{opacity:1;transform:none}
+html.js .arnova-reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+html.js .arnova-reveal.is-inview{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  .arnova-reveal{opacity:1;transform:none;transition:none}
+  .arnova-reveal,
+  html.js .arnova-reveal,
+  html.js .arnova-reveal.is-inview{opacity:1;transform:none;transition:none}
 }
 
 /* ---------- Intro + three key services ---------- */
@@ -1156,6 +1164,15 @@
   min-width:8rem;
 }
 #pricing .currency-feedback{font-size:.72rem;color:var(--color-text-muted)}
+
+#pricing .currency-note{
+  flex-basis:100%;
+  margin:.25rem 0 0;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+  max-width:42rem;
+}
+
 #pricing .grid,
 .arnova-pricing-grid{
   display:grid;
@@ -1231,7 +1248,7 @@
   margin:var(--space-xl) 0 var(--space-sm);
   font-family:"Fraunces Display",var(--font-display),Georgia,serif;
 }
-#pricing .arnova-pricing-extra a{color:var(--color-text-accent)}
+#pricing .arnova-pricing-extra a:not(.pill):not(.btn){color:var(--color-text-accent)}
 
 /* ---------- Final CTA band ---------- */
 .arnova-final-cta{
