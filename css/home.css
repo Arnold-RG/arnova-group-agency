@@ -845,7 +845,7 @@
     grid-template-columns:1fr;
     gap:var(--space-sm);
   }
-  .arnova-hero-headline{font-size:clamp(2.4rem, 11vw, 3.6rem)}
+  .arnova-editorial-hero h1.arnova-hero-headline{font-size:clamp(2.4rem, 11vw, 3.6rem)}
   .arnova-hero-object{width:min(100%, 22rem)}
   .arnova-concept-grid{grid-template-columns:1fr}
   .arnova-payment ol{grid-template-columns:1fr 1fr}
@@ -857,7 +857,7 @@
     padding-bottom:var(--space-dock-offset);
     gap:0;
   }
-  .arnova-hero-headline{
+  .arnova-editorial-hero h1.arnova-hero-headline{
     font-size:clamp(1.85rem, 9vw, 2.25rem);
     line-height:1.02;
   }
@@ -886,7 +886,7 @@
     align-items:center;
   }
   .arnova-hero-copy{gap:var(--space-xs)}
-  .arnova-hero-headline{
+  .arnova-editorial-hero h1.arnova-hero-headline{
     font-size:clamp(1.6rem, 4.4vw, 2.3rem);
     margin:0;
   }
