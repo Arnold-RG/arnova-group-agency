@@ -6,7 +6,7 @@ This is a static GitHub Pages site with no accounts, no server-side database and
 
 ### GRC — Governance, risk and compliance
 - Typefaces are SIL Open Font License (see `assets/fonts/OFL-Newsreader.txt` and `assets/fonts/OFL-SourceSans3.txt`, and `docs/LICENSES.md`). Icons in the navigation dock are original inline SVG.
-- A short [privacy notice](../privacy.html) explains that the site has no accounts, no tracking cookies, and that WhatsApp is a third-party service. Theme preference may be stored in the browser only.
+- A short [privacy notice](../index.html#privacy) explains that the site has no accounts, no tracking cookies, and that WhatsApp is a third-party service. Theme preference may be stored in the browser only.
 - Public copy must not invent clients, invoices, registration numbers, street addresses or performance claims.
 
 ### Cloud security

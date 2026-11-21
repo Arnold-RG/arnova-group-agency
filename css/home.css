@@ -1262,3 +1262,194 @@
   font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
   font-weight:600;
 }
+
+
+/* Concept cards are in-page buttons (no off-site pages) */
+button.arnova-concept-card{
+  appearance:none;
+  -webkit-appearance:none;
+  font:inherit;
+  text-align:left;
+  padding:0;
+  width:auto;
+  color:var(--color-text);
+  cursor:pointer;
+}
+.arnova-concept-card__more{
+  display:inline-block;
+  margin:0 1.1rem 1.15rem;
+  color:var(--color-text-accent);
+  font-size:var(--text-sm);
+  font-weight:700;
+}
+.arnova-concept-dialog{
+  width:min(40rem, calc(100vw - 2 * var(--space-gutter)));
+  max-height:calc(100vh - var(--space-header-offset) - var(--space-dock-offset) - 1.5rem);
+  margin:max(var(--space-header-offset), 1.25rem) auto max(var(--space-dock-offset), 1.25rem);
+  padding:0;
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  box-shadow:0 24px 60px var(--color-shadow);
+  overflow:auto;
+}
+.arnova-concept-dialog::backdrop{
+  background:color-mix(in srgb, var(--color-bg-hero) 78%, transparent);
+}
+.arnova-concept-dialog__inner{
+  position:relative;
+  padding:var(--space-lg);
+}
+.arnova-concept-dialog__inner img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/11;
+  object-fit:cover;
+  border-radius:var(--space-radius-md);
+  background:#141416;
+  margin:2.2rem 0 1rem;
+}
+.arnova-concept-dialog__inner h3{
+  margin:0 0 .4rem;
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-concept-dialog__inner p{
+  margin:0;
+  color:var(--color-text-muted);
+}
+.arnova-concept-dialog__close{
+  position:absolute;
+  top:var(--space-md);
+  right:var(--space-md);
+  z-index:1;
+  padding:.4rem .75rem;
+  border:1px solid var(--color-border-strong);
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  font-weight:700;
+}
+.arnova-concept-dialog .arnova-concept-card__label{position:static}
+
+/* Payment methods and plans on the homepage pricing section */
+#pricing .arnova-pay-methods,
+#pricing .arnova-pay-plans{
+  margin-top:var(--space-xl);
+}
+#pricing .arnova-pay-methods h3,
+#pricing .arnova-pay-plans h3{
+  margin:0 0 var(--space-sm);
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+#pricing .arnova-pay-methods > p,
+#pricing .arnova-pay-plans > p{
+  color:var(--color-text-muted);
+  max-width:42rem;
+}
+#pricing .arnova-pay-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-md);
+  margin:var(--space-md) 0;
+}
+#pricing .arnova-pay-grid article,
+#pricing .arnova-pay-plans li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-md);
+}
+#pricing .arnova-pay-grid h4,
+#pricing .arnova-pay-plans h4{
+  margin:0 0 .35rem;
+  font-size:var(--text-md);
+}
+#pricing .arnova-pay-grid p,
+#pricing .arnova-pay-plans p{
+  margin:0;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+}
+#pricing .arnova-pay-plans ol{
+  list-style:none;
+  margin:var(--space-md) 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-md);
+  counter-reset:payplan;
+}
+#pricing .arnova-pay-plans li{counter-increment:payplan}
+#pricing .arnova-pay-plans h4::before{
+  content:counter(payplan, decimal-leading-zero) " ";
+  color:var(--color-text-accent);
+  font-weight:800;
+  letter-spacing:.06em;
+  margin-right:.25rem;
+}
+#pricing .arnova-pay-methods .pill{margin-top:var(--space-sm)}
+
+/* In-page privacy notice */
+.arnova-privacy__copy{max-width:42rem}
+.arnova-privacy__copy p{color:var(--color-text-muted)}
+.arnova-privacy__copy h3{
+  margin:1.6rem 0 .5rem;
+  font-size:var(--text-lg);
+  color:var(--color-text);
+}
+.arnova-privacy__copy code{
+  font-size:.95em;
+}
+
+@media(max-width:900px){
+  #pricing .arnova-pay-grid,
+  #pricing .arnova-pay-plans ol{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .arnova-concept-dialog,
+  .arnova-concept-dialog::backdrop{transition:none}
+}
+
+
+/* Daily care tiers (PLN base) */
+#pricing .arnova-daily-care{margin-top:var(--space-xl)}
+#pricing .arnova-daily-care h3,
+#pricing .arnova-daily-care h4{
+  margin:0 0 var(--space-sm);
+  font-family:var(--font-display);
+  letter-spacing:-.03em;
+}
+#pricing .arnova-daily-care h3{font-size:var(--text-xl)}
+#pricing .arnova-daily-care > p,
+#pricing .arnova-daily-care li p{
+  color:var(--color-text-muted);
+  max-width:42rem;
+}
+#pricing .arnova-daily-care ul{
+  list-style:none;
+  margin:var(--space-md) 0 var(--space-lg);
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:var(--space-md);
+}
+#pricing .arnova-daily-care li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-md);
+}
+#pricing .arnova-daily-care li h4{font-size:var(--text-md);margin:0 0 .35rem}
+#pricing .arnova-daily-care li p{margin:0;font-size:var(--text-sm)}
+@media(max-width:1100px){
+  #pricing .arnova-daily-care ul{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+@media(max-width:700px){
+  #pricing .arnova-daily-care ul{grid-template-columns:1fr}
+}

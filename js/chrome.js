@@ -97,27 +97,63 @@
     });
   }
 
-  function pageKey() {
-    var path = (window.location.pathname || "").replace(/\/+$/, "");
-    if (/\/pricing(?:\/index\.html)?$/.test(path)) return "pricing";
-    var isInner = /\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path);
-    if (isInner) return "";
+  var spySections = [
+    { id: "top", key: "home" },
+    { id: "about", key: "about" },
+    { id: "services", key: "services" },
+    { id: "pricing", key: "pricing" },
+    { id: "faq", key: "faq" },
+    { id: "contact", key: "contact" },
+    { id: "privacy", key: "privacy" }
+  ];
+
+  function keyFromHash() {
     var hash = (window.location.hash || "").replace(/^#/, "");
-    if (hash === "contact") return "contact";
-    if (hash === "about") return "about";
-    if (hash === "pricing") return "pricing";
+    if (!hash || hash === "top" || hash === "main") return "home";
     if (hash === "services" || hash.indexOf("service-") === 0) return "services";
-    return "home";
+    if (hash === "pricing" || hash === "payment-methods" || hash === "payments" || hash === "packages" || hash === "one-time" || hash === "monthly" || hash === "yearly" || hash === "daily-care") return "pricing";
+    if (hash === "faq") return "faq";
+    if (hash === "about") return "about";
+    if (hash === "contact") return "contact";
+    if (hash === "privacy") return "privacy";
+    return "";
   }
 
-  function markActive() {
-    var key = pageKey();
+  function keyFromScroll() {
+    var probe = Math.max(96, window.innerHeight * 0.28);
+    var current = "home";
+    for (var i = 0; i < spySections.length; i += 1) {
+      var el = document.getElementById(spySections[i].id);
+      if (!el) continue;
+      if (el.getBoundingClientRect().top <= probe) current = spySections[i].key;
+    }
+    var rootEl = document.documentElement;
+    if (window.scrollY + window.innerHeight >= rootEl.scrollHeight - 12) {
+      current = "privacy";
+    }
+    return current;
+  }
+
+  function markActive(key) {
+    if (typeof key !== "string" || !key) key = keyFromScroll() || keyFromHash() || "home";
     document.querySelectorAll("[data-nav]").forEach(function (el) {
-      if (key && el.getAttribute("data-nav") === key) el.setAttribute("aria-current", "page");
+      if (el.getAttribute("data-nav") === key) el.setAttribute("aria-current", "page");
       else el.removeAttribute("aria-current");
     });
   }
 
-  markActive();
-  window.addEventListener("hashchange", markActive);
+  var spyTicking = false;
+  function onSpy() {
+    if (spyTicking) return;
+    spyTicking = true;
+    window.requestAnimationFrame(function () {
+      markActive(keyFromScroll());
+      spyTicking = false;
+    });
+  }
+  markActive(keyFromHash() || keyFromScroll());
+  window.addEventListener("scroll", onSpy, { passive: true });
+  window.addEventListener("hashchange", function () {
+    markActive(keyFromHash() || keyFromScroll());
+  });
 })();

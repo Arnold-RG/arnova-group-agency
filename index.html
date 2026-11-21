@@ -161,25 +161,55 @@
     </div>
   </div>
   <div class="arnova-concept-scroller" tabindex="0" aria-label="Concept site gallery">
-    <a class="arnova-concept-card" href="concepts/117-cafe/">
+    <button type="button" class="arnova-concept-card" data-concept="117-cafe" aria-haspopup="dialog" aria-controls="concept-117-cafe">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/117-cafe.webp" width="1600" height="1100" alt="Laptop and phone mockup of the 117 Cafe and Restaurant concept site." loading="lazy">
       <h3>117 Cafe and Restaurant</h3>
       <p>A warm, editorial site for a Kigali café.</p>
-    </a>
-    <a class="arnova-concept-card" href="concepts/shisha-supermarket/">
+      <span class="arnova-concept-card__more">View concept</span>
+    </button>
+    <button type="button" class="arnova-concept-card" data-concept="shisha-supermarket" aria-haspopup="dialog" aria-controls="concept-shisha-supermarket">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/shisha-supermarket.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Shisha Supermarket concept site." loading="lazy">
       <h3>Shisha Supermarket</h3>
       <p>A clear, lively grocery catalogue concept.</p>
-    </a>
-    <a class="arnova-concept-card" href="concepts/royal-relay-electronics/">
+      <span class="arnova-concept-card__more">View concept</span>
+    </button>
+    <button type="button" class="arnova-concept-card" data-concept="royal-relay-electronics" aria-haspopup="dialog" aria-controls="concept-royal-relay-electronics">
       <span class="arnova-concept-card__label">Concept</span>
       <img src="assets/images/showcase/royal-relay-electronics.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Royal Relay Electronics concept site." loading="lazy">
       <h3>Royal Relay Electronics</h3>
       <p>A high-impact concept for repairs and tech.</p>
-    </a>
+      <span class="arnova-concept-card__more">View concept</span>
+    </button>
   </div>
+  <dialog class="arnova-concept-dialog" id="concept-117-cafe" aria-labelledby="concept-117-cafe-title">
+    <div class="arnova-concept-dialog__inner">
+      <button type="button" class="arnova-concept-dialog__close">Close</button>
+      <span class="arnova-concept-card__label">Concept</span>
+      <img src="assets/images/showcase/117-cafe.webp" width="1600" height="1100" alt="Laptop and phone mockup of the 117 Cafe and Restaurant concept site.">
+      <h3 id="concept-117-cafe-title">117 Cafe and Restaurant</h3>
+      <p>An unofficial restaurant website concept — not a live menu or a service run by the café. The proposed design uses a warm, editorial direction so a future official site could present food, a visit path and contact details once the business supplies and approves them.</p>
+    </div>
+  </dialog>
+  <dialog class="arnova-concept-dialog" id="concept-shisha-supermarket" aria-labelledby="concept-shisha-supermarket-title">
+    <div class="arnova-concept-dialog__inner">
+      <button type="button" class="arnova-concept-dialog__close">Close</button>
+      <span class="arnova-concept-card__label">Concept</span>
+      <img src="assets/images/showcase/shisha-supermarket.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Shisha Supermarket concept site.">
+      <h3 id="concept-shisha-supermarket-title">Shisha Supermarket</h3>
+      <p>An unofficial supermarket website concept. Department cards are examples of how a catalogue could be organised — not real stock or product offers. Actual products, prices and availability would need business approval.</p>
+    </div>
+  </dialog>
+  <dialog class="arnova-concept-dialog" id="concept-royal-relay-electronics" aria-labelledby="concept-royal-relay-electronics-title">
+    <div class="arnova-concept-dialog__inner">
+      <button type="button" class="arnova-concept-dialog__close">Close</button>
+      <span class="arnova-concept-card__label">Concept</span>
+      <img src="assets/images/showcase/royal-relay-electronics.webp" width="1600" height="1100" alt="Laptop and phone mockup of the Royal Relay Electronics concept site.">
+      <h3 id="concept-royal-relay-electronics-title">Royal Relay Electronics</h3>
+      <p>An unofficial design proposal for a repair and electronics shop. It explores how repair enquiries and accessory information could be organised. It is not confirmation of particular repairs, parts, prices or warranties.</p>
+    </div>
+  </dialog>
 </section>
 
 <section class="section process-section" id="process" aria-labelledby="arnova-process-title">
@@ -328,26 +358,26 @@
             <tr>
               <td>.co.rw</td>
               <td>Included</td>
-              <td>18,000 RWF (12,000 domain + 6,000 hosting administration)</td>
+              <td><span data-rwf="18000">18,000 RWF</span> (<span data-rwf="12000">12,000 RWF</span> domain + <span data-rwf="6000">6,000 RWF</span> hosting administration)</td>
             </tr>
             <tr>
               <td>.rw</td>
-              <td>+9,000 RWF</td>
+              <td>+<span data-rwf="9000">9,000 RWF</span></td>
               <td>Confirm at quotation</td>
             </tr>
             <tr>
               <td>.com</td>
-              <td>+23,000 RWF</td>
-              <td>38,000 RWF (32,000 domain + 6,000 hosting administration)</td>
+              <td>+<span data-rwf="23000">23,000 RWF</span></td>
+              <td><span data-rwf="38000">38,000 RWF</span> (<span data-rwf="32000">32,000 RWF</span> domain + <span data-rwf="6000">6,000 RWF</span> hosting administration)</td>
             </tr>
             <tr>
               <td>.net</td>
-              <td>+24,000 RWF</td>
+              <td>+<span data-rwf="24000">24,000 RWF</span></td>
               <td>Confirm at quotation</td>
             </tr>
             <tr>
               <td>.org</td>
-              <td>+23,000 RWF</td>
+              <td>+<span data-rwf="23000">23,000 RWF</span></td>
               <td>Confirm at quotation</td>
             </tr>
           </tbody>
@@ -355,12 +385,80 @@
       </div>
       <p class="muted spaced-sm">These are indicative prices, not live domain availability or a guaranteed registrar quote. Domain taxes, provider charges and non-static hosting requirements may change the final price.</p>
 
-      <h3>Optional care and edits</h3>
-      <p><strong>Basic maintenance:</strong> <span data-rwf="8000">8,000 RWF</span>/month. <strong>Business maintenance:</strong> <span data-rwf="15000">15,000 RWF</span>/month. Both are optional; scope is confirmed in your quote.</p>
+      <!--
+        [CONFIRM WITH ATECK] Daily care policy still open: any minimum number of days,
+        and the invoicing cadence (for example weekly, monthly in arrears, or prepaid).
+        Do not publish those terms until they are confirmed.
+      -->
+      <div class="arnova-daily-care" id="daily-care">
+        <h3>Optional daily care</h3>
+        <p>Care is optional. The prices below are listed per day, with Polish złoty as the base price. Other currencies are shown as approximate conversions.</p>
+        <ul>
+          <li>
+            <h4><span data-pln="24">24 PLN</span> / day</h4>
+            <p>Content and text edits and uptime checks.</p>
+          </li>
+          <li>
+            <h4><span data-pln="30">30 PLN</span> / day</h4>
+            <p>The previous tier, plus image and section updates.</p>
+          </li>
+          <li>
+            <h4><span data-pln="40">40 PLN</span> / day</h4>
+            <p>The previous tier, plus small new sections and monthly backups.</p>
+          </li>
+          <li>
+            <h4><span data-pln="55">55 PLN</span> / day</h4>
+            <p>The previous tier, plus priority fixes and basic SEO tweaks.</p>
+          </li>
+          <li>
+            <h4><span data-pln="64">64 PLN</span> / day</h4>
+            <p>The previous tier, plus same-day priority and integration or form support.</p>
+          </li>
+        </ul>
+        <h4>How daily care billing works</h4>
+        <p>You are billed only for the days you choose care. It is optional, and you can pause or stop at any time. Polish złoty is the base price; other currencies are shown as approximate conversions. Payment is through the methods on this page. Exact scope and payment schedule are confirmed in your written quote.</p>
+      </div>
+      <h3>Optional one-off edits</h3>
       <p><strong>Small edit:</strong> from <span data-rwf="3000">3,000 RWF</span>. <strong>Extra page:</strong> from <span data-rwf="10000">10,000 RWF</span>. <strong>Annual refresh:</strong> from <span data-rwf="20000">20,000 RWF</span>. Full redesigns and new features are quoted separately.</p>
-      <p class="muted">Domain/hosting renewal is separate from optional maintenance unless expressly bundled in your quote.</p>
-      <p>A one-time website payment starts from <span data-rwf="35000">35,000 RWF</span>. Yearly renewal for an eligible .co.rw domain plus static hosting administration starts from <span data-rwf="18000">18,000 RWF</span> per year. A .com renewal with hosting administration is estimated at <span data-rwf="38000">38,000 RWF</span>/year. These renewals are not a new website-build fee.</p>
-      <p class="muted spaced-sm">The full pricing page also covers payment methods. <a href="pricing/">Open the pricing page</a> if you want that detail in one place.</p>
+      <p class="muted">Domain/hosting renewal is separate from optional care unless expressly bundled in your quote.</p>
+      <div class="arnova-pay-methods" id="payment-methods">
+        <h3>Accepted payment methods</h3>
+        <p>We accept MTN Mobile Money, BLIK and bank transfer. Ask for confirmed payment details and your invoice before sending money.</p>
+        <div class="arnova-pay-grid">
+          <article>
+            <h4>MTN Mobile Money</h4>
+            <p>Pay conveniently using MTN MoMo. Contact us for the verified receiving number and payment reference.</p>
+          </article>
+          <article>
+            <h4>BLIK</h4>
+            <p>For customers using BLIK in Poland. Request the supported payment instructions before transferring funds.</p>
+          </article>
+          <article>
+            <h4>Bank transfer</h4>
+            <p>Pay by bank transfer using the account and reference provided on your confirmed invoice. International bank fees may apply.</p>
+          </article>
+        </div>
+        <p>Never send money to payment details that have not been verified with Arnova Group Agency.</p>
+        <a class="pill" href="https://wa.me/250794607518?text=Hello%20ArnovaGroup%2C%20please%20send%20your%20verified%20MTN%20MoMo%2C%20BLIK%20or%20bank%20transfer%20payment%20instructions.">Request payment instructions</a>
+      </div>
+      <div class="arnova-pay-plans" id="payments">
+        <h3>One-time, monthly or yearly</h3>
+        <p>Choose the payment arrangement that suits your business. These are different options, not three compulsory fees. A written quote confirms eligibility and exact terms.</p>
+        <ol>
+          <li id="one-time">
+            <h4>One-time website payment</h4>
+            <p><strong>From <span data-rwf="35000">35,000 RWF</span> once.</strong> Pay the agreed build price for your selected package. First-year eligible domain and static hosting are included. No mandatory monthly maintenance. Domain and hosting renewals apply after year one.</p>
+          </li>
+          <li id="monthly">
+            <h4>Monthly payment plan</h4>
+            <p><strong>Request a custom monthly installment quote.</strong> Spread an approved website build over agreed monthly payments instead of paying the full amount upfront. The number of months, total price, deposit, site ownership, support and cancellation terms must be agreed before work begins. Monthly maintenance is separate and optional.</p>
+          </li>
+          <li id="yearly">
+            <h4>Yearly renewal payment</h4>
+            <p><strong>From <span data-rwf="18000">18,000 RWF</span> per year</strong> for an eligible .co.rw domain plus static-hosting administration after the included first year. A .com renewal with hosting administration is estimated at <strong><span data-rwf="38000">38,000 RWF</span>/year</strong>. These renewals are not a new website-build fee.</p>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
@@ -394,6 +492,30 @@
         <summary>How do we get started?</summary>
         <p>Send a short description of your business and what you want the website or digital tool to accomplish.</p>
       </details>
+      <details>
+        <summary>Can I pay in euros, dollars or Polish złoty?</summary>
+        <p>Yes, request a quote in EUR, USD or PLN. We confirm the exchange rate, exact invoice amount and available receiving channel before payment.</p>
+      </details>
+      <details>
+        <summary>Do I have to pay every month?</summary>
+        <p>No. Our standard website packages are one-time builds. Daily care and other maintenance are optional. Domain and hosting renewal costs apply when the first-year period ends.</p>
+      </details>
+      <details>
+        <summary>Can I pay in two parts?</summary>
+        <p>You can request an approved staged payment plan. We will write the amounts, due dates and delivery conditions in the quotation before starting work.</p>
+      </details>
+      <details>
+        <summary>What if I need more pages or online payments?</summary>
+        <p>We provide a custom quote for added pages, booking systems, databases, online checkout, integrations and other features outside the selected package.</p>
+      </details>
+      <details>
+        <summary>Who owns my website?</summary>
+        <p>Ownership, domain registration, access credentials, third-party subscriptions and any transfer arrangements are defined in your written agreement before payment.</p>
+      </details>
+      <details>
+        <summary>What should be on a first website?</summary>
+        <p>For many local businesses, a clear one-page site is a good start. It can list your real services, a working phone number or WhatsApp link, your correct location, photos you have permission to use, and one clear next step — contact, book, enquire or visit.</p>
+      </details>
     </div>
   </div>
 </section>
@@ -407,5 +529,27 @@
     <p class="business-hours"><strong>Business hours:</strong> 9:00 AM – 10:00 PM (Rwanda time)</p>
   </div>
 </section>
+
+<section class="section arnova-privacy" id="privacy">
+  <div class="wrap">
+    <div class="section-head arnova-reveal">
+      <div>
+        <p class="eyebrow">Privacy</p>
+        <h2>How this website <em>handles</em> information.</h2>
+      </div>
+    </div>
+    <div class="arnova-privacy__copy arnova-reveal">
+      <p>This website is a public brochure for Arnova Group Agency in Rwanda. It does not create accounts, and it does not use tracking cookies or advertising pixels.</p>
+      <h3>What this site stores</h3>
+      <p>If you use the theme switch, your browser may keep a single preference (<code>arnova-theme</code>) in local storage so the site can remember light or dark mode. You can clear it at any time in your browser settings.</p>
+      <h3>Getting in touch</h3>
+      <p>Contact links open WhatsApp, which is operated by a third party. Anything you send there is handled under WhatsApp’s own terms and is not stored by this website. This site does not collect a mailing list and does not have an on-site enquiry form at present.</p>
+      <h3>Embedded or linked services</h3>
+      <p>Some pages may link to GitHub or other public sites. Those services have their own privacy practices once you leave this website.</p>
+      <h3>Contact</h3>
+      <p>Questions about this notice can be sent through the WhatsApp link on the site. We serve businesses in Rwanda. This website does not list a street address.</p>
+    </div>
+  </div>
+</section>
 </main>
-<footer class="agency-footer" aria-label="Arnova Group Agency footer"><div class="wrap agency-footer-grid"><div class="agency-footer-intro"><a class="agency-footer-brand" href="#top">Arnova Group <span>Agency</span></a><p>Thoughtful websites and practical digital solutions for businesses in Rwanda.</p><a class="agency-footer-cta" href="#contact">Let's discuss your project ↗</a></div><div class="agency-footer-column"><h3>Services</h3><a href="#services">All services</a><a href="#pricing">Website packages</a><a href="#services">Websites and shops</a><a href="#services">Apps and dashboards</a></div><div class="agency-footer-column"><h3>Company</h3><a href="#about">About</a><a href="blog/index.html">Insights</a><a href="concepts/index.html">Concept archive</a><a href="https://github.com/Arnold-RG/arnova-group-agency" target="_blank" rel="noopener noreferrer">GitHub</a></div><div class="agency-footer-column"><h3>Contact</h3><a href="https://wa.me/250794607518?text=Hello%20Arnova%20Group%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp</a><p>Rwanda</p><span>Business hours</span><strong>9:00 AM – 10:00 PM</strong><small>Rwanda time (CAT, UTC+2)</small></div></div><div class="wrap agency-footer-bottom"><span>© 2026 Arnova Group Agency</span><span class="agency-footer-legal"><a href="privacy.html">Privacy</a></span></div></footer><script src="js/chrome.js" defer></script><script src="js/nav.js" defer></script><script src="js/hero-video.js" defer></script><script src="js/home-showcase.js" defer></script><script src="js/pricing-currency.js" defer></script></body></html>
+<footer class="agency-footer" aria-label="Arnova Group Agency footer"><div class="wrap agency-footer-grid"><div class="agency-footer-intro"><a class="agency-footer-brand" href="#top">Arnova Group <span>Agency</span></a><p>Thoughtful websites and practical digital solutions for businesses in Rwanda.</p><a class="agency-footer-cta" href="#contact">Let's discuss your project ↗</a></div><div class="agency-footer-column"><h3>Services</h3><a href="#services">All services</a><a href="#pricing">Website packages</a><a href="#services">Websites and shops</a><a href="#services">Apps and dashboards</a></div><div class="agency-footer-column"><h3>Company</h3><a href="#about">About</a><a href="#faq">FAQ</a><a href="#work">Concept work</a><a href="https://github.com/Arnold-RG/arnova-group-agency" target="_blank" rel="noopener noreferrer">GitHub</a></div><div class="agency-footer-column"><h3>Contact</h3><a href="https://wa.me/250794607518?text=Hello%20Arnova%20Group%20Agency%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">WhatsApp</a><p>Rwanda</p><span>Business hours</span><strong>9:00 AM – 10:00 PM</strong><small>Rwanda time (CAT, UTC+2)</small></div></div><div class="wrap agency-footer-bottom"><span>© 2026 Arnova Group Agency</span><span class="agency-footer-legal"><a href="#privacy">Privacy</a></span></div></footer><script src="js/chrome.js" defer></script><script src="js/nav.js" defer></script><script src="js/hero-video.js" defer></script><script src="js/home-showcase.js" defer></script><script src="js/pricing-currency.js" defer></script></body></html>

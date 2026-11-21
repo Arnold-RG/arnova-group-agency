@@ -1,11 +1,71 @@
 (function(){
-const select=document.getElementById('currency-choice'),fxStatus=document.getElementById('fx-status');
-const cards=[...document.querySelectorAll('.card .price')];const base=[35000,65000,110000,120000];let rates=null,updated=null;
-function fmt(n,c){return new Intl.NumberFormat('en-US',{style:'currency',currency:c,maximumFractionDigits:c==='RWF'?0:2}).format(n)}
-function render(){const c=select.value;
-cards.forEach((el,i)=>{el.textContent=c==='RWF'?fmt(base[i],'RWF'):rates&&rates[c]?fmt(base[i]*rates[c],c):fmt(base[i],'RWF')});
-document.querySelectorAll('[data-rwf]').forEach(el=>{const amount=Number(el.dataset.rwf);el.textContent=c==='RWF'?fmt(amount,'RWF'):rates&&rates[c]?fmt(amount*rates[c],c):fmt(amount,'RWF')});
-if(c==='RWF')fxStatus.textContent='';else if(rates&&rates[c])fxStatus.textContent='Estimated conversion';else fxStatus.textContent='Rates unavailable — showing RWF';}
-select.addEventListener('change',render);render();
-fetch('https://open.er-api.com/v6/latest/RWF',{mode:'cors'}).then(r=>{if(!r.ok)throw Error('Rate service unavailable');return r.json()}).then(data=>{if(data.result!=='success'||!data.rates||!['EUR','USD','PLN'].every(c=>Number.isFinite(data.rates[c])&&data.rates[c]>0))throw Error('Missing rates');rates=data.rates;updated=data.time_last_update_utc||null;render()}).catch(()=>{rates=null;render()});
+  var select = document.getElementById("currency-choice");
+  var fxStatus = document.getElementById("fx-status");
+  if (!select || !fxStatus) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card .price"));
+  var base = [35000, 65000, 110000, 120000];
+  var rates = null;
+
+  function fmt(n, c) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: c,
+      maximumFractionDigits: c === "RWF" ? 0 : 2
+    }).format(n);
+  }
+
+  function fromRwf(amount, currency) {
+    if (currency === "RWF") return amount;
+    if (rates && Number.isFinite(rates[currency]) && rates[currency] > 0) return amount * rates[currency];
+    return null;
+  }
+
+  function fromPln(amount, currency) {
+    if (currency === "PLN") return amount;
+    if (!rates || !Number.isFinite(rates.PLN) || rates.PLN <= 0) return null;
+    if (currency === "RWF") return amount / rates.PLN;
+    if (Number.isFinite(rates[currency]) && rates[currency] > 0) return amount * rates[currency] / rates.PLN;
+    return null;
+  }
+
+  function render() {
+    var c = select.value;
+    cards.forEach(function (el, i) {
+      var converted = fromRwf(base[i], c);
+      el.textContent = converted == null ? fmt(base[i], "RWF") : fmt(converted, c);
+    });
+    document.querySelectorAll("[data-rwf]").forEach(function (el) {
+      var amount = Number(el.getAttribute("data-rwf"));
+      var converted = fromRwf(amount, c);
+      el.textContent = converted == null ? fmt(amount, "RWF") : fmt(converted, c);
+    });
+    document.querySelectorAll("[data-pln]").forEach(function (el) {
+      var amount = Number(el.getAttribute("data-pln"));
+      var converted = fromPln(amount, c);
+      el.textContent = converted == null ? fmt(amount, "PLN") : fmt(converted, c);
+    });
+    if (c === "RWF") fxStatus.textContent = "";
+    else if (rates && (c === "PLN" || (Number.isFinite(rates[c]) && rates[c] > 0))) fxStatus.textContent = "Estimated conversion";
+    else fxStatus.textContent = "Rates unavailable — showing original prices";
+  }
+
+  select.addEventListener("change", render);
+  render();
+  fetch("https://open.er-api.com/v6/latest/RWF", { mode: "cors" })
+    .then(function (r) {
+      if (!r.ok) throw Error("Rate service unavailable");
+      return r.json();
+    })
+    .then(function (data) {
+      if (data.result !== "success" || !data.rates) throw Error("Missing rates");
+      if (!["EUR", "USD", "PLN"].every(function (code) {
+        return Number.isFinite(data.rates[code]) && data.rates[code] > 0;
+      })) throw Error("Missing rates");
+      rates = data.rates;
+      render();
+    })
+    .catch(function () {
+      rates = null;
+      render();
+    });
 })();

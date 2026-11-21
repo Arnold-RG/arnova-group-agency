@@ -51,4 +51,68 @@
       Array.prototype.forEach.call(steps, function (el) { pio.observe(el); });
     }
   }
+
+
+  var dialogs = document.querySelectorAll("dialog.arnova-concept-dialog");
+  var lastConcept = null;
+
+  function conceptIdFromHash() {
+    var hash = (window.location.hash || "").replace(/^#/, "");
+    if (hash.indexOf("concept-") === 0) return hash;
+    return "";
+  }
+
+  function openConcept(id, updateHash) {
+    var dialog = document.getElementById(id);
+    if (!dialog || typeof dialog.showModal !== "function") return;
+    Array.prototype.forEach.call(dialogs, function (other) {
+      if (other.open && other.id !== id) other.close();
+    });
+    if (!dialog.open) dialog.showModal();
+    if (updateHash && window.location.hash !== "#" + id) {
+      try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    }
+  }
+
+  function closeConcept(dialog, clearHash) {
+    if (dialog && dialog.open) dialog.close();
+    if (clearHash && conceptIdFromHash()) {
+      try { history.replaceState(null, "", "#work"); } catch (e) {}
+    }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-concept]"), function (btn) {
+    btn.addEventListener("click", function () {
+      lastConcept = btn;
+      openConcept("concept-" + btn.getAttribute("data-concept"), true);
+    });
+  });
+
+  Array.prototype.forEach.call(dialogs, function (dialog) {
+    var closeBtn = dialog.querySelector(".arnova-concept-dialog__close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () { closeConcept(dialog, true); });
+    }
+    dialog.addEventListener("click", function (event) {
+      if (event.target === dialog) closeConcept(dialog, true);
+    });
+    dialog.addEventListener("close", function () {
+      if (conceptIdFromHash() === dialog.id) {
+        try { history.replaceState(null, "", "#work"); } catch (e) {}
+      }
+      if (lastConcept && typeof lastConcept.focus === "function") lastConcept.focus();
+    });
+  });
+
+  function openFromHash() {
+    var id = conceptIdFromHash();
+    if (id) openConcept(id, false);
+    else {
+      Array.prototype.forEach.call(dialogs, function (dialog) {
+        if (dialog.open) dialog.close();
+      });
+    }
+  }
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
 })();

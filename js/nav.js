@@ -88,11 +88,8 @@
     var headerRaw = rootStyle.getPropertyValue("--space-header-offset-narrow") || rootStyle.getPropertyValue("--space-header-offset") || "66px";
     var header = parseFloat(headerRaw) || 66;
     var pad = parseFloat(rootStyle.scrollPaddingTop) || 0;
-    var margin = 0;
-    var sample = document.getElementById("top") || document.getElementById("services") || document.getElementById("about");
-    if (sample) margin = parseFloat(getComputedStyle(sample).scrollMarginTop) || 0;
-    /* Landings use scroll-margin plus html scroll-padding, so the probe sits just below that line. */
-    var probe = Math.max(header + 20, pad + margin + 24, window.innerHeight * 0.25);
+    /* Landings use html scroll-padding-top only, so the probe sits just below that line. */
+    var probe = Math.max(header + 20, pad + 24, window.innerHeight * 0.25);
     var sections = [
       { key: "home", el: document.getElementById("top") },
       { key: "services", el: document.getElementById("services") },
