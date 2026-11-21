@@ -118,6 +118,10 @@
       if (other.open && other.id !== id) other.close();
     });
     if (!dialog.open) dialog.showModal();
+    if (!lastConcept) {
+      var key = id.replace(/^concept-/, "");
+      lastConcept = document.querySelector('[data-concept="' + key + '"]');
+    }
     if (updateHash && window.location.hash !== "#" + id) {
       try { history.replaceState(null, "", "#" + id); } catch (e) {}
     }

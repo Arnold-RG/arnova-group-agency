@@ -88,8 +88,11 @@
     var headerRaw = rootStyle.getPropertyValue("--space-header-offset-narrow") || rootStyle.getPropertyValue("--space-header-offset") || "66px";
     var header = parseFloat(headerRaw) || 66;
     var pad = parseFloat(rootStyle.scrollPaddingTop) || 0;
-    /* Landings use html scroll-padding-top only, so the probe sits just below that line. */
-    var probe = Math.max(header + 20, pad + 24, window.innerHeight * 0.25);
+    var margin = 0;
+    var sample = document.getElementById("top") || document.getElementById("pricing") || document.getElementById("about");
+    if (sample) margin = parseFloat(getComputedStyle(sample).scrollMarginTop) || 0;
+    /* Landings use section scroll-margin-top (matching the header), so the probe sits just below that line. */
+    var probe = Math.max(header + 20, pad + margin + 24, window.innerHeight * 0.25);
     var keyForId = { top: "home", about: "about", services: "services", pricing: "pricing", contact: "contact" };
     var sections = [];
     document.querySelectorAll("#top, #about, #services, #pricing, #contact").forEach(function (el) {

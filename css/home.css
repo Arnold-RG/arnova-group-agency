@@ -1470,3 +1470,7 @@ button.arnova-concept-card{
 @media(max-width:700px){
   #pricing .arnova-daily-care ul{grid-template-columns:1fr}
 }
+
+@media(prefers-reduced-transparency:reduce){
+  .arnova-concept-dialog::backdrop{background:var(--color-bg-hero)}
+}
