@@ -11,6 +11,7 @@
   } catch (e) {}
 
   var userPaused = false;
+  var inView = false;
 
   video.muted = true;
   video.defaultMuted = true;
@@ -39,6 +40,14 @@
     setPlaying(false);
   }
 
+  function maybePlay() {
+    if (reduceMotion || userPaused || document.hidden || !inView) {
+      pause();
+      return;
+    }
+    play();
+  }
+
   if (button) {
     button.addEventListener("click", function () {
       if (video.paused) {
@@ -57,11 +66,22 @@
 
   if (reduceMotion) {
     pause();
+    if (button) {
+      button.setAttribute("aria-pressed", "false");
+      button.textContent = "Play";
+    }
+  } else if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      inView = entries.some(function (entry) { return entry.isIntersecting; });
+      maybePlay();
+    }, { threshold: 0.2 });
+    io.observe(film);
   } else {
-    play();
+    inView = true;
+    maybePlay();
   }
 
   document.addEventListener("visibilitychange", function () {
-    if (document.hidden || reduceMotion || userPaused) return;
+    maybePlay();
   });
 })();

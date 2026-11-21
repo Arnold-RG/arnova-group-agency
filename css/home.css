@@ -123,7 +123,8 @@
 }
 .arnova-video-toggle{
   position:absolute;
-  left:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  left:auto;
+  right:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
   bottom:var(--space-md);
   z-index:4;
   min-width:44px;
@@ -564,8 +565,7 @@
   .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
 }
 @media(max-width:360px) and (max-height:600px){
-  /* 320-tall phones have no room between the last CTA and the dock. */
-  .arnova-video-toggle{display:none}
+  .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
 }
 @media(max-width:900px) and (max-height:500px),
       (max-width:1100px) and (max-height:500px) and (orientation:landscape),
@@ -911,4 +911,354 @@
 @media(prefers-reduced-motion:reduce){
   .arnova-values-marquee__track{animation:none}
   .arnova-concept-card img{transition:none}
+}
+
+/* ---------- Editorial film hero (no device object) ---------- */
+.arnova-editorial-hero{
+  box-sizing:border-box;
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:calc(100svh - var(--space-header-offset));
+  padding-block:clamp(2.5rem, 8vh, 5rem);
+  overflow:hidden;
+}
+.arnova-editorial-hero .arnova-hero-content{
+  display:block;
+  position:relative;
+  z-index:2;
+  width:min(var(--space-wrap),calc(100% - 2 * var(--space-gutter)));
+  margin-inline:auto;
+  box-sizing:border-box;
+}
+.arnova-editorial-hero .arnova-hero-copy{
+  max-width:38rem;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--space-md);
+}
+.arnova-editorial-hero h1.arnova-hero-headline{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
+  font-style:normal;
+  font-size:clamp(3rem, 8vw, 6.25rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+  color:var(--color-text-on-hero);
+  margin:0;
+  max-width:10ch;
+  text-wrap:balance;
+}
+.arnova-editorial-hero h1 em,
+.arnova-intro h2 em,
+#services h2 em,
+#work h2 em,
+#process h2 em,
+#pricing h2 em,
+#faq h2 em,
+#contact h2 em{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-weight:600;
+  letter-spacing:-.045em;
+}
+.arnova-editorial-hero .hero-lead{
+  max-width:28rem;
+  margin:0;
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-hero-stage{display:block}
+
+@media(max-width:900px){
+  .arnova-editorial-hero{
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+    box-sizing:border-box;
+    align-items:center;
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{font-size:clamp(2.5rem, 12vw, 3.6rem);max-width:none}
+}
+@media(max-width:360px){
+  .arnova-editorial-hero{
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(2.05rem, 11vw, 2.6rem);
+    line-height:1.02;
+    letter-spacing:-.035em;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-editorial-hero .hero-lead{font-size:.95rem;line-height:1.4}
+}
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .arnova-editorial-hero{
+    align-items:center;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(1.45rem, 3.8vw, 2rem);
+    max-width:16ch;
+  }
+  .arnova-hero-copy{gap:.4rem}
+  .arnova-editorial-hero .hero-lead{font-size:.88rem;line-height:1.3}
+}
+
+/* ---------- Scroll reveal ---------- */
+.arnova-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.arnova-reveal.is-inview{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .arnova-reveal{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- Intro + three key services ---------- */
+.arnova-intro .section-head{align-items:start}
+.arnova-intro .founder-copy{max-width:38rem}
+.arnova-key-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-lg);
+  margin-top:var(--space-2xl);
+}
+.arnova-key-card{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  padding:var(--space-xl) var(--space-lg);
+}
+.arnova-key-card span{
+  display:block;
+  margin-bottom:var(--space-md);
+  color:var(--color-text-accent);
+  font-size:var(--text-sm);
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.arnova-key-card h3{
+  color:var(--color-text);
+  margin:0 0 .5rem;
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+  font-size:clamp(1.6rem,3vw,2.1rem);
+  letter-spacing:-.04em;
+}
+.arnova-key-card p{margin:0;color:var(--color-text-muted)}
+.arnova-price-teaser{
+  margin:var(--space-2xl) 0 0;
+  font-size:var(--text-lg);
+  font-weight:650;
+}
+.arnova-price-teaser a{
+  color:var(--color-text-accent);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* ---------- Services by category ---------- */
+.arnova-category-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-lg);
+}
+.arnova-category{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  padding:var(--space-lg);
+}
+.arnova-category > h3{
+  margin:0 0 var(--space-md);
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+  padding-bottom:var(--space-sm);
+  border-bottom:1px solid var(--color-border);
+}
+.arnova-category .service{
+  margin:0;
+  padding:var(--space-md) 0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  min-height:0;
+  display:block;
+  justify-content:unset;
+}
+.arnova-category .service:hover{transform:none;box-shadow:none}
+.arnova-category .service + .service{border-top:1px solid var(--color-border)}
+.arnova-category .service h4{
+  margin:0 0 .3rem;
+  font-size:var(--text-md);
+  letter-spacing:-.02em;
+}
+.arnova-category .service p{margin:0;color:var(--color-text-muted);font-size:var(--text-sm)}
+
+/* ---------- Horizontal concept gallery ---------- */
+.arnova-concept-scroller{
+  display:flex;
+  gap:var(--space-lg);
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  padding-inline:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  padding-block:var(--space-sm) var(--space-lg);
+  -webkit-overflow-scrolling:touch;
+}
+.arnova-concept-scroller .arnova-concept-card{
+  flex:0 0 min(22rem,78vw);
+  scroll-snap-align:start;
+}
+
+/* ---------- Process counter ---------- */
+.arnova-process-counter{
+  position:sticky;
+  top:calc(var(--space-header-offset) + 12px);
+  z-index:3;
+  display:inline-block;
+  margin:0 0 var(--space-lg);
+  padding:.35rem .8rem;
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  font-family:var(--font-sans);
+  font-size:var(--text-sm);
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--color-text-accent);
+}
+@media(max-width:900px){
+  .arnova-process-counter{top:calc(var(--space-header-offset-narrow) + 8px)}
+}
+
+/* ---------- Homepage pricing (real plans only) ---------- */
+#pricing .currency-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space-sm);
+  margin:0 0 var(--space-xl);
+}
+#pricing .currency-bar label{font-weight:700;margin:0}
+#pricing .currency-select{
+  margin:0;
+  padding:.65rem .9rem;
+  border:1px solid var(--color-border-strong);
+  border-radius:12px;
+  font:inherit;
+  color:var(--color-text);
+  background:var(--color-bg-elevated);
+  width:auto;
+  min-width:8rem;
+}
+#pricing .currency-feedback{font-size:.72rem;color:var(--color-text-muted)}
+#pricing .grid,
+.arnova-pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--space-md);
+}
+#pricing .card{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:20px;
+  padding:1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+  box-shadow:0 10px 25px var(--color-shadow);
+  color:var(--color-text);
+}
+#pricing .card.featured{border:2px solid var(--color-border-strong)}
+#pricing .card h3,#pricing .card p{margin:0}
+#pricing .card .price{
+  font-size:1.8rem;
+  letter-spacing:-.05em;
+  font-weight:850;
+  color:var(--color-text);
+  line-height:1.1;
+  overflow-wrap:anywhere;
+}
+#pricing .card ul{padding-left:1.15rem;margin:.2rem 0 1rem;flex:1}
+#pricing .card li{margin:.4rem 0;color:var(--color-text)}
+#pricing .label{
+  display:inline-flex;
+  align-self:flex-start;
+  background:var(--color-badge-bg);
+  color:var(--color-badge-text);
+  border-radius:var(--space-radius-pill);
+  padding:4px 11px;
+  font-size:var(--text-xs);
+  font-weight:800;
+}
+#pricing .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:var(--space-radius-pill);
+  padding:12px 21px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:.88rem;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border:1px solid var(--color-bg-cta);
+}
+#pricing .muted{font-size:.89rem;color:var(--color-text-muted)}
+#pricing .spaced{margin-top:1.25rem}
+#pricing .spaced-sm{margin-top:1rem}
+#pricing .table-scroll{overflow-x:auto;margin:var(--space-md) 0}
+#pricing .cost-table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:560px;
+  background:var(--color-bg-elevated);
+  border-radius:15px;
+}
+#pricing .cost-table th,#pricing .cost-table td{
+  text-align:left;
+  padding:15px;
+  border-bottom:1px solid var(--color-border);
+  color:var(--color-text);
+}
+#pricing .cost-table th{background:var(--color-bg-table-header)}
+#pricing .arnova-pricing-extra{margin-top:var(--space-2xl)}
+#pricing .arnova-pricing-extra h3{
+  margin:var(--space-xl) 0 var(--space-sm);
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+}
+#pricing .arnova-pricing-extra a{color:var(--color-text-accent)}
+
+/* ---------- Final CTA band ---------- */
+.arnova-final-cta{
+  text-align:center;
+}
+.arnova-final-cta h2{max-width:18ch;margin-inline:auto}
+.arnova-final-cta .pill{margin-top:var(--space-md)}
+
+@media(max-width:1100px){
+  #pricing .grid,
+  .arnova-pricing-grid,
+  .arnova-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .arnova-key-grid,
+  #pricing .grid,
+  .arnova-pricing-grid,
+  .arnova-category-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .arnova-values-marquee__track{animation:none}
+  .arnova-concept-card img{transition:none}
+}
+
+.section-head h2,
+.arnova-intro h2,
+.arnova-final-cta h2{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
 }
