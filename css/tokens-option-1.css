@@ -56,6 +56,13 @@
   --color-link:#0C2038;
   --color-link-hover:#7A5A1E;
 
+  /* Mobile dock: frosted glass bar and the active-tab pill. */
+  --color-dock-glass:color-mix(in srgb,var(--color-bg-elevated) 86%,transparent);
+  --color-dock-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-dock-pill:color-mix(in srgb,var(--color-accent) 20%,var(--color-bg-elevated));
+  --color-dock-item:var(--color-text-muted);
+  --color-dock-item-active:var(--color-accent-text);
+
   /* Spacing */
   --space-2xs:.25rem;
   --space-xs:.5rem;
@@ -70,7 +77,7 @@
   --space-card-gap:1.25rem;
   --space-header-offset:76px;
   --space-header-offset-narrow:66px;
-  --space-dock-offset:calc(120px + env(safe-area-inset-bottom,0px));
+  --space-dock-offset:calc(84px + env(safe-area-inset-bottom,0px));
   --space-radius-sm:.5rem;
   --space-radius-md:.75rem;
   --space-radius-lg:1.25rem;

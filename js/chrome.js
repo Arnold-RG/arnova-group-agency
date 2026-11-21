@@ -100,14 +100,12 @@
   function pageKey() {
     var path = (window.location.pathname || "").replace(/\/+$/, "");
     if (/\/pricing(?:\/index\.html)?$/.test(path)) return "pricing";
+    var isInner = /\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path);
+    if (isInner) return "";
     var hash = (window.location.hash || "").replace(/^#/, "");
     if (hash === "contact") return "contact";
+    if (hash === "about") return "about";
     if (hash === "services" || hash.indexOf("service-") === 0) return "services";
-    if (hash === "top" || hash === "" || hash === "about" || hash === "solutions" || hash === "principles" || hash === "process" || hash === "faq") {
-      if (/\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path)) return "";
-      return "home";
-    }
-    if (/\/blog\//.test(path) || /\/blog$/.test(path) || /\/privacy(?:\/|\.html)?$/.test(path)) return "";
     return "home";
   }
 
@@ -118,14 +116,9 @@
       else el.removeAttribute("aria-current");
     });
     document.querySelectorAll("[data-dock-link]").forEach(function (el) {
-      if (el.classList.contains("arnova-mobile-dock__cta")) {
-        el.removeAttribute("aria-current");
-        return;
-      }
       if (key && el.getAttribute("data-dock-link") === key) el.setAttribute("aria-current", "page");
       else el.removeAttribute("aria-current");
     });
-    placeDockIndicator();
   }
 
   var dock = document.querySelector(".arnova-mobile-dock");
@@ -135,25 +128,6 @@
   var sheetBackdrop = sheet ? sheet.querySelector(".arnova-dock-sheet__backdrop") : null;
   var sheetPanel = sheet ? sheet.querySelector(".arnova-dock-sheet__panel") : null;
   var lastFocus = null;
-
-  function placeDockIndicator() {
-    if (!dock) return;
-    var bar = dock.querySelector(".arnova-mobile-dock__bar");
-    var ind = dock.querySelector(".arnova-mobile-dock__indicator");
-    if (!bar || !ind) return;
-    var active = bar.querySelector("[data-dock-link][aria-current='page']");
-    if (!active) {
-      ind.style.opacity = "0";
-      return;
-    }
-    var br = bar.getBoundingClientRect();
-    var ar = active.getBoundingClientRect();
-    var left = ar.left - br.left + (ar.width - Math.min(ar.width - 8, 28)) / 2;
-    var width = Math.min(ar.width - 8, 28);
-    ind.style.opacity = "1";
-    ind.style.width = width + "px";
-    ind.style.transform = "translateX(" + left + "px)";
-  }
 
   function isSheetOpen() {
     return !!(sheet && !sheet.hidden);
@@ -173,13 +147,16 @@
     sheet.hidden = false;
     sheet.classList.add("is-open");
     servicesBtn.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("is-dock-sheet-open");
     if (sheetClose) sheetClose.focus();
     else if (sheetPanel) {
       var first = sheetPanel.querySelector("a,button");
       if (first) first.focus();
     }
-    if (dock) dock.classList.remove("is-away");
+    if (dock) {
+      dock.classList.remove("is-away");
+      dock.classList.add("is-sheet-open");
+    }
     updateSheetOverflow();
   }
 
@@ -188,7 +165,8 @@
     sheet.hidden = true;
     sheet.classList.remove("is-open");
     servicesBtn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
+    document.body.classList.remove("is-dock-sheet-open");
+    if (dock) dock.classList.remove("is-sheet-open");
     if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
   }
 
@@ -204,7 +182,7 @@
     if (sheetClose) sheetClose.addEventListener("click", closeSheet);
     if (sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
     sheet.addEventListener("click", function (event) {
-      if (event.target.closest(".arnova-dock-sheet__list a")) closeSheet();
+      if (event.target.closest(".arnova-dock-sheet__list a, .arnova-dock-sheet__footer a")) closeSheet();
     });
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape" && isSheetOpen()) {
@@ -253,8 +231,7 @@
     });
   }, { passive: true });
 
-  window.addEventListener("resize", function () { placeDockIndicator(); updateSheetOverflow(); });
+  window.addEventListener("resize", function () { updateSheetOverflow(); });
   markActive();
   window.addEventListener("hashchange", markActive);
-  window.addEventListener("load", placeDockIndicator);
 })();

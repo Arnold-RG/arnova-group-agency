@@ -17,6 +17,8 @@ body{
   -webkit-font-smoothing:antialiased;
   padding-top:var(--space-header-offset);
 }
+
+body.is-dock-sheet-open{overflow:hidden}
 img{max-width:100%;display:block}
 a{color:inherit}
 button,input,textarea,select{font:inherit}
@@ -33,7 +35,7 @@ button{cursor:pointer}
 .ag-grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
 .ag-grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .ag-grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
-@media(max-width:900px){
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
   .ag-grid--3,.ag-grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:600px){
@@ -243,16 +245,19 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   border-color:var(--color-border-strong);
 }
 
-@media(max-width:900px){
-  html{scroll-padding-top:var(--space-header-offset-narrow)}
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  html{
+    scroll-padding-top:var(--space-header-offset-narrow);
+    scroll-padding-bottom:var(--space-dock-offset);
+  }
   body{
     padding-top:var(--space-header-offset-narrow);
-    padding-bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
+    padding-bottom:var(--space-dock-offset);
   }
   main>section:first-of-type{
     box-sizing:border-box;
     min-height:calc(100svh - var(--space-header-offset-narrow));
-    padding-bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
+    padding-bottom:var(--space-dock-offset);
   }
   header.arnova-site-header{
     min-height:var(--space-header-offset-narrow);
@@ -263,27 +268,27 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .original-logo{width:36px;height:36px}
 }
 
-/* ---------- Mobile dock (Glassy Navigation Tabs, third variant) ---------- */
-/* Floating glass pill, notched centre CTA, home-indicator line.
-   Class name .arnova-mobile-dock is kept so Mentor's pricing page can reuse it. */
+/* ---------- Mobile dock (iOS Dock Style + Pill Highlight) ---------- */
+/* Floating frosted-glass bar with rounded corners and side margins.
+   The active tab uses a soft filled pill behind the icon and label.
+   Class name .arnova-mobile-dock is kept so the pricing page can reuse it. */
 .arnova-mobile-dock,
 .arnova-dock-sheet{display:none}
 
-@media(max-width:900px){
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
   .arnova-mobile-dock{
-    --dock-notch:42px;
-    --dock-cta:56px;
     --dock-bar-h:64px;
+    --dock-inset:12px;
     position:fixed;
     left:50%;
-    bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    bottom:calc(var(--dock-inset) + env(safe-area-inset-bottom,0px));
     transform:translateX(-50%);
     width:calc(100% - 24px);
     max-width:430px;
     z-index:2147483002;
     display:block;
     pointer-events:none;
-    filter:drop-shadow(0 14px 36px var(--color-shadow));
+    filter:drop-shadow(0 12px 28px var(--color-shadow));
     transition:transform .28s ease,opacity .28s ease;
   }
   .arnova-mobile-dock.is-away{
@@ -292,108 +297,25 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     pointer-events:none;
   }
   .arnova-mobile-dock__bar,
-  .arnova-mobile-dock__cta,
   .arnova-mobile-dock__bar a,
   .arnova-mobile-dock__bar button{pointer-events:auto}
 
   .arnova-mobile-dock__bar{
     position:relative;
     display:flex;
-    align-items:flex-end;
+    align-items:center;
     justify-content:space-around;
+    gap:2px;
     height:var(--dock-bar-h);
-    padding:0 4px 10px;
+    padding:6px;
     box-sizing:border-box;
-    border-radius:32px;
+    border-radius:28px;
     isolation:isolate;
-    background:var(--color-bg-elevated);
-    -webkit-mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
-    mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
-    -webkit-mask-size:100% 100%;
-    mask-size:100% 100%;
-    -webkit-mask-repeat:no-repeat;
-    mask-repeat:no-repeat;
-    -webkit-mask-position:0 0;
-    mask-position:0 0;
-  }
-  .arnova-mobile-dock__glass{
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    pointer-events:none;
-    z-index:0;
-    -webkit-mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
-    mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
-    -webkit-mask-size:100% 100%;
-    mask-size:100% 100%;
-    -webkit-mask-repeat:no-repeat;
-    mask-repeat:no-repeat;
-    -webkit-mask-position:0 0;
-    mask-position:0 0;
-  }
-  .arnova-mobile-dock__glass::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:inherit;
-    background:color-mix(in srgb,var(--color-bg-elevated) 88%,transparent);
-    border:1px solid color-mix(in srgb,var(--color-bg-elevated) 70%,var(--color-border));
-    box-shadow:
-      0 14px 36px var(--color-shadow),
-      inset 0 1px 0 color-mix(in srgb,var(--color-bg-elevated) 85%,transparent);
+    background:var(--color-dock-glass);
+    border:1px solid var(--color-dock-border);
     backdrop-filter:blur(24px) saturate(180%);
     -webkit-backdrop-filter:blur(24px) saturate(180%);
-  }
-  .arnova-mobile-dock__notch-stroke{
-    position:absolute;
-    left:50%;
-    top:0;
-    width:calc(var(--dock-notch) * 2);
-    height:calc(var(--dock-notch) * 2);
-    transform:translate(-50%,-50%);
-    border:1px solid color-mix(in srgb,var(--color-bg-elevated) 70%,var(--color-border));
-    border-radius:50%;
-    clip-path:inset(50% 0 0 0);
-    pointer-events:none;
-    z-index:1;
-  }
-  html[data-theme="dark"] .arnova-mobile-dock__glass::before{
-    background:color-mix(in srgb,var(--color-bg-elevated) 88%,transparent);
-    border-color:color-mix(in srgb,var(--color-border) 80%,transparent);
-    box-shadow:
-      0 16px 40px var(--color-shadow),
-      inset 0 1px 0 color-mix(in srgb,var(--color-text) 12%,transparent);
-  }
-  html[data-theme="dark"] .arnova-mobile-dock__notch-stroke{
-    border-color:color-mix(in srgb,var(--color-border) 80%,transparent);
-  }
-
-  .arnova-mobile-dock__indicator{
-    position:absolute;
-    left:0;
-    bottom:12px;
-    height:3px;
-    width:28px;
-    border-radius:var(--space-radius-pill);
-    background:var(--color-accent);
-    box-shadow:0 0 10px color-mix(in srgb,var(--color-accent) 70%,transparent);
-    transform:translateX(0);
-    transition:transform .28s ease,width .28s ease,opacity .2s ease;
-    z-index:2;
-    pointer-events:none;
-    opacity:0;
-  }
-  .arnova-mobile-dock__home-line{
-    position:absolute;
-    left:50%;
-    bottom:5px;
-    width:88px;
-    height:4px;
-    transform:translateX(-50%);
-    border-radius:var(--space-radius-pill);
-    background:color-mix(in srgb,var(--color-text) 28%,transparent);
-    z-index:2;
-    pointer-events:none;
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--color-bg-elevated) 80%,transparent);
   }
 
   .arnova-mobile-dock__bar a,
@@ -402,109 +324,69 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     border:0;
     background:transparent;
     position:relative;
-    z-index:3;
+    z-index:1;
     flex:1 1 0;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     gap:2px;
-    min-width:44px;
-    min-height:44px;
-    margin-bottom:6px;
-    padding:0 2px;
-    color:var(--color-text-muted);
+    min-width:48px;
+    min-height:48px;
+    padding:4px 2px;
+    color:var(--color-dock-item);
     text-decoration:none;
     font-family:var(--font-sans);
     font-size:11px;
-    font-weight:700;
-    line-height:1.1;
+    font-weight:600;
+    line-height:1.15;
     letter-spacing:0;
     white-space:nowrap;
-    border-radius:var(--space-radius-sm);
-    transition:color .2s ease;
+    overflow:visible;
+    border-radius:18px;
+    transition:color .2s ease,background-color .2s ease,transform .16s ease;
   }
   .arnova-mobile-dock__bar a svg,
   .arnova-mobile-dock__bar button svg{
     width:20px;
     height:20px;
-    stroke:currentColor;
+    flex:0 0 auto;
     fill:none;
+    stroke:currentColor;
     stroke-width:1.8;
     stroke-linecap:round;
     stroke-linejoin:round;
   }
   .arnova-mobile-dock__bar a:hover,
-  .arnova-mobile-dock__bar button:hover,
-  .arnova-mobile-dock__bar a:focus-visible,
-  .arnova-mobile-dock__bar button:focus-visible,
+  .arnova-mobile-dock__bar button:hover{
+    color:var(--color-dock-item-active);
+  }
   .arnova-mobile-dock__bar a[aria-current="page"],
   .arnova-mobile-dock__bar button[aria-current="page"],
   .arnova-mobile-dock__bar button[aria-expanded="true"]{
-    color:var(--color-text);
+    color:var(--color-dock-item-active);
+    background:var(--color-dock-pill);
+  }
+  .arnova-mobile-dock.is-sheet-open .arnova-mobile-dock__bar a[aria-current="page"],
+  .arnova-mobile-dock.is-sheet-open .arnova-mobile-dock__bar button[aria-current="page"]{
+    color:var(--color-dock-item);
+    background:transparent;
+  }
+  .arnova-mobile-dock.is-sheet-open .arnova-mobile-dock__bar button[aria-expanded="true"]{
+    color:var(--color-dock-item-active);
+    background:var(--color-dock-pill);
   }
   .arnova-mobile-dock__bar a:focus-visible,
-  .arnova-mobile-dock__bar button:focus-visible,
-  .arnova-mobile-dock__cta:focus-visible{
+  .arnova-mobile-dock__bar button:focus-visible{
     outline:3px solid var(--color-focus);
     outline-offset:2px;
   }
-  .arnova-mobile-dock__spacer{
-    flex:0 0 calc(var(--dock-notch) * 2);
-    width:calc(var(--dock-notch) * 2);
-    min-width:calc(var(--dock-notch) * 2);
-    pointer-events:none;
+  .arnova-mobile-dock__bar a:active,
+  .arnova-mobile-dock__bar button:active{
+    transform:scale(.96);
   }
 
-  .arnova-mobile-dock__cta{
-    position:absolute;
-    left:50%;
-    top:0;
-    z-index:4;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:1px;
-    width:var(--dock-cta);
-    height:var(--dock-cta);
-    min-width:44px;
-    min-height:44px;
-    transform:translate(-50%,-52%);
-    border-radius:50%;
-    background:var(--color-bg-cta);
-    color:var(--color-text-on-cta);
-    text-decoration:none;
-    font-family:var(--font-sans);
-    font-size:11px;
-    font-weight:750;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    line-height:1;
-    box-shadow:
-      0 0 0 2px color-mix(in srgb,var(--color-accent) 55%,transparent),
-      0 0 18px color-mix(in srgb,var(--color-accent) 55%,transparent),
-      0 8px 18px var(--color-shadow);
-    transition:transform .2s ease,box-shadow .2s ease;
-  }
-  .arnova-mobile-dock__cta:hover,
-  .arnova-mobile-dock__cta:focus-visible{
-    box-shadow:
-      0 0 0 4px color-mix(in srgb,var(--color-accent) 40%,transparent),
-      0 0 28px color-mix(in srgb,var(--color-accent) 70%,transparent),
-      0 8px 18px var(--color-shadow);
-  }
-  .arnova-mobile-dock__cta svg{
-    width:20px;
-    height:20px;
-    stroke:currentColor;
-    fill:none;
-    stroke-width:1.9;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-  }
-
-  /* Bottom sheet: lists service pages, sits above the dock */
+  /* Bottom sheet: service list plus a WhatsApp footer, sits above the dock */
   .arnova-dock-sheet{
     display:block;
     position:fixed;
@@ -528,11 +410,11 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-dock-sheet__panel{
     position:absolute;
     left:50%;
-    bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
+    bottom:var(--space-dock-offset);
     transform:translateX(-50%);
     width:calc(100% - 24px);
     max-width:430px;
-    max-height:min(70vh,calc(100dvh - var(--space-header-offset-narrow) - var(--space-dock-offset) - env(safe-area-inset-bottom,0px) - 16px));
+    max-height:min(70vh,calc(100dvh - var(--space-header-offset-narrow) - var(--space-dock-offset) - 16px));
     display:flex;
     flex-direction:column;
     overflow:hidden;
@@ -549,10 +431,9 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     position:absolute;
     left:0;
     right:0;
-    bottom:0;
+    bottom:56px;
     height:36px;
     pointer-events:none;
-    border-radius:0 0 var(--space-radius-md) var(--space-radius-md);
     background:linear-gradient(to bottom,transparent,var(--color-bg-elevated));
     opacity:0;
     transition:opacity .2s ease;
@@ -580,13 +461,19 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     border:1px solid var(--color-border);
     background:var(--color-bg-subtle);
     color:var(--color-text);
-    min-width:44px;
-    min-height:44px;
+    min-width:48px;
+    min-height:48px;
     border-radius:var(--space-radius-pill);
     font-family:var(--font-sans);
     font-size:var(--text-sm);
     font-weight:700;
     padding:0 var(--space-sm);
+  }
+  .arnova-dock-sheet__close:focus-visible,
+  .arnova-dock-sheet__footer a:focus-visible,
+  .arnova-dock-sheet__list a:focus-visible{
+    outline:3px solid var(--color-focus);
+    outline-offset:2px;
   }
   .arnova-dock-sheet__list{
     list-style:none;
@@ -602,7 +489,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-dock-sheet__list a{
     display:flex;
     align-items:center;
-    min-height:44px;
+    min-height:48px;
     padding:var(--space-xs) var(--space-2xs);
     color:var(--color-text);
     text-decoration:none;
@@ -614,31 +501,127 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-dock-sheet__list a:last-child{border-bottom:0}
   .arnova-dock-sheet__list a:hover,
   .arnova-dock-sheet__list a:focus-visible{color:var(--color-text-accent)}
+  .arnova-dock-sheet__footer{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 calc(var(--space-md) * -1);
+    padding:var(--space-xs) var(--space-md);
+    border-top:1px solid var(--color-border);
+    background:var(--color-bg-elevated);
+    z-index:1;
+  }
+  .arnova-dock-sheet__footer a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:var(--space-xs);
+    min-height:48px;
+    padding:0 var(--space-sm);
+    color:var(--color-dock-item-active);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:700;
+    border-radius:var(--space-radius-pill);
+  }
+  .arnova-dock-sheet__footer a svg{
+    width:20px;
+    height:20px;
+    flex:0 0 auto;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .arnova-dock-sheet__footer a:hover,
+  .arnova-dock-sheet__footer a:focus-visible{color:var(--color-text-accent)}
 }
 
 @media(max-width:360px){
+  .arnova-mobile-dock{width:calc(100% - 16px)}
+  .arnova-mobile-dock__bar{padding:6px 4px;border-radius:24px}
   .arnova-mobile-dock__bar a,
-  .arnova-mobile-dock__bar button{font-size:11px;padding:0 1px;gap:1px}
-  .arnova-mobile-dock__bar a svg,
-  .arnova-mobile-dock__bar button svg,
-  .arnova-mobile-dock__cta svg{width:18px;height:18px}
-  .arnova-mobile-dock__cta{font-size:11px;letter-spacing:.02em}
-  .arnova-mobile-dock__home-line{width:72px}
-  .arnova-mobile-dock{--dock-cta:52px;--dock-notch:40px;--dock-bar-h:62px}
+  .arnova-mobile-dock__bar button{font-size:11px;padding:4px 1px}
+  .arnova-dock-sheet__panel{width:calc(100% - 16px)}
+}
+
+/* Narrow phones and short / landscape viewports: first section and page end
+   clear the dock by its height + gap + safe area. Landscape uses a compact
+   icon-only dock so the first screen keeps room for hero and pricing CTAs. */
+@media(max-width:360px){
+  main>section:first-of-type{
+    box-sizing:border-box;
+    padding-top:var(--space-md);
+    padding-bottom:var(--space-dock-offset);
+  }
+  body{padding-bottom:var(--space-dock-offset)}
+  .agency-footer{padding-bottom:var(--space-xl)}
+}
+
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  :root{
+    --dock-bar-h:52px;
+    --dock-inset:8px;
+    --space-dock-offset:calc(68px + env(safe-area-inset-bottom,0px));
+    scroll-padding-bottom:var(--space-dock-offset);
+  }
+  body{padding-bottom:var(--space-dock-offset)}
+  main>section:first-of-type{
+    box-sizing:border-box;
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .agency-footer{padding-bottom:var(--space-lg)}
+  .arnova-mobile-dock{
+    --dock-bar-h:52px;
+    --dock-inset:8px;
+    bottom:calc(var(--dock-inset) + env(safe-area-inset-bottom,0px));
+    width:min(420px,calc(100% - 24px));
+  }
+  .arnova-mobile-dock__bar{
+    height:var(--dock-bar-h);
+    padding:2px 6px;
+    border-radius:22px;
+  }
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{
+    min-width:48px;
+    min-height:48px;
+    padding:4px;
+    gap:0;
+  }
+  /* Icon-only: keep the label in the tree, hide it visually. */
+  .arnova-mobile-dock__bar a span,
+  .arnova-mobile-dock__bar button span{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    clip-path:inset(50%);
+    white-space:nowrap;
+    border:0;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   header.arnova-site-header,.pill,
   .arnova-mobile-dock,
-  .arnova-mobile-dock__indicator,
-  .arnova-mobile-dock__cta,
   .arnova-mobile-dock__bar a,
   .arnova-mobile-dock__bar button,
   .arnova-dock-sheet__backdrop,
-  .arnova-dock-sheet__panel,
-  .arnova-dock-sheet__panel::after{transition:none!important}
-  .pill:hover{transform:none}
+  .arnova-dock-sheet__panel{transition:none!important}
+  .pill:hover,
+  .arnova-mobile-dock__bar a:active,
+  .arnova-mobile-dock__bar button:active{transform:none}
 }
 
 /* ---------- Footer ---------- */
@@ -729,7 +712,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
 .agency-footer-bottom a{color:inherit;text-decoration:none}
 .agency-footer-bottom a:hover{text-decoration:underline;text-underline-offset:3px}
 .agency-footer-legal{display:flex;gap:1.25rem}
-@media(max-width:900px){
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
   .agency-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:560px){
