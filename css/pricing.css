@@ -305,3 +305,13 @@ main .cta .btn.ghost{
   main .hero p{font-size:.95rem;line-height:1.4}
   .hero-actions{margin-top:var(--space-sm);gap:8px}
 }
+
+
+/* Hero CTAs must contrast with --color-bg-hero (light Signal Slate CTA fill matches the hero). */
+.page-hero .btn,
+main .hero .btn,
+.pricing-hero .btn{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+}

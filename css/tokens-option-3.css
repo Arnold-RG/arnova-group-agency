@@ -1,3 +1,19 @@
+/* Self-hosted Signal Slate type. */
+@font-face{
+  font-family:"Instrument Sans";
+  src:url("../assets/fonts/InstrumentSans-Variable.woff2") format("woff2");
+  font-weight:400 700;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Syne";
+  src:url("../assets/fonts/Syne-Variable.woff2") format("woff2");
+  font-weight:400 800;
+  font-style:normal;
+  font-display:swap;
+}
+
 /* Arnova Group Agency — Option 3: Signal Slate
    Swap by pointing css/tokens.css at this file. */
 
@@ -7,6 +23,9 @@
   --color-bg-elevated:#FFFFFF;
   --color-bg-hero:#161618;
   --color-bg-cta:#161618;
+  /* Filled buttons sitting on --color-bg-hero. Light --color-bg-cta matches the hero, so these are separate. Paper fill on the hero is 16.85:1; text is 16.85:1. */
+  --color-bg-hero-cta:#F7F7F5;
+  --color-text-on-hero-cta:#161618;
   --color-bg-highlight:#E4F1F4;
   --color-bg-table-header:#ECECE8;
   --color-text:#161618;
@@ -82,6 +101,9 @@ html[data-theme="dark"]{
   --color-bg-elevated:#1C1C1F;
   --color-bg-hero:#0B0B0D;
   --color-bg-cta:#3FA4BB;
+  /* Teal fill on the dark hero is 6.78:1; --color-text-on-hero-cta on that fill is 6.50:1. */
+  --color-bg-hero-cta:#3FA4BB;
+  --color-text-on-hero-cta:#111113;
   --color-bg-highlight:#1A2A30;
   --color-bg-table-header:#1C1C1F;
   --color-text:#F4F4F1;

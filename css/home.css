@@ -89,10 +89,12 @@
   font-size:clamp(1.05rem,1.7vw,1.32rem);
   line-height:1.6;
 }
-.arnova-full-hero .pill{
-  background:var(--color-bg-elevated);
-  color:var(--color-text);
-  border-color:var(--color-bg-elevated);
+.arnova-full-hero .pill,
+.arnova-editorial-hero .arnova-cta-start{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+  padding:.55rem 1.15rem;
 }
 .arnova-full-hero .pill:hover{filter:brightness(1.06)}
 .arnova-full-hero .pill.outline,
@@ -168,6 +170,8 @@
   .arnova-full-hero .hero-lead,
   .arnova-full-hero .hero-actions,
   .arnova-kinetic-line span{animation:none!important}
+  .arnova-values-marquee__track{animation:none!important;transform:none}
+  .arnova-hero-object[data-parallax]{transform:none!important}
 }
 
 /* ---------- Shared type on the page ---------- */
@@ -586,4 +590,313 @@
   .hero-actions{margin-top:var(--space-sm);gap:var(--space-xs)}
   .hero-proof{display:none}
   .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
+}
+
+/* ---------- Editorial hero, concept gallery, process, values (showcase) ---------- */
+@font-face{
+  font-family:"Fraunces Display";
+  src:url("../assets/fonts/Fraunces-Display-600.woff2") format("woff2");
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Fraunces Display";
+  src:url("../assets/fonts/Fraunces-Display-600Italic.woff2") format("woff2");
+  font-weight:600;
+  font-style:italic;
+  font-display:swap;
+}
+
+.arnova-editorial-hero{
+  min-height:min(900px, 100svh);
+  padding-top:clamp(3.5rem, 8vh, 6rem);
+  padding-bottom:clamp(3rem, 6vh, 5rem);
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+  overflow:hidden;
+}
+.arnova-editorial-hero .arnova-hero-content{display:block}
+.arnova-hero-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--space-md);
+}
+.arnova-editorial-hero .eyebrow{color:var(--color-text-on-hero-muted)}
+.arnova-hero-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:var(--space-md);
+  align-items:center;
+}
+.arnova-editorial-hero h1.arnova-hero-headline{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
+  font-size:clamp(3rem, 8vw, 6.75rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+  color:var(--color-text-on-hero);
+  margin:0;
+  max-width:none;
+  text-wrap:balance;
+}
+.arnova-hero-line{display:block}
+.arnova-hero-object{
+  position:relative;
+  justify-self:center;
+  width:min(100%, 40rem);
+  will-change:transform;
+}
+.arnova-hero-object img{
+  display:block;
+  width:100%;
+  height:auto;
+  filter:drop-shadow(0 28px 50px color-mix(in srgb, var(--color-shadow) 80%, transparent));
+}
+.arnova-editorial-hero .hero-lead{
+  max-width:32rem;
+  margin:0;
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-cta-row{margin:0}
+.arnova-cta-start{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  font-weight:750;
+  text-decoration:none;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border:1.5px solid var(--color-bg-cta);
+}
+.arnova-editorial-hero .arnova-cta-start{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+  padding:.55rem 1.15rem;
+}
+.arnova-cta-start:hover{filter:brightness(1.06)}
+.arnova-cta-start:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+
+/* Values marquee */
+.arnova-values-marquee{
+  overflow:hidden;
+  border-block:1px solid var(--color-border);
+  background:var(--color-bg);
+  color:var(--color-text);
+}
+.arnova-values-marquee__track{
+  display:flex;
+  width:max-content;
+  gap:0;
+  animation:arnova-values-scroll 48s linear infinite;
+}
+.arnova-values-marquee__track p{
+  display:flex;
+  align-items:center;
+  gap:clamp(.8rem, 2vw, 1.6rem);
+  margin:0;
+  padding:.9rem 0;
+  font-family:var(--font-display);
+  font-size:clamp(.95rem, 1.6vw, 1.15rem);
+  font-weight:650;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.arnova-values-marquee__track span[aria-hidden="true"]{
+  color:var(--color-accent);
+  letter-spacing:0;
+}
+@keyframes arnova-values-scroll{
+  to{transform:translateX(-50%)}
+}
+
+/* Concept gallery */
+.arnova-concepts{background:var(--color-bg)}
+.arnova-concept-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-lg);
+}
+.arnova-concept-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  color:var(--color-text);
+  text-decoration:none;
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  overflow:hidden;
+  box-shadow:0 16px 40px var(--color-shadow);
+}
+.arnova-concept-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/11;
+  object-fit:cover;
+  object-position:center;
+  background:#141416;
+  transition:transform .5s ease;
+}
+.arnova-concept-card__label{
+  position:absolute;
+  top:var(--space-md);
+  left:var(--space-md);
+  z-index:1;
+  padding:.3rem .65rem;
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.arnova-concept-card h3{
+  margin:.9rem 1.1rem .2rem;
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-concept-card p{
+  margin:0 1.1rem 1.15rem;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+}
+.arnova-concept-card:hover img,
+.arnova-concept-card:focus-visible img{
+  transform:scale(1.045) translateY(-4px);
+}
+.arnova-concept-card:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+.arnova-concepts .arnova-cta-row{
+  margin-top:var(--space-xl);
+}
+
+/* Process + payment */
+.arnova-process-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.arnova-process-list li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-top:3px solid var(--color-border-highlight);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-lg);
+}
+.arnova-payment{
+  margin-top:var(--space-xl);
+  padding:var(--space-lg);
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+}
+.arnova-payment h3{
+  margin:0 0 var(--space-md);
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-payment ol{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:var(--space-md);
+  margin:0;
+  padding:0;
+  list-style:none;
+  counter-reset:pay;
+}
+.arnova-payment li{
+  counter-increment:pay;
+  color:var(--color-text);
+  font-weight:650;
+  padding-top:.15rem;
+}
+.arnova-payment li:before{
+  content:counter(pay, decimal-leading-zero);
+  display:block;
+  margin-bottom:.35rem;
+  color:var(--color-text-accent);
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.process-section .arnova-cta-row{margin-top:var(--space-xl)}
+
+@media(max-width:900px){
+  .arnova-editorial-hero{
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+    box-sizing:border-box;
+  }
+  .arnova-hero-stage{
+    grid-template-columns:1fr;
+    gap:var(--space-sm);
+  }
+  .arnova-hero-headline{font-size:clamp(2.4rem, 11vw, 3.6rem)}
+  .arnova-hero-object{width:min(100%, 22rem)}
+  .arnova-concept-grid{grid-template-columns:1fr}
+  .arnova-payment ol{grid-template-columns:1fr 1fr}
+}
+@media(max-width:360px){
+  .arnova-editorial-hero{
+    align-items:flex-start;
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+    gap:0;
+  }
+  .arnova-hero-headline{
+    font-size:clamp(1.85rem, 9vw, 2.25rem);
+    line-height:1.02;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-editorial-hero .hero-lead{font-size:.95rem;line-height:1.4}
+  .arnova-hero-object{width:min(100%, 13.5rem);margin-top:var(--space-xs)}
+  .arnova-cta-row{margin-top:0}
+}
+@media(max-width:360px) and (max-height:620px){
+  /* Keep the hero CTA on-screen above the dock on short phones. */
+  .arnova-hero-object{max-width:9.5rem}
+}
+
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .arnova-editorial-hero{
+    align-items:flex-start;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-hero-stage{
+    grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+    gap:var(--space-sm);
+    align-items:center;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-hero-headline{
+    font-size:clamp(1.6rem, 4.4vw, 2.3rem);
+    margin:0;
+  }
+  .arnova-hero-object{width:100%;max-width:18rem}
+  .arnova-editorial-hero .hero-lead{font-size:.9rem;line-height:1.35;max-width:none}
+  .arnova-cta-row{margin-top:0}
+}
+
+
+@media(prefers-reduced-motion:reduce){
+  .arnova-values-marquee__track{animation:none}
+  .arnova-concept-card img{transition:none}
 }

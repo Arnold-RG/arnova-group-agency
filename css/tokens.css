@@ -1,5 +1,4 @@
 /* Shared design tokens.
-   Swap the palette by changing this one import to
-   tokens-option-2.css (Ridge Forest) or tokens-option-3.css (Signal Slate).
-   Option 1, Apex Navy, is the default until a direction is chosen. */
-@import url("tokens-option-1.css");
+   Signal Slate (option 3) is the chosen scheme.
+   Swap this import to tokens-option-1.css or tokens-option-2.css only if a previous direction is needed. */
+@import url("tokens-option-3.css");
