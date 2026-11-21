@@ -21,6 +21,8 @@
   --color-accent:#B44E22;
   --color-accent-hover:#9A3F16;
   --color-accent-text:#8F3A12;
+  /* Text on --color-accent fills. Navy #122033 where that pair is at least 4.5:1; a light paper tint on darker accents. */
+  --color-text-on-accent:#F4F1EA;
   --color-focus:#104037;
   --color-mark-yes:#1A6E42;
   --color-mark-no:#9B2C2C;
@@ -87,6 +89,7 @@ html[data-theme="dark"]{
   --color-accent:#E4C9A0;
   --color-accent-hover:#F0D8B4;
   --color-accent-text:#E4C9A0;
+  --color-text-on-accent:#122033;
   --color-focus:#E4C9A0;
   --color-mark-yes:#3CB37A;
   --color-mark-no:#F0A8A0;

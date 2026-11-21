@@ -56,7 +56,7 @@ See [client design standards](docs/CLIENT_WEBSITE_DESIGN_STANDARDS.md), [cross-p
 
 ## Kigali business concept collection (November 2026)
 
-Three independently designed prospect sites have been added to the [ArnovaGroup website's work section](https://arnold-rg.github.io/arnova-group-agency/#examples). The working demos are published in the [portfolio concept gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/):
+Three independently designed prospect sites have been added to the [ArnovaGroup website's work section](https://arnold-rg.github.io/arnova-group-agency/concepts/). The working demos are published in the [portfolio concept gallery](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/):
 
 - [NIK Salon Kicukiro — beauty](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/nik-salon.html)
 - [Marine Coffee Shop — hospitality](https://arnold-rg.github.io/arnold-portfolio/demos/arnova/marine-coffee.html)

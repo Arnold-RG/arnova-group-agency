@@ -159,6 +159,14 @@
     return !!(sheet && !sheet.hidden);
   }
 
+  function updateSheetOverflow() {
+    if (!sheetPanel) return;
+    var list = sheetPanel.querySelector(".arnova-dock-sheet__list");
+    if (!list) return;
+    var more = list.scrollHeight - list.scrollTop - list.clientHeight > 8;
+    sheetPanel.classList.toggle("has-more-below", more);
+  }
+
   function openSheet() {
     if (!sheet || !servicesBtn) return;
     lastFocus = document.activeElement;
@@ -172,6 +180,7 @@
       if (first) first.focus();
     }
     if (dock) dock.classList.remove("is-away");
+    updateSheetOverflow();
   }
 
   function closeSheet() {
@@ -188,6 +197,10 @@
       if (isSheetOpen()) closeSheet();
       else openSheet();
     });
+    if (sheetPanel) {
+      var list = sheetPanel.querySelector(".arnova-dock-sheet__list");
+      if (list) list.addEventListener("scroll", updateSheetOverflow, { passive: true });
+    }
     if (sheetClose) sheetClose.addEventListener("click", closeSheet);
     if (sheetBackdrop) sheetBackdrop.addEventListener("click", closeSheet);
     sheet.addEventListener("click", function (event) {
@@ -240,7 +253,7 @@
     });
   }, { passive: true });
 
-  window.addEventListener("resize", placeDockIndicator);
+  window.addEventListener("resize", function () { placeDockIndicator(); updateSheetOverflow(); });
   markActive();
   window.addEventListener("hashchange", markActive);
   window.addEventListener("load", placeDockIndicator);

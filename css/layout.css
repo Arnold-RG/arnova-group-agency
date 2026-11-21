@@ -247,7 +247,12 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   html{scroll-padding-top:var(--space-header-offset-narrow)}
   body{
     padding-top:var(--space-header-offset-narrow);
-    padding-bottom:var(--space-dock-offset);
+    padding-bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
+  }
+  main>section:first-of-type{
+    box-sizing:border-box;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
   }
   header.arnova-site-header{
     min-height:var(--space-header-offset-narrow);
@@ -278,6 +283,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     z-index:2147483002;
     display:block;
     pointer-events:none;
+    filter:drop-shadow(0 14px 36px var(--color-shadow));
     transition:transform .28s ease,opacity .28s ease;
   }
   .arnova-mobile-dock.is-away{
@@ -300,6 +306,15 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     box-sizing:border-box;
     border-radius:32px;
     isolation:isolate;
+    background:var(--color-bg-elevated);
+    -webkit-mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
+    mask-image:radial-gradient(circle var(--dock-notch) at 50% 0,transparent calc(var(--dock-notch) - .5px),#000 var(--dock-notch));
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+    -webkit-mask-position:0 0;
+    mask-position:0 0;
   }
   .arnova-mobile-dock__glass{
     position:absolute;
@@ -321,7 +336,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     position:absolute;
     inset:0;
     border-radius:inherit;
-    background:color-mix(in srgb,var(--color-bg-elevated) 64%,transparent);
+    background:color-mix(in srgb,var(--color-bg-elevated) 88%,transparent);
     border:1px solid color-mix(in srgb,var(--color-bg-elevated) 70%,var(--color-border));
     box-shadow:
       0 14px 36px var(--color-shadow),
@@ -343,7 +358,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     z-index:1;
   }
   html[data-theme="dark"] .arnova-mobile-dock__glass::before{
-    background:color-mix(in srgb,var(--color-bg-elevated) 72%,transparent);
+    background:color-mix(in srgb,var(--color-bg-elevated) 88%,transparent);
     border-color:color-mix(in srgb,var(--color-border) 80%,transparent);
     box-shadow:
       0 16px 40px var(--color-shadow),
@@ -401,7 +416,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     color:var(--color-text-muted);
     text-decoration:none;
     font-family:var(--font-sans);
-    font-size:10px;
+    font-size:11px;
     font-weight:700;
     line-height:1.1;
     letter-spacing:0;
@@ -411,8 +426,8 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   }
   .arnova-mobile-dock__bar a svg,
   .arnova-mobile-dock__bar button svg{
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
     stroke:currentColor;
     fill:none;
     stroke-width:1.8;
@@ -461,7 +476,7 @@ html[data-theme="dark"] .original-logo--dark{display:block}
     color:var(--color-text-on-cta);
     text-decoration:none;
     font-family:var(--font-sans);
-    font-size:9px;
+    font-size:11px;
     font-weight:750;
     letter-spacing:.04em;
     text-transform:uppercase;
@@ -480,8 +495,8 @@ html[data-theme="dark"] .original-logo--dark{display:block}
       0 8px 18px var(--color-shadow);
   }
   .arnova-mobile-dock__cta svg{
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
     stroke:currentColor;
     fill:none;
     stroke-width:1.9;
@@ -513,29 +528,43 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-dock-sheet__panel{
     position:absolute;
     left:50%;
-    bottom:var(--space-dock-offset);
+    bottom:calc(var(--space-dock-offset) + env(safe-area-inset-bottom,0px));
     transform:translateX(-50%);
     width:calc(100% - 24px);
     max-width:430px;
-    max-height:min(70vh,calc(100% - var(--space-dock-offset) - var(--space-header-offset-narrow) - 16px));
-    overflow:auto;
-    -webkit-overflow-scrolling:touch;
+    max-height:min(70vh,calc(100dvh - var(--space-header-offset-narrow) - var(--space-dock-offset) - env(safe-area-inset-bottom,0px) - 16px));
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
     box-sizing:border-box;
-    padding:var(--space-sm) var(--space-md) var(--space-md);
+    padding:var(--space-sm) var(--space-md) 0;
     background:var(--color-bg-elevated);
     color:var(--color-text);
     border:1px solid var(--color-border);
     border-radius:var(--space-radius-lg) var(--space-radius-lg) var(--space-radius-md) var(--space-radius-md);
     box-shadow:0 16px 40px var(--color-shadow);
   }
+  .arnova-dock-sheet__panel::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:36px;
+    pointer-events:none;
+    border-radius:0 0 var(--space-radius-md) var(--space-radius-md);
+    background:linear-gradient(to bottom,transparent,var(--color-bg-elevated));
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .arnova-dock-sheet__panel.has-more-below::after{opacity:1}
   .arnova-dock-sheet__head{
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:var(--space-sm);
     margin-bottom:var(--space-xs);
-    position:sticky;
-    top:0;
+    flex:0 0 auto;
     background:var(--color-bg-elevated);
     z-index:1;
     padding-top:var(--space-xs);
@@ -562,9 +591,13 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-dock-sheet__list{
     list-style:none;
     margin:0;
-    padding:0;
+    padding:0 0 8px;
     display:flex;
     flex-direction:column;
+    flex:1 1 auto;
+    min-height:0;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
   }
   .arnova-dock-sheet__list a{
     display:flex;
@@ -585,9 +618,13 @@ html[data-theme="dark"] .original-logo--dark{display:block}
 
 @media(max-width:360px){
   .arnova-mobile-dock__bar a,
-  .arnova-mobile-dock__bar button{font-size:9px;padding:0 1px}
-  .arnova-mobile-dock__cta{font-size:8px}
+  .arnova-mobile-dock__bar button{font-size:11px;padding:0 1px;gap:1px}
+  .arnova-mobile-dock__bar a svg,
+  .arnova-mobile-dock__bar button svg,
+  .arnova-mobile-dock__cta svg{width:18px;height:18px}
+  .arnova-mobile-dock__cta{font-size:11px;letter-spacing:.02em}
   .arnova-mobile-dock__home-line{width:72px}
+  .arnova-mobile-dock{--dock-cta:52px;--dock-notch:40px;--dock-bar-h:62px}
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -599,7 +636,8 @@ html[data-theme="dark"] .original-logo--dark{display:block}
   .arnova-mobile-dock__bar a,
   .arnova-mobile-dock__bar button,
   .arnova-dock-sheet__backdrop,
-  .arnova-dock-sheet__panel{transition:none!important}
+  .arnova-dock-sheet__panel,
+  .arnova-dock-sheet__panel::after{transition:none!important}
   .pill:hover{transform:none}
 }
 
