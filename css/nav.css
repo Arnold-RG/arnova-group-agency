@@ -1,13 +1,13 @@
 /* Anchor landings: sit below the sticky header. Use scroll-margin only
    (html scroll-padding-top is 0) so hash jumps and scrollIntoView do not double. */
 #top,#about,#services,#work,#process,#pricing,#faq,#contact,#privacy,
-#daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
+#care,#daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
 [id^="service-"],[id^="concept-"]{
   scroll-margin-top:var(--space-header-offset);
 }
 @media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
   #top,#about,#services,#work,#process,#pricing,#faq,#contact,#privacy,
-  #daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
+  #care,#daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
   [id^="service-"],[id^="concept-"]{
     scroll-margin-top:var(--space-header-offset-narrow);
   }
