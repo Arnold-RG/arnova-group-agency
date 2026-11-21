@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 96" role="img" aria-labelledby="t">
+<title id="t">Arnova Group Agency</title>
+<g transform="translate(0,8) scale(1)">
+<title id="t">Arnova Group Agency mark</title>
+<g fill="#104037">
+  <rect x="28" y="10" width="24" height="14" rx="3"/>
+  <rect x="16" y="30" width="48" height="14" rx="3"/>
+  <rect x="6" y="50" width="26" height="16" rx="3"/>
+  <rect x="48" y="50" width="26" height="16" rx="3"/>
+</g>
+</g>
+<text x="102" y="50" fill="#104037" font-family="Fraunces" font-size="42" font-weight="650" letter-spacing="-1.2">ARNOVA</text>
+<text x="104" y="76" fill="#4A5A55" font-family="Figtree" font-size="11" font-weight="600" letter-spacing="3.6">GROUP AGENCY</text>
+</svg>

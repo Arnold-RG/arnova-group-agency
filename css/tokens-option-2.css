@@ -1,0 +1,129 @@
+/* Arnova Group Agency — Option 2: Ridge Forest
+   Swap by pointing css/tokens.css at this file. */
+
+:root{
+  --color-bg:#F4F1EA;
+  --color-bg-subtle:#E8E3D8;
+  --color-bg-elevated:#FFFFFF;
+  --color-bg-hero:#104037;
+  --color-bg-cta:#104037;
+  --color-bg-highlight:#F6E4D6;
+  --color-bg-table-header:#E8E3D8;
+  --color-text:#14211E;
+  --color-text-muted:#4A5A55;
+  --color-text-on-hero:#F4F1EA;
+  --color-text-on-hero-muted:#C5D0CB;
+  --color-text-on-cta:#F4F1EA;
+  --color-text-accent:#8F3A12;
+  --color-border:#D4CFC4;
+  --color-border-strong:#B6B0A4;
+  --color-border-highlight:#B44E22;
+  --color-accent:#B44E22;
+  --color-accent-hover:#9A3F16;
+  --color-accent-text:#8F3A12;
+  /* Text on --color-accent fills. Navy #122033 where that pair is at least 4.5:1; a light paper tint on darker accents. */
+  --color-text-on-accent:#F4F1EA;
+  --color-focus:#104037;
+  --color-mark-yes:#1A6E42;
+  --color-mark-no:#9B2C2C;
+  --color-shadow:rgba(16,64,55,.12);
+  --color-badge-bg:#F6E4D6;
+  --color-badge-text:#8F3A12;
+  --color-link:#104037;
+  --color-link-hover:#8F3A12;
+
+  /* Mobile dock: frosted glass bar and the active-tab pill. */
+  --color-dock-glass:color-mix(in srgb,var(--color-bg-elevated) 86%,transparent);
+  --color-dock-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-dock-pill:color-mix(in srgb,var(--color-accent) 20%,var(--color-bg-elevated));
+  --color-dock-item:var(--color-text-muted);
+  --color-dock-item-active:var(--color-accent-text);
+
+  /* Live mobile nav (glassy bar + centre FAB). */
+  --color-nav-glow:#B44E22;
+  --color-fab-bg:#B44E22;
+  --color-fab-text:#F4F1EA;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-nav-item:var(--color-text-muted);
+  --color-nav-item-active:var(--color-accent-text);
+  --color-nav-indicator:var(--color-nav-glow);
+  --color-nav-mask:#000000;
+
+  --space-2xs:.25rem;
+  --space-xs:.5rem;
+  --space-sm:.75rem;
+  --space-md:1rem;
+  --space-lg:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4.5rem;
+  --space-gutter:clamp(1.125rem,4vw,2.5rem);
+  --space-wrap:70rem;
+  --space-card-gap:1.25rem;
+  --space-header-offset:76px;
+  --space-header-offset-narrow:66px;
+  --space-dock-offset:calc(144px + env(safe-area-inset-bottom,0px));
+  --space-radius-sm:.5rem;
+  --space-radius-md:.75rem;
+  --space-radius-lg:1.25rem;
+  --space-radius-pill:999px;
+
+  --font-sans:"Figtree","Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --font-display:"Fraunces","Newsreader","Times New Roman",serif;
+
+  --text-xs:.75rem;
+  --text-sm:.875rem;
+  --text-md:1rem;
+  --text-lg:1.125rem;
+  --text-xl:1.25rem;
+  --text-2xl:1.5rem;
+  --text-3xl:clamp(1.75rem,2.4vw,2.25rem);
+  --text-4xl:clamp(2.25rem,5vw,3.5rem);
+  --text-5xl:clamp(2.75rem,6.5vw,4.5rem);
+  --space-section:clamp(4rem,8vw,7rem);
+  --font-leading-tight:1.15;
+  --font-leading-body:1.6;
+  color-scheme:light;
+}
+
+html[data-theme="dark"]{
+  --color-bg:#0B1C18;
+  --color-bg-subtle:#10241F;
+  --color-bg-elevated:#14302A;
+  --color-bg-hero:#081512;
+  --color-bg-cta:#E4C9A0;
+  --color-bg-highlight:#1A3A33;
+  --color-bg-table-header:#1A3A33;
+  --color-text:#F3EFE6;
+  --color-text-muted:#B3C0BB;
+  --color-text-on-hero:#F3EFE6;
+  --color-text-on-hero-muted:#B3C0BB;
+  --color-text-on-cta:#0B1C18;
+  --color-text-accent:#E4C9A0;
+  --color-border:#2A4A42;
+  --color-border-strong:#4A6A60;
+  --color-border-highlight:#E4C9A0;
+  --color-accent:#E4C9A0;
+  --color-accent-hover:#F0D8B4;
+  --color-accent-text:#E4C9A0;
+  --color-text-on-accent:#122033;
+  --color-focus:#E4C9A0;
+  --color-mark-yes:#3CB37A;
+  --color-mark-no:#F0A8A0;
+  --color-shadow:rgba(0,0,0,.35);
+  --color-badge-bg:#1A3A33;
+  --color-badge-text:#E4C9A0;
+  --color-link:#E4C9A0;
+  --color-link-hover:#F3EFE6;
+
+  --color-nav-glow:#E4C9A0;
+  --color-fab-bg:#E4C9A0;
+  --color-fab-text:#122033;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+
+  color-scheme:dark;
+}

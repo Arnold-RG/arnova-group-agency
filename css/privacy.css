@@ -1,0 +1,5 @@
+/* Privacy page typography, token-only. */
+.privacy{padding-block:var(--space-section)}
+.privacy h1{font-size:var(--text-4xl);margin:0 0 1rem;color:var(--color-text)}
+.privacy p,.privacy li{color:var(--color-text-muted);max-width:42rem}
+.privacy h2{font-size:var(--text-2xl);margin:2rem 0 .75rem;color:var(--color-text)}

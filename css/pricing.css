@@ -1,0 +1,317 @@
+/* Pricing page layout. Colours and type come only from shared tokens.
+   Scoped under main so shared header, footer and dock stay on layout.css. */
+
+main .eyebrow{
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:var(--color-text-accent);
+}
+main h1,main h2,main h3,main p{margin-top:0}
+main h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.6rem,7vw,5.5rem);
+  line-height:1.06;
+  letter-spacing:-.065em;
+  max-width:840px;
+  margin:20px 0;
+  color:var(--color-text-on-hero);
+}
+main h2{
+  font-family:var(--font-display);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  line-height:1.15;
+  letter-spacing:-.045em;
+  color:var(--color-text);
+}
+main h3{
+  font-size:1.25rem;
+  letter-spacing:-.025em;
+  color:var(--color-text);
+}
+main p{color:var(--color-text-muted)}
+
+main .hero{
+  padding:76px 0 58px;
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+}
+main .hero .eyebrow{color:var(--color-text-on-hero-muted)}
+main .hero p{
+  color:var(--color-text-on-hero-muted);
+  max-width:660px;
+  font-size:1.1rem;
+}
+main .hero h1,main .hero h2,main .hero h3{color:var(--color-text-on-hero)}
+.hero-actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
+}
+
+main .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:var(--space-radius-pill);
+  padding:12px 21px;
+  text-decoration:none;
+  font-weight:800;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border:1px solid var(--color-bg-cta);
+}
+main .btn.ghost{
+  background:transparent;
+  color:var(--color-text-on-hero);
+  border-color:color-mix(in srgb,var(--color-text-on-hero) 55%,transparent);
+}
+main .section{padding:68px 0}
+main .section-intro{max-width:730px;margin-bottom:28px}
+main .section .eyebrow{color:var(--color-text-accent)}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:15px;
+}
+.card{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:20px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  box-shadow:0 10px 25px var(--color-shadow);
+  color:var(--color-text);
+}
+.card.featured{
+  border:2px solid var(--color-border-strong);
+  box-shadow:0 18px 40px var(--color-shadow);
+}
+.card h3,.card p{margin:0}
+.card .price{
+  font-size:2rem;
+  letter-spacing:-.05em;
+  font-weight:850;
+  color:var(--color-text);
+  line-height:1.1;
+  overflow-wrap:anywhere;
+}
+.card .price small{display:none}
+.card small{color:var(--color-text-muted)}
+.card ul{padding-left:20px;margin:4px 0 18px;flex:1}
+.card li{margin:8px 0;color:var(--color-text)}
+.card .btn{font-size:.88rem}
+
+.label{
+  display:inline-flex;
+  align-self:flex-start;
+  background:var(--color-badge-bg);
+  color:var(--color-badge-text);
+  border-radius:var(--space-radius-pill);
+  padding:4px 11px;
+  font-size:var(--text-xs);
+  font-weight:800;
+}
+.soft{background:var(--color-bg-subtle)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{
+  border:1px solid var(--color-border);
+  border-radius:20px;
+  background:var(--color-bg-elevated);
+  padding:28px;
+}
+.panel p:last-child{margin-bottom:0}
+.currency-select{
+  display:block;
+  margin:12px 0 16px;
+  padding:13px 15px;
+  border:1px solid var(--color-border-strong);
+  border-radius:12px;
+  font:inherit;
+  color:var(--color-text);
+  background:var(--color-bg-elevated);
+  width:min(100%,380px);
+}
+.table-scroll{overflow-x:auto}
+.cost-table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:560px;
+  background:var(--color-bg-elevated);
+  border-radius:15px;
+  overflow:hidden;
+}
+.cost-table th,.cost-table td{
+  text-align:left;
+  padding:15px;
+  border-bottom:1px solid var(--color-border);
+  color:var(--color-text);
+}
+.cost-table th{
+  background:var(--color-bg-table-header);
+  color:var(--color-text);
+}
+.muted{font-size:.89rem;color:var(--color-text-muted)}
+.spaced{margin-top:20px}
+.spaced-sm{margin-top:16px}
+.pair-gap{margin-top:22px}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.step{
+  background:var(--color-bg-elevated);
+  padding:25px;
+  border:1px solid var(--color-border);
+  border-radius:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.step b{
+  display:inline-flex;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border-radius:var(--space-radius-pill);
+  width:32px;
+  height:32px;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:14px;
+}
+.step p{margin:0;flex:1;color:var(--color-text-muted)}
+.step .btn{margin-top:auto;font-size:.86rem}
+
+.faq details{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:14px;
+  padding:18px 22px;
+  margin:10px 0;
+  color:var(--color-text);
+}
+.faq summary{font-weight:800;cursor:pointer;color:var(--color-text)}
+.faq p{margin:13px 0 0;color:var(--color-text-muted)}
+
+main .cta{
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+  padding:55px 0;
+  text-align:center;
+}
+main .cta p{color:var(--color-text-on-hero-muted)}
+main .cta .eyebrow{color:var(--color-text-on-hero-muted)}
+main .cta h2{color:var(--color-text-on-hero)}
+main .cta .btn{margin-top:12px}
+main .cta .btn.ghost{
+  color:var(--color-text-on-hero);
+  border-color:color-mix(in srgb,var(--color-text-on-hero) 55%,transparent);
+}
+
+.currency-top{
+  padding:15px 0;
+  background:var(--color-bg-subtle);
+}
+.currency-top .wrap{align-items:center}
+.currency-top h2{font-size:clamp(1.65rem,3.2vw,2.4rem)}
+.currency-top .panel{padding:20px 24px}
+.currency-top .currency-select{margin:8px 0}
+.currency-bar{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.currency-bar label{
+  font-size:.9rem;
+  font-weight:800;
+  color:var(--color-text);
+}
+.currency-bar .currency-select{
+  width:155px;
+  margin:0;
+  padding:9px 12px;
+  border-radius:12px;
+  font-size:.92rem;
+}
+.currency-feedback{font-size:.72rem;color:var(--color-text-muted);min-width:0}
+.payment-icon{font-size:2rem;line-height:1}
+.payment-method-grid .step{min-height:210px}
+
+@media(max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  main>.hero:first-of-type{
+    box-sizing:border-box;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+  }
+}
+@media(max-width:700px){
+  main .hero{padding:55px 0 47px}
+  main .section{padding:48px 0}
+  .grid,.two,.steps{grid-template-columns:1fr}
+  .card{padding:23px}
+  .currency-top{padding:12px 0}
+  .currency-top .wrap{gap:12px}
+  .currency-top .panel{padding:18px}
+  .currency-top h2{margin-bottom:8px}
+  .currency-top p{margin-bottom:8px}
+  .currency-bar{justify-content:space-between;gap:8px}
+  .currency-bar label{font-size:.84rem}
+  .currency-bar .currency-select{width:130px}
+  .currency-feedback{flex-basis:100%;text-align:right;font-size:.7rem}
+}
+
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  main .hero{padding-bottom:var(--space-dock-offset)}
+}
+
+/* Tight viewports: keep pricing CTAs above the dock */
+@media(max-width:360px){
+  main>.hero:first-of-type,
+  main .hero{
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  main .hero h1{
+    font-size:clamp(1.9rem,9vw,2.4rem);
+    margin:8px 0;
+    line-height:1.08;
+  }
+  main .hero p{font-size:1rem;line-height:1.4;margin-bottom:8px}
+  .hero-actions{margin-top:var(--space-sm);gap:8px}
+}
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  main>.hero:first-of-type,
+  main .hero{
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+  }
+  main .hero h1{
+    font-size:clamp(1.7rem,4.2vw,2.4rem);
+    margin:8px 0;
+    line-height:1.08;
+    max-width:none;
+  }
+  main .hero p{font-size:.95rem;line-height:1.4}
+  .hero-actions{margin-top:var(--space-sm);gap:8px}
+}
+
+
+/* Hero CTAs must contrast with --color-bg-hero (light Signal Slate CTA fill matches the hero). */
+.page-hero .btn,
+main .hero .btn,
+.pricing-hero .btn{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+}

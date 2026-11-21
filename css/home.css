@@ -1,0 +1,1476 @@
+/* Homepage sections. Colours and type come only from shared tokens. */
+
+/* ---------- Hero + film ---------- */
+.arnova-full-hero{
+  position:relative;
+  isolation:isolate;
+  min-height:min(780px,90svh);
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:clamp(5rem,10vh,9rem) 0;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+}
+.arnova-hero-backdrop,
+.arnova-film-inner,
+.arnova-hero-shade{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+.arnova-hero-backdrop{
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.arnova-film{isolation:isolate}
+.arnova-film-inner{overflow:hidden}
+.arnova-film-poster,
+.arnova-film-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.arnova-film-video{
+  display:none;
+  z-index:1;
+}
+.arnova-film.is-playing .arnova-film-video{display:block}
+.arnova-film-poster{z-index:0}
+.arnova-hero-shade{
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--color-bg-hero) 93%,transparent) 0%,
+    color-mix(in srgb,var(--color-bg-hero) 78%,transparent) 44%,
+    color-mix(in srgb,var(--color-bg-hero) 35%,transparent) 100%);
+}
+.arnova-hero-content{
+  position:relative;
+  z-index:2;
+  width:100%;
+}
+.arnova-hero-content .hero-copy{max-width:53rem}
+.arnova-full-hero h1{
+  font-family:var(--font-display);
+  font-size:clamp(2.8rem,7vw,6.5rem);
+  font-weight:650;
+  letter-spacing:-.065em;
+  line-height:.99;
+  max-width:16ch;
+  margin:1.4rem 0 1.25rem;
+  color:var(--color-text-on-hero);
+  text-wrap:balance;
+}
+.arnova-full-hero h1 em{
+  font-style:italic;
+  color:var(--color-text-on-hero);
+}
+.arnova-full-hero .eyebrow{
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-full-hero .dot{
+  background:var(--color-accent);
+}
+.arnova-full-hero .hero-lead,
+.arnova-full-hero .hero-proof{
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-full-hero .hero-lead{
+  max-width:40rem;
+  font-size:clamp(1.05rem,1.7vw,1.32rem);
+  line-height:1.6;
+}
+.arnova-full-hero .pill,
+.arnova-editorial-hero .arnova-cta-start{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+  padding:.55rem 1.15rem;
+}
+.arnova-full-hero .pill:hover{filter:brightness(1.06)}
+.arnova-full-hero .pill.outline,
+.arnova-full-hero .outline{
+  background:transparent;
+  color:var(--color-text-on-hero);
+  border:1.5px solid var(--color-text-on-hero);
+}
+.hero-actions{
+  display:flex;
+  gap:var(--space-sm);
+  flex-wrap:wrap;
+  margin-top:var(--space-xl);
+}
+.hero-proof{
+  display:flex;
+  flex-wrap:wrap;
+  gap:var(--space-lg);
+  margin-top:var(--space-xl);
+  font-size:var(--text-sm);
+  font-weight:700;
+}
+.hero-proof span:before{
+  content:"✓ ";
+  color:var(--color-accent);
+}
+.arnova-video-toggle{
+  position:absolute;
+  left:auto;
+  right:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  bottom:var(--space-md);
+  z-index:4;
+  min-width:44px;
+  min-height:44px;
+  padding:.55rem 1rem;
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-sm);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  font-family:var(--font-sans);
+  font-size:var(--text-sm);
+  font-weight:700;
+  cursor:pointer;
+  pointer-events:auto;
+}
+.arnova-video-toggle:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  .arnova-full-hero{
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+    box-sizing:border-box;
+  }
+  .arnova-video-toggle{
+    bottom:calc(var(--space-dock-offset) + var(--space-sm));
+  }
+}
+@media(max-width:700px){
+  .arnova-full-hero h1{font-size:clamp(2.8rem,11vw,4.5rem)}
+  .arnova-hero-shade{
+    background:linear-gradient(90deg,
+      color-mix(in srgb,var(--color-bg-hero) 94%,transparent),
+      color-mix(in srgb,var(--color-bg-hero) 63%,transparent));
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .arnova-film-video,
+  .arnova-film.is-playing .arnova-film-video{display:none}
+  .arnova-full-hero .hero-copy h1,
+  .arnova-full-hero .hero-lead,
+  .arnova-full-hero .hero-actions,
+  .arnova-kinetic-line span{animation:none!important}
+  .arnova-values-marquee__track{animation:none!important;transform:none}
+  .arnova-hero-object[data-parallax]{transform:none!important}
+}
+
+/* ---------- Shared type on the page ---------- */
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  text-transform:uppercase;
+  font-size:var(--text-xs);
+  letter-spacing:.18em;
+  font-weight:800;
+  color:var(--color-text-accent);
+}
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--color-accent);
+  flex:0 0 auto;
+}
+.section{padding:var(--space-section) 0}
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  gap:var(--space-2xl);
+  align-items:end;
+  margin-bottom:var(--space-xl);
+}
+.section h2,
+.arnova-steps h2,
+.arnova-value-strip h2,
+.contact h2{
+  font-family:var(--font-display);
+  font-weight:650;
+  letter-spacing:-.05em;
+  line-height:1.08;
+  margin:.7rem 0;
+  color:var(--color-text);
+}
+.section h2{font-size:var(--text-5xl)}
+.section-head p{max-width:24rem;color:var(--color-text-muted);margin:0}
+
+/* ---------- Value strip + steps ---------- */
+.arnova-value-strip{
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+  padding:clamp(28px,5vw,72px) 0;
+}
+.arnova-value-strip .wrap{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:var(--space-xl);
+  align-items:center;
+}
+.arnova-value-strip h2{
+  font-size:clamp(2rem,4.4vw,4.6rem);
+  line-height:1.05;
+  margin:0;
+  color:var(--color-text-on-hero);
+}
+.arnova-value-strip .accent-line{color:var(--color-text-on-hero-muted)}
+.arnova-value-strip p{
+  color:var(--color-text-on-hero-muted);
+  max-width:32rem;
+  font-size:var(--text-lg);
+  line-height:1.7;
+}
+.arnova-value-strip a{
+  display:inline-flex;
+  margin-top:var(--space-md);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  padding:.85rem 1.25rem;
+  border-radius:var(--space-radius-pill);
+  font-weight:750;
+  text-decoration:none;
+}
+.arnova-steps{padding:clamp(44px,7vw,100px) 0}
+.arnova-steps h2{font-size:var(--text-5xl);margin:0 0 1.75rem}
+.arnova-step-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-md);
+}
+.arnova-step{
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  padding:clamp(20px,3vw,38px);
+  background:var(--color-bg-elevated);
+  min-height:225px;
+  transition:transform .25s,box-shadow .25s;
+}
+.arnova-step:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 32px var(--color-shadow);
+}
+.arnova-step b{
+  color:var(--color-text-accent);
+  font-size:var(--text-sm);
+  letter-spacing:.08em;
+}
+.arnova-step h3{
+  font-family:var(--font-display);
+  font-size:clamp(1.4rem,2.3vw,2rem);
+  margin:1.5rem 0 .6rem;
+  color:var(--color-text);
+}
+.arnova-step p{line-height:1.6;color:var(--color-text-muted)}
+.arnova-step a{color:var(--color-link);font-weight:750;text-underline-offset:4px}
+@media(prefers-reduced-motion:reduce){
+  .arnova-step{transition:none}
+  .arnova-step:hover{transform:none}
+}
+
+/* ---------- Marquee / kinetic line ---------- */
+.marquee{
+  display:flex;
+  justify-content:space-between;
+  gap:var(--space-md);
+  flex-wrap:wrap;
+  border-block:1px solid var(--color-border);
+  padding:1.4rem 0;
+  color:var(--color-text-muted);
+  font-size:var(--text-xs);
+  letter-spacing:.14em;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.arnova-kinetic-line{
+  white-space:nowrap;
+  overflow:hidden;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  padding:14px 0;
+  font-size:clamp(1rem,2vw,1.45rem);
+  font-weight:750;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.arnova-kinetic-line span{
+  display:inline-block;
+  animation:arnova-marquee 30s linear infinite;
+  min-width:max-content;
+}
+@keyframes arnova-marquee{to{transform:translateX(-50%)}}
+.arnova-kinetic-line:hover span{animation-play-state:paused}
+
+/* ---------- Services ---------- */
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-md);
+}
+.service{
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-xl);
+  min-height:245px;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  transition:background .2s,transform .2s,box-shadow .2s;
+}
+.service:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 28px var(--color-shadow);
+}
+.service-number{
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.08em;
+  color:var(--color-text-accent);
+}
+.service h3{
+  font-family:var(--font-display);
+  font-size:var(--text-2xl);
+  letter-spacing:-.04em;
+  margin:0;
+  overflow-wrap:break-word;
+  color:var(--color-text);
+}
+.service p{color:var(--color-text-muted);margin:1rem 0 0;font-size:var(--text-sm)}
+
+/* ---------- Industries (solutions) ---------- */
+.dark{
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+}
+.dark .section-head p,
+.dark .notice{color:var(--color-text-on-hero-muted)}
+.dark .eyebrow{color:var(--color-text-on-hero-muted)}
+.dark .section h2{color:var(--color-text-on-hero)}
+.industry-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.3rem;
+}
+.industry{
+  border-radius:var(--space-radius-md);
+  overflow:hidden;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+}
+.industry img{width:100%;height:270px;object-fit:cover;display:block}
+.industry div{padding:1.7rem}
+.industry span{
+  font-size:.7rem;
+  color:var(--color-text-on-cta);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.85;
+}
+.industry h3{
+  font-family:var(--font-display);
+  font-size:1.6rem;
+  letter-spacing:-.04em;
+  margin:.5rem 0;
+  color:var(--color-text-on-cta);
+}
+.industry p{color:var(--color-text-on-cta);margin:0;opacity:.9}
+.notice{font-size:var(--text-sm);margin:2rem 0 0}
+
+/* ---------- About / founder ---------- */
+.about{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,.75fr);
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+}
+.founder-copy p{
+  font-size:1.1rem;
+  line-height:1.85;
+  color:var(--color-text-muted);
+}
+.founder-photo{
+  height:520px;
+  border-radius:var(--space-radius-md);
+  overflow:hidden;
+  position:relative;
+  background:var(--color-bg-subtle);
+}
+.founder-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
+.founder-photo span{
+  position:absolute;
+  bottom:1.2rem;
+  left:1.2rem;
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  border:1px solid var(--color-border);
+  padding:.85rem 1.1rem;
+  border-radius:var(--space-radius-sm);
+  font-weight:800;
+}
+
+/* ---------- Principles / process / faq ---------- */
+.principles{background:var(--color-bg-subtle)}
+.principle-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.25rem;
+}
+.principle-grid article{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:2.2rem;
+}
+.principle-grid article span{
+  font-size:.7rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  color:var(--color-text-accent);
+}
+.principle-grid h3{
+  font-family:var(--font-display);
+  font-size:clamp(1.5rem,2.2vw,2.2rem);
+  line-height:1.2;
+  letter-spacing:-.04em;
+  margin:1rem 0;
+  color:var(--color-text);
+}
+.principle-grid p{color:var(--color-text-muted)}
+.process-section{background:var(--color-bg-subtle)}
+.process-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+}
+.process-grid article{
+  padding:1.5rem;
+  border-top:3px solid var(--color-border-highlight);
+  background:var(--color-bg-elevated);
+}
+.process-grid span{font-weight:800;font-size:.75rem;color:var(--color-text-accent)}
+.process-grid h3{
+  font-family:var(--font-display);
+  font-size:1.5rem;
+  letter-spacing:-.04em;
+  color:var(--color-text);
+}
+.process-grid p{color:var(--color-text-muted);font-size:.9rem}
+.faq-list{max-width:900px}
+.faq-list details{
+  border-top:1px solid var(--color-border);
+  padding:1.5rem 0;
+}
+.faq-list details:last-child{border-bottom:1px solid var(--color-border)}
+.faq-list summary{
+  font-weight:800;
+  font-size:1.1rem;
+  cursor:pointer;
+  color:var(--color-text);
+}
+.faq-list p{color:var(--color-text-muted)}
+
+/* ---------- Contact ---------- */
+.contact{
+  background:var(--color-bg-highlight);
+  color:var(--color-text);
+  padding:clamp(4rem,8vw,6rem) 0;
+}
+.contact .eyebrow{color:var(--color-text-accent)}
+.contact h2{
+  font-size:clamp(3rem,7vw,6rem);
+  letter-spacing:-.07em;
+  margin:1rem 0 2rem;
+  max-width:14ch;
+  color:var(--color-text);
+}
+.contact .pill{
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+}
+.contact p{color:var(--color-text-muted);max-width:36rem}
+.business-hours{margin-top:var(--space-lg)}
+.business-hours strong{color:var(--color-text)}
+
+@media(max-width:850px){
+  .section-head{align-items:start;flex-direction:column;gap:var(--space-md)}
+  .arnova-value-strip .wrap,
+  .arnova-step-grid,
+  .about{grid-template-columns:1fr}
+  .service-grid,
+  .process-grid,
+  .industry-grid{grid-template-columns:repeat(2,1fr)}
+  .founder-photo{height:440px}
+}
+@media(max-width:600px){
+  .section{padding:4rem 0}
+  .service-grid,
+  .industry-grid,
+  .process-grid,
+  .principle-grid{grid-template-columns:1fr}
+  .service{min-height:0}
+  .industry img{height:210px}
+  .founder-photo{height:380px}
+  .arnova-step{min-height:0}
+  .contact h2{font-size:clamp(3rem,12vw,5rem)}
+  .hero-proof{gap:.8rem}
+  .marquee{justify-content:flex-start}
+}
+
+/* Tight viewports: keep hero CTAs above the dock */
+@media(max-width:360px){
+  .arnova-full-hero{
+    align-items:flex-start;
+    padding-top:var(--space-md);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-full-hero h1{
+    font-size:clamp(2rem,9.5vw,2.35rem);
+    margin:.55rem 0 .6rem;
+    line-height:1.05;
+  }
+  .arnova-full-hero .hero-lead{
+    font-size:1rem;
+    line-height:1.45;
+  }
+  .hero-actions{margin-top:var(--space-md);gap:var(--space-xs)}
+  .hero-proof{display:none}
+  .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
+}
+@media(max-width:360px) and (max-height:600px){
+  .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
+}
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .arnova-full-hero{
+    align-items:flex-start;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-full-hero h1{
+    font-size:clamp(1.7rem,4.2vw,2.4rem);
+    max-width:none;
+    margin:.35rem 0;
+    line-height:1.08;
+  }
+  .arnova-full-hero .hero-lead{
+    font-size:.95rem;
+    line-height:1.4;
+    max-width:46rem;
+  }
+  .hero-actions{margin-top:var(--space-sm);gap:var(--space-xs)}
+  .hero-proof{display:none}
+  .arnova-video-toggle{bottom:calc(var(--space-dock-offset) + var(--space-xs))}
+}
+
+/* ---------- Editorial hero, concept gallery, process, values (showcase) ---------- */
+@font-face{
+  font-family:"Fraunces Display";
+  src:url("../assets/fonts/Fraunces-Display-600.woff2") format("woff2");
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Fraunces Display";
+  src:url("../assets/fonts/Fraunces-Display-600Italic.woff2") format("woff2");
+  font-weight:600;
+  font-style:italic;
+  font-display:swap;
+}
+
+.arnova-editorial-hero{
+  box-sizing:border-box;
+  min-height:calc(100svh - var(--space-header-offset));
+  padding-block:clamp(2rem, 5vh, 4rem);
+  background:var(--color-bg-hero);
+  color:var(--color-text-on-hero);
+  overflow:hidden;
+}
+/* Restore the shared .wrap gutter that .arnova-hero-content{width:100%} otherwise removes,
+   so the hero copy lines up with the header logo. */
+.arnova-editorial-hero .arnova-hero-content{
+  display:block;
+  width:min(var(--space-wrap),calc(100% - 2 * var(--space-gutter)));
+  margin-inline:auto;
+  box-sizing:border-box;
+}
+.arnova-hero-copy{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--space-md);
+}
+.arnova-editorial-hero .eyebrow{color:var(--color-text-on-hero-muted)}
+.arnova-hero-stage{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:var(--space-md);
+  align-items:center;
+}
+.arnova-editorial-hero h1.arnova-hero-headline{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
+  font-size:clamp(3rem, 8vw, 6.75rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+  color:var(--color-text-on-hero);
+  margin:0;
+  max-width:none;
+  text-wrap:balance;
+}
+.arnova-hero-line{display:block}
+@media(max-width:360px){
+  .arnova-editorial-hero h1.arnova-hero-headline .arnova-hero-line{white-space:nowrap}
+}
+
+.arnova-hero-object{
+  position:relative;
+  justify-self:center;
+  width:min(100%, 40rem);
+  will-change:transform;
+}
+.arnova-hero-object img{
+  display:block;
+  width:100%;
+  height:auto;
+  filter:drop-shadow(0 28px 50px color-mix(in srgb, var(--color-shadow) 80%, transparent));
+}
+.arnova-editorial-hero .hero-lead{
+  max-width:32rem;
+  margin:0;
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-cta-row{margin:0}
+.arnova-cta-start{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  font-weight:750;
+  text-decoration:none;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border:1.5px solid var(--color-bg-cta);
+}
+.arnova-editorial-hero .arnova-cta-start{
+  background:var(--color-bg-hero-cta);
+  color:var(--color-text-on-hero-cta);
+  border-color:var(--color-bg-hero-cta);
+  padding:.55rem 1.15rem;
+}
+.arnova-cta-start:hover{filter:brightness(1.06)}
+.arnova-cta-start:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+
+/* Values marquee */
+.arnova-values-marquee{
+  overflow:hidden;
+  border-block:1px solid var(--color-border);
+  background:var(--color-bg);
+  color:var(--color-text);
+}
+.arnova-values-marquee__track{
+  display:flex;
+  width:max-content;
+  gap:0;
+  animation:arnova-values-scroll 48s linear infinite;
+}
+.arnova-values-marquee__track p{
+  display:flex;
+  align-items:center;
+  gap:clamp(.8rem, 2vw, 1.6rem);
+  margin:0;
+  padding:.9rem 0;
+  font-family:var(--font-display);
+  font-size:clamp(.95rem, 1.6vw, 1.15rem);
+  font-weight:650;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.arnova-values-marquee__track span[aria-hidden="true"]{
+  color:var(--color-accent);
+  letter-spacing:0;
+}
+@keyframes arnova-values-scroll{
+  to{transform:translateX(-50%)}
+}
+
+/* Concept gallery */
+.arnova-concepts{background:var(--color-bg)}
+.arnova-concept-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-lg);
+}
+.arnova-concept-card{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  color:var(--color-text);
+  text-decoration:none;
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  overflow:hidden;
+  box-shadow:0 16px 40px var(--color-shadow);
+}
+.arnova-concept-card img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/11;
+  object-fit:cover;
+  object-position:center;
+  background:#141416;
+  transition:transform .5s ease;
+}
+.arnova-concept-card__label{
+  position:absolute;
+  top:var(--space-md);
+  left:var(--space-md);
+  z-index:1;
+  padding:.3rem .65rem;
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.arnova-concept-card h3{
+  margin:.9rem 1.1rem .2rem;
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-concept-card p{
+  margin:0 1.1rem 1.15rem;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+}
+.arnova-concept-card:hover img,
+.arnova-concept-card:focus-visible img{
+  transform:scale(1.045) translateY(-4px);
+}
+.arnova-concept-card:focus-visible{
+  outline:3px solid var(--color-focus);
+  outline-offset:3px;
+}
+.arnova-concepts .arnova-cta-row{
+  margin-top:var(--space-xl);
+}
+
+/* Process + payment */
+.arnova-process-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.arnova-process-list li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-top:3px solid var(--color-border-highlight);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-lg);
+}
+.arnova-payment{
+  margin-top:var(--space-xl);
+  padding:var(--space-lg);
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+}
+.arnova-payment h3{
+  margin:0 0 var(--space-md);
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-payment ol{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(0, 1fr));
+  gap:var(--space-md);
+  margin:0;
+  padding:0;
+  list-style:none;
+  counter-reset:pay;
+}
+.arnova-payment li{
+  counter-increment:pay;
+  color:var(--color-text);
+  font-weight:650;
+  padding-top:.15rem;
+}
+.arnova-payment li:before{
+  content:counter(pay, decimal-leading-zero);
+  display:block;
+  margin-bottom:.35rem;
+  color:var(--color-text-accent);
+  font-size:var(--text-xs);
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.process-section .arnova-cta-row{margin-top:var(--space-xl)}
+
+@media(max-width:900px){
+  .arnova-editorial-hero{
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+    box-sizing:border-box;
+  }
+  .arnova-hero-stage{
+    grid-template-columns:1fr;
+    gap:var(--space-sm);
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{font-size:clamp(2.4rem, 11vw, 3.6rem)}
+  .arnova-hero-object{width:min(100%, 22rem)}
+  .arnova-concept-grid{grid-template-columns:1fr}
+  .arnova-payment ol{grid-template-columns:1fr 1fr}
+}
+@media(max-width:360px){
+  .arnova-editorial-hero{
+    align-items:flex-start;
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+    gap:0;
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(2rem, 10.5vw, 2.55rem);
+    line-height:1.02;
+    letter-spacing:-.035em;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-editorial-hero .hero-lead{font-size:.95rem;line-height:1.4}
+  .arnova-hero-object{width:min(100%, 13.5rem);margin-top:var(--space-xs)}
+  .arnova-cta-row{margin-top:0}
+}
+@media(max-width:360px) and (max-height:620px){
+  /* Keep the hero CTA on-screen above the dock on short phones. */
+  .arnova-hero-object{max-width:9.5rem}
+}
+
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .arnova-editorial-hero{
+    align-items:flex-start;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-hero-stage{
+    grid-template-columns:minmax(0,1fr) minmax(0,.9fr);
+    gap:var(--space-sm);
+    align-items:center;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(1.6rem, 4.4vw, 2.3rem);
+    margin:0;
+  }
+  .arnova-hero-object{width:100%;max-width:18rem}
+  .arnova-editorial-hero .hero-lead{font-size:.9rem;line-height:1.35;max-width:none}
+  .arnova-cta-row{margin-top:0}
+}
+
+
+@media(prefers-reduced-motion:reduce){
+  .arnova-values-marquee__track{animation:none}
+  .arnova-concept-card img{transition:none}
+}
+
+/* ---------- Editorial film hero (no device object) ---------- */
+.arnova-editorial-hero{
+  box-sizing:border-box;
+  position:relative;
+  display:flex;
+  align-items:center;
+  min-height:calc(100svh - var(--space-header-offset));
+  padding-block:clamp(2.5rem, 8vh, 5rem);
+  overflow:hidden;
+}
+.arnova-editorial-hero .arnova-hero-content{
+  display:block;
+  position:relative;
+  z-index:2;
+  width:min(var(--space-wrap),calc(100% - 2 * var(--space-gutter)));
+  margin-inline:auto;
+  box-sizing:border-box;
+}
+.arnova-editorial-hero .arnova-hero-copy{
+  max-width:38rem;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:var(--space-md);
+}
+.arnova-editorial-hero h1.arnova-hero-headline{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
+  font-style:normal;
+  font-size:clamp(3rem, 8vw, 6.25rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+  color:var(--color-text-on-hero);
+  margin:0;
+  max-width:10ch;
+  text-wrap:balance;
+}
+.arnova-editorial-hero h1 em,
+.arnova-intro h2 em,
+#services h2 em,
+#work h2 em,
+#process h2 em,
+#pricing h2 em,
+#faq h2 em,
+#contact h2 em{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-style:italic;
+  font-weight:600;
+  letter-spacing:-.045em;
+}
+.arnova-editorial-hero .hero-lead{
+  max-width:28rem;
+  margin:0;
+  color:var(--color-text-on-hero-muted);
+}
+.arnova-hero-stage{display:block}
+
+@media(max-width:900px){
+  .arnova-editorial-hero{
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+    box-sizing:border-box;
+    align-items:center;
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{font-size:clamp(2.5rem, 12vw, 3.6rem);max-width:none}
+}
+@media(max-width:360px){
+  .arnova-editorial-hero{
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(2.05rem, 11vw, 2.6rem);
+    line-height:1.02;
+    letter-spacing:-.035em;
+  }
+  .arnova-hero-copy{gap:var(--space-xs)}
+  .arnova-editorial-hero .hero-lead{font-size:.95rem;line-height:1.4}
+}
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .arnova-editorial-hero{
+    align-items:center;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-top:var(--space-sm);
+    padding-bottom:var(--space-dock-offset);
+  }
+  .arnova-editorial-hero h1.arnova-hero-headline{
+    font-size:clamp(1.45rem, 3.8vw, 2rem);
+    max-width:16ch;
+  }
+  .arnova-hero-copy{gap:.4rem}
+  .arnova-editorial-hero .hero-lead{font-size:.88rem;line-height:1.3}
+}
+
+/* ---------- Scroll reveal ---------- */
+/* Visible by default. The fade only applies after js/theme-boot.js sets html.js */
+.arnova-reveal{opacity:1;transform:none}
+html.js .arnova-reveal{
+  opacity:0;
+  transform:translateY(18px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+html.js .arnova-reveal.is-inview{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .arnova-reveal,
+  html.js .arnova-reveal,
+  html.js .arnova-reveal.is-inview{opacity:1;transform:none;transition:none}
+}
+
+/* ---------- Intro + three key services ---------- */
+.arnova-intro .section-head{align-items:start}
+.arnova-intro .founder-copy{max-width:38rem}
+.arnova-key-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-lg);
+  margin-top:var(--space-2xl);
+}
+.arnova-key-card{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  padding:var(--space-xl) var(--space-lg);
+}
+.arnova-key-card span{
+  display:block;
+  margin-bottom:var(--space-md);
+  color:var(--color-text-accent);
+  font-size:var(--text-sm);
+  font-weight:800;
+  letter-spacing:.14em;
+}
+.arnova-key-card h3{
+  color:var(--color-text);
+  margin:0 0 .5rem;
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+  font-size:clamp(1.6rem,3vw,2.1rem);
+  letter-spacing:-.04em;
+}
+.arnova-key-card p{margin:0;color:var(--color-text-muted)}
+.arnova-price-teaser{
+  margin:var(--space-2xl) 0 0;
+  font-size:var(--text-lg);
+  font-weight:650;
+}
+.arnova-price-teaser a{
+  color:var(--color-text-accent);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* ---------- Services by category ---------- */
+.arnova-category-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--space-lg);
+}
+.arnova-category{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  padding:var(--space-lg);
+}
+.arnova-category > h3{
+  margin:0 0 var(--space-md);
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+  padding-bottom:var(--space-sm);
+  border-bottom:1px solid var(--color-border);
+}
+.arnova-category .service{
+  margin:0;
+  padding:var(--space-md) 0;
+  border:0;
+  background:transparent;
+  box-shadow:none;
+  min-height:0;
+  display:block;
+  justify-content:unset;
+}
+.arnova-category .service:hover{transform:none;box-shadow:none}
+.arnova-category .service + .service{border-top:1px solid var(--color-border)}
+.arnova-category .service h4{
+  margin:0 0 .3rem;
+  font-size:var(--text-md);
+  letter-spacing:-.02em;
+}
+.arnova-category .service p{margin:0;color:var(--color-text-muted);font-size:var(--text-sm)}
+
+/* ---------- Horizontal concept gallery ---------- */
+.arnova-concept-scroller{
+  display:flex;
+  gap:var(--space-lg);
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scroll-padding-inline:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  padding-inline:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  padding-block:var(--space-sm) var(--space-lg);
+  -webkit-overflow-scrolling:touch;
+}
+.arnova-concept-scroller .arnova-concept-card{
+  flex:0 0 min(22rem,78vw);
+  scroll-snap-align:start;
+}
+
+/* ---------- Process counter ---------- */
+.arnova-process-counter{
+  position:sticky;
+  top:calc(var(--space-header-offset) + 12px);
+  z-index:3;
+  display:inline-block;
+  margin:0 0 var(--space-lg);
+  padding:.35rem .8rem;
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  font-family:var(--font-sans);
+  font-size:var(--text-sm);
+  font-weight:800;
+  letter-spacing:.12em;
+  color:var(--color-text-accent);
+}
+@media(max-width:900px){
+  .arnova-process-counter{top:calc(var(--space-header-offset-narrow) + 8px)}
+}
+
+/* ---------- Homepage pricing (real plans only) ---------- */
+#pricing .currency-bar{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:var(--space-sm);
+  margin:0 0 var(--space-xl);
+}
+#pricing .currency-bar label{font-weight:700;margin:0}
+#pricing .currency-select{
+  margin:0;
+  padding:.65rem .9rem;
+  border:1px solid var(--color-border-strong);
+  border-radius:12px;
+  font:inherit;
+  color:var(--color-text);
+  background:var(--color-bg-elevated);
+  width:auto;
+  min-width:8rem;
+}
+#pricing .currency-feedback{font-size:.72rem;color:var(--color-text-muted)}
+
+#pricing .currency-note{
+  flex-basis:100%;
+  margin:.25rem 0 0;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+  max-width:42rem;
+}
+
+#pricing .grid,
+.arnova-pricing-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--space-md);
+}
+#pricing .card{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:20px;
+  padding:1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+  box-shadow:0 10px 25px var(--color-shadow);
+  color:var(--color-text);
+}
+#pricing .card.featured{border:2px solid var(--color-border-strong)}
+#pricing .card h3,#pricing .card p{margin:0}
+#pricing .card .price{
+  font-size:1.8rem;
+  letter-spacing:-.05em;
+  font-weight:850;
+  color:var(--color-text);
+  line-height:1.1;
+  overflow-wrap:anywhere;
+}
+#pricing .card ul{padding-left:1.15rem;margin:.2rem 0 1rem;flex:1}
+#pricing .card li{margin:.4rem 0;color:var(--color-text)}
+#pricing .label{
+  display:inline-flex;
+  align-self:flex-start;
+  background:var(--color-badge-bg);
+  color:var(--color-badge-text);
+  border-radius:var(--space-radius-pill);
+  padding:4px 11px;
+  font-size:var(--text-xs);
+  font-weight:800;
+}
+#pricing .btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:var(--space-radius-pill);
+  padding:12px 21px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:.88rem;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  border:1px solid var(--color-bg-cta);
+}
+#pricing .muted{font-size:.89rem;color:var(--color-text-muted)}
+#pricing .spaced{margin-top:1.25rem}
+#pricing .spaced-sm{margin-top:1rem}
+#pricing .table-scroll{overflow-x:auto;margin:var(--space-md) 0}
+#pricing .cost-table{
+  border-collapse:collapse;
+  width:100%;
+  min-width:560px;
+  background:var(--color-bg-elevated);
+  border-radius:15px;
+}
+#pricing .cost-table th,#pricing .cost-table td{
+  text-align:left;
+  padding:15px;
+  border-bottom:1px solid var(--color-border);
+  color:var(--color-text);
+}
+#pricing .cost-table th{background:var(--color-bg-table-header)}
+#pricing .arnova-pricing-extra{margin-top:var(--space-2xl)}
+#pricing .arnova-pricing-extra h3{
+  margin:var(--space-xl) 0 var(--space-sm);
+  font-family:"Fraunces Display",var(--font-display),Georgia,serif;
+}
+#pricing .arnova-pricing-extra a:not(.pill):not(.btn){color:var(--color-text-accent)}
+
+/* ---------- Final CTA band ---------- */
+.arnova-final-cta{
+  text-align:center;
+}
+.arnova-final-cta h2{max-width:18ch;margin-inline:auto}
+.arnova-final-cta .pill{margin-top:var(--space-md)}
+
+@media(max-width:1100px){
+  #pricing .grid,
+  .arnova-pricing-grid,
+  .arnova-category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .arnova-key-grid,
+  #pricing .grid,
+  .arnova-pricing-grid,
+  .arnova-category-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .arnova-values-marquee__track{animation:none}
+  .arnova-concept-card img{transition:none}
+}
+
+.section-head h2,
+.arnova-intro h2,
+.arnova-final-cta h2{
+  font-family:"Fraunces Display",Georgia,"Times New Roman",serif;
+  font-weight:600;
+}
+
+
+/* Concept cards are in-page buttons (no off-site pages) */
+button.arnova-concept-card{
+  appearance:none;
+  -webkit-appearance:none;
+  font:inherit;
+  text-align:left;
+  padding:0;
+  width:auto;
+  color:var(--color-text);
+  cursor:pointer;
+}
+.arnova-concept-card__more{
+  display:inline-block;
+  margin:0 1.1rem 1.15rem;
+  color:var(--color-text-accent);
+  font-size:var(--text-sm);
+  font-weight:700;
+}
+.arnova-concept-dialog{
+  width:min(40rem, calc(100vw - 2 * var(--space-gutter)));
+  max-height:calc(100vh - var(--space-header-offset) - var(--space-dock-offset) - 1.5rem);
+  margin:max(var(--space-header-offset), 1.25rem) auto max(var(--space-dock-offset), 1.25rem);
+  padding:0;
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-lg);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  box-shadow:0 24px 60px var(--color-shadow);
+  overflow:auto;
+}
+.arnova-concept-dialog::backdrop{
+  background:color-mix(in srgb, var(--color-bg-hero) 78%, transparent);
+}
+.arnova-concept-dialog__inner{
+  position:relative;
+  padding:var(--space-lg);
+}
+.arnova-concept-dialog__inner img{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/11;
+  object-fit:cover;
+  border-radius:var(--space-radius-md);
+  background:#141416;
+  margin:2.2rem 0 1rem;
+}
+.arnova-concept-dialog__inner h3{
+  margin:0 0 .4rem;
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+.arnova-concept-dialog__inner p{
+  margin:0;
+  color:var(--color-text-muted);
+}
+.arnova-concept-dialog__close{
+  position:absolute;
+  top:var(--space-md);
+  right:var(--space-md);
+  z-index:1;
+  padding:.4rem .75rem;
+  border:1px solid var(--color-border-strong);
+  border-radius:var(--space-radius-pill);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  font-weight:700;
+}
+.arnova-concept-dialog .arnova-concept-card__label{position:static}
+
+/* Payment methods and plans on the homepage pricing section */
+#pricing .arnova-pay-methods,
+#pricing .arnova-pay-plans{
+  margin-top:var(--space-xl);
+}
+#pricing .arnova-pay-methods h3,
+#pricing .arnova-pay-plans h3{
+  margin:0 0 var(--space-sm);
+  font-family:var(--font-display);
+  font-size:var(--text-xl);
+  letter-spacing:-.03em;
+}
+#pricing .arnova-pay-methods > p,
+#pricing .arnova-pay-plans > p{
+  color:var(--color-text-muted);
+  max-width:42rem;
+}
+#pricing .arnova-pay-grid{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-md);
+  margin:var(--space-md) 0;
+}
+#pricing .arnova-pay-grid article,
+#pricing .arnova-pay-plans li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-md);
+}
+#pricing .arnova-pay-grid h4,
+#pricing .arnova-pay-plans h4{
+  margin:0 0 .35rem;
+  font-size:var(--text-md);
+}
+#pricing .arnova-pay-grid p,
+#pricing .arnova-pay-plans p{
+  margin:0;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+}
+#pricing .arnova-pay-plans ol{
+  list-style:none;
+  margin:var(--space-md) 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0, 1fr));
+  gap:var(--space-md);
+  counter-reset:payplan;
+}
+#pricing .arnova-pay-plans li{counter-increment:payplan}
+#pricing .arnova-pay-plans h4::before{
+  content:counter(payplan, decimal-leading-zero) " ";
+  color:var(--color-text-accent);
+  font-weight:800;
+  letter-spacing:.06em;
+  margin-right:.25rem;
+}
+#pricing .arnova-pay-methods .pill{margin-top:var(--space-sm)}
+
+/* In-page privacy notice */
+.arnova-privacy__copy{max-width:42rem}
+.arnova-privacy__copy p{color:var(--color-text-muted)}
+.arnova-privacy__copy h3{
+  margin:1.6rem 0 .5rem;
+  font-size:var(--text-lg);
+  color:var(--color-text);
+}
+.arnova-privacy__copy code{
+  font-size:.95em;
+}
+
+@media(max-width:900px){
+  #pricing .arnova-pay-grid,
+  #pricing .arnova-pay-plans ol{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  .arnova-concept-dialog,
+  .arnova-concept-dialog::backdrop{transition:none}
+}
+
+
+/* Daily care tiers (PLN base) */
+#pricing .arnova-daily-care{margin-top:var(--space-xl)}
+#pricing .arnova-daily-care h3,
+#pricing .arnova-daily-care h4{
+  margin:0 0 var(--space-sm);
+  font-family:var(--font-display);
+  letter-spacing:-.03em;
+}
+#pricing .arnova-daily-care h3{font-size:var(--text-xl)}
+#pricing .arnova-daily-care > p,
+#pricing .arnova-daily-care li p{
+  color:var(--color-text-muted);
+  max-width:42rem;
+}
+#pricing .arnova-daily-care ul{
+  list-style:none;
+  margin:var(--space-md) 0 var(--space-lg);
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(5, minmax(0, 1fr));
+  gap:var(--space-md);
+}
+#pricing .arnova-daily-care li{
+  background:var(--color-bg-elevated);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  padding:var(--space-md);
+}
+#pricing .arnova-daily-care li h4{font-size:var(--text-md);margin:0 0 .35rem}
+#pricing .arnova-daily-care li p{margin:0;font-size:var(--text-sm)}
+@media(max-width:1100px){
+  #pricing .arnova-daily-care ul{grid-template-columns:repeat(2, minmax(0, 1fr))}
+}
+@media(max-width:700px){
+  #pricing .arnova-daily-care ul{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-transparency:reduce){
+  .arnova-concept-dialog::backdrop{background:var(--color-bg-hero)}
+}

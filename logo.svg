@@ -1,1 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" role="img" aria-labelledby="logo-title"><title id="logo-title">ArnovaGroup AG monogram</title><path d="M16 211 103 42c5-10 19-10 24 0l35 66-28 18-19-37-64 122Z" fill="#A88462"/><path d="M136 82a88 88 0 1 1-1 107l24-21a51 51 0 1 0 3-64Z" fill="#163E2E" stroke="#D5C4AE" stroke-width="3"/><path d="M179 132h55v29h-55z" fill="#163E2E"/><path d="M18 179c64-52 161-61 230-47" fill="none" stroke="#D5C4AE" stroke-width="12" stroke-linecap="round"/><path d="m239 118 15 15-17 10" fill="none" stroke="#A88462" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none" role="img" aria-labelledby="t">
+<title id="t">Arnova Group Agency mark</title>
+<g fill="#0C2038">
+  <polygon points="16,70 36,12 44,12 30,70"/>
+  <polygon points="64,70 44,12 36,12 50,70"/>
+  <rect x="25" y="42" width="30" height="7"/>
+</g>
+</svg>

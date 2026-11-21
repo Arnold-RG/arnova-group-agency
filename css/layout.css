@@ -1,0 +1,438 @@
+/* Arnova Group Agency — shared layout, typography, navbar and footer.
+   Restyles the existing homepage class names so Mentor's pricing page
+   (arnova-site-header, nav-links, theme-toggle, arnova-mobile-dock,
+   agency-footer, wrap) can reuse this file without a rename. */
+
+html{
+  scroll-behavior:smooth;
+}
+body{
+  margin:0;
+  background:var(--color-bg);
+  color:var(--color-text);
+  font-family:var(--font-sans);
+  font-size:var(--text-md);
+  line-height:var(--font-leading-body);
+  -webkit-font-smoothing:antialiased;
+  padding-top:var(--space-header-offset);
+}
+
+body.is-dock-sheet-open{overflow:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+
+.wrap,
+.shell{
+  width:min(var(--space-wrap),calc(100% - 2 * var(--space-gutter)));
+  margin-inline:auto;
+}
+.section{padding-block:var(--space-section)}
+.ag-grid{display:grid;gap:var(--space-card-gap)}
+.ag-grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ag-grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.ag-grid--4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  .ag-grid--3,.ag-grid--4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+  .ag-grid--2,.ag-grid--3,.ag-grid--4{grid-template-columns:1fr}
+}
+
+h1,h2{
+  font-family:var(--font-display);
+  font-weight:650;
+  letter-spacing:-.03em;
+  line-height:var(--font-leading-tight);
+}
+
+.skip{
+  position:absolute;
+  z-index:1100;
+  left:-9999px;
+  top:10px;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  padding:12px 16px;
+  border-radius:var(--space-radius-sm);
+  text-decoration:none;
+  font-weight:700;
+}
+.skip:focus{left:12px}
+
+/* ---------- Fixed professional header ---------- */
+header.arnova-site-header{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  gap:var(--space-lg);
+  box-sizing:border-box;
+  width:100%;
+  max-width:none;
+  min-height:var(--space-header-offset);
+  margin:0;
+  padding-inline:max(var(--space-gutter),calc((100% - var(--space-wrap)) / 2));
+  background:color-mix(in srgb,var(--color-bg) 88%,transparent);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+  border-bottom:1px solid transparent;
+  border-radius:0;
+  box-shadow:none;
+  color:var(--color-text);
+  transition:box-shadow .2s ease,border-color .2s ease,background .2s ease;
+}
+header.arnova-site-header.is-scrolled{
+  box-shadow:0 8px 24px var(--color-shadow);
+  border-bottom-color:var(--color-border);
+  background:color-mix(in srgb,var(--color-bg) 96%,transparent);
+}
+.brand{
+  display:inline-flex;
+  align-items:center;
+  gap:.7rem;
+  text-decoration:none;
+  color:var(--color-text);
+  flex-shrink:0;
+  min-width:0;
+}
+.original-logo{width:40px;height:40px;object-fit:contain;flex-shrink:0}
+.original-logo--dark{display:none}
+html[data-theme="dark"] .original-logo--light{display:none}
+html[data-theme="dark"] .original-logo--dark{display:block}
+.agency-brand-name{
+  display:flex;
+  flex-direction:column;
+  line-height:1.1;
+  font-family:var(--font-display);
+  font-weight:650;
+  font-size:1.05rem;
+  letter-spacing:-.03em;
+  color:var(--color-text);
+  white-space:nowrap;
+}
+.agency-brand-name span{
+  font-family:var(--font-sans);
+  font-size:.65rem;
+  font-weight:650;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--color-text-muted);
+  margin-top:.15rem;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:clamp(.5rem,1.4vw,1.4rem);
+  margin-left:auto;
+}
+.nav-links>a,
+.nav-dropdown__toggle{
+  appearance:none;
+  background:none;
+  border:0;
+  color:var(--color-text);
+  text-decoration:none;
+  font-size:var(--text-sm);
+  font-weight:650;
+  padding:.45rem .15rem;
+  white-space:nowrap;
+  border-radius:2px;
+  font-family:var(--font-sans);
+}
+.nav-links>a:hover,
+.nav-dropdown__toggle:hover{color:var(--color-text-accent)}
+.nav-links>a[aria-current="page"]{
+  color:var(--color-text);
+  box-shadow:inset 0 -2px 0 var(--color-accent);
+}
+
+.nav-dropdown{position:relative}
+.nav-dropdown__toggle{
+  display:inline-flex;
+  align-items:center;
+  gap:.35rem;
+}
+.nav-dropdown__toggle::after{
+  content:"";
+  width:.45rem;
+  height:.45rem;
+  border-right:1.5px solid currentColor;
+  border-bottom:1.5px solid currentColor;
+  transform:rotate(45deg) translateY(-1px);
+}
+.nav-dropdown__toggle[aria-expanded="true"]::after{transform:rotate(225deg) translateY(-1px)}
+.nav-dropdown__menu{
+  position:absolute;
+  top:calc(100% + .6rem);
+  left:0;
+  z-index:1200;
+  min-width:18rem;
+  width:max(18rem,36rem);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.15rem 1.25rem;
+  padding:1rem 1.15rem;
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  border:1px solid var(--color-border);
+  border-radius:var(--space-radius-md);
+  box-shadow:0 8px 24px var(--color-shadow);
+}
+.nav-dropdown__menu[hidden]{display:none}
+.nav-dropdown__menu a{
+  display:block;
+  text-decoration:none;
+  color:var(--color-text);
+  font-size:var(--text-sm);
+  font-weight:600;
+  padding:.45rem .2rem;
+  border-radius:var(--space-radius-sm);
+}
+.nav-dropdown__menu a:hover,
+.nav-dropdown__menu a:focus-visible{
+  color:var(--color-text-accent);
+  background:var(--color-bg-subtle);
+}
+.nav-dropdown__menu a.nav-dropdown__all{
+  grid-column:1 / -1;
+  font-weight:750;
+  border-bottom:1px solid var(--color-border);
+  margin-bottom:.35rem;
+  padding-bottom:.7rem;
+}
+
+.theme-toggle{
+  appearance:none;
+  border:1px solid var(--color-border);
+  background:var(--color-bg-elevated);
+  color:var(--color-text);
+  border-radius:var(--space-radius-sm);
+  padding:.55rem .75rem;
+  font-size:.8rem;
+  font-weight:700;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.theme-toggle:hover{border-color:var(--color-border-strong)}
+
+.pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.6rem;
+  border-radius:var(--space-radius-pill);
+  padding:.7rem 1.15rem;
+  background:var(--color-bg-cta);
+  color:var(--color-text-on-cta);
+  font-weight:750;
+  font-size:var(--text-sm);
+  text-decoration:none;
+  border:1.5px solid transparent;
+  transition:transform .18s ease,background .18s ease,filter .18s ease;
+}
+.pill:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.pill.outline{
+  background:transparent;
+  color:var(--color-text);
+  border-color:var(--color-border-strong);
+}
+
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  html{
+    scroll-padding-bottom:var(--space-dock-offset);
+  }
+  body{
+    padding-top:var(--space-header-offset-narrow);
+    padding-bottom:var(--space-dock-offset);
+  }
+  main>section:first-of-type{
+    box-sizing:border-box;
+    min-height:calc(100svh - var(--space-header-offset-narrow));
+    padding-bottom:var(--space-dock-offset);
+  }
+  header.arnova-site-header{
+    min-height:var(--space-header-offset-narrow);
+    gap:var(--space-sm);
+  }
+  header.arnova-site-header .nav-links{display:none}
+  .agency-brand-name{font-size:.95rem}
+  .original-logo{width:36px;height:36px}
+}
+
+/* Mobile dock visuals live in css/nav.css (live glassy nav + centre FAB).
+   Class name .arnova-mobile-dock is unchanged. */
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  header.arnova-site-header,.pill{transition:none!important}
+  .pill:hover{transform:none}
+}
+
+/* ---------- Footer ---------- */
+.agency-footer{
+  background:var(--color-bg-subtle);
+  color:var(--color-text);
+  border-top:1px solid var(--color-border);
+  padding:var(--space-3xl) 0 var(--space-xl);
+  margin-top:0;
+}
+.agency-footer-grid{
+  display:grid;
+  grid-template-columns:minmax(230px,1.4fr) repeat(3,minmax(10rem,1fr));
+  gap:clamp(1.5rem,4vw,3.5rem);
+}
+.agency-footer-brand,
+.agency-footer-intro .agency-footer-brand{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-weight:650;
+  font-size:clamp(1.2rem,2vw,1.6rem);
+  letter-spacing:-.03em;
+  text-decoration:none;
+  color:var(--color-text);
+  line-height:1.15;
+}
+.agency-footer-brand span{color:var(--color-text-muted);font-weight:600}
+.agency-footer-intro p{
+  max-width:28ch;
+  color:var(--color-text-muted);
+  font-size:var(--text-sm);
+  margin:1rem 0 1.25rem;
+}
+.agency-footer-cta{
+  display:inline-block;
+  font-weight:750;
+  color:var(--color-text-accent);
+  text-decoration:none;
+  border-bottom:1px solid currentColor;
+  padding-bottom:.2rem;
+}
+.agency-footer-cta:hover{color:var(--color-link-hover)}
+.agency-footer-column{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.55rem;
+}
+.agency-footer-column h3,
+.agency-footer-column h2{
+  font-family:var(--font-sans);
+  font-size:.78rem;
+  font-weight:800;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin:0 0 .85rem;
+  color:var(--color-text-muted);
+}
+.agency-footer-column a,
+.agency-footer-column span,
+.agency-footer-column strong,
+.agency-footer-column small,
+.agency-footer-column p{
+  font-size:var(--text-sm);
+  text-decoration:none;
+  margin:0;
+  color:var(--color-text);
+}
+.agency-footer-column a:hover{
+  color:var(--color-text-accent);
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.agency-footer-column small,
+.agency-footer-column span,
+.agency-footer-column p{color:var(--color-text-muted)}
+.agency-footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+  border-top:1px solid var(--color-border);
+  margin-top:var(--space-2xl);
+  padding-top:1.15rem;
+  font-size:var(--text-xs);
+  color:var(--color-text-muted);
+}
+.agency-footer-bottom a{color:inherit;text-decoration:none}
+.agency-footer-bottom a:hover{text-decoration:underline;text-underline-offset:3px}
+.agency-footer-legal{display:flex;gap:1.25rem}
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  .agency-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .agency-footer{padding:var(--space-md) 0 var(--space-sm)}
+  .agency-footer-grid{grid-template-columns:1fr;gap:.75rem}
+  .agency-footer-intro p{margin:.45rem 0 .7rem}
+  .agency-footer-column h3,
+  .agency-footer-column h2{margin:0 0 .3rem}
+  .agency-footer-bottom{flex-direction:column;margin-top:var(--space-sm);padding-top:.5rem}
+}
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  .agency-footer{padding:var(--space-lg) 0 var(--space-sm)}
+  .agency-footer-grid{gap:1.15rem}
+  .agency-footer-bottom{margin-top:var(--space-md);padding-top:.7rem}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+
+/* Beat leftover page CSS that still targets .brand > span, .nav-links a, or the old green header. */
+header.arnova-site-header{
+  background:color-mix(in srgb,var(--color-bg) 88%,transparent)!important;
+  color:var(--color-text)!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  transform:none!important;
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  max-width:none!important;
+  inset:0 0 auto 0!important;
+}
+header.arnova-site-header.is-scrolled{box-shadow:0 8px 24px var(--color-shadow)!important}
+header.arnova-site-header .agency-brand-name{
+  display:flex!important;
+  flex-direction:column!important;
+  color:var(--color-text)!important;
+  font-size:1.05rem!important;
+  opacity:1!important;
+}
+header.arnova-site-header .agency-brand-name span{
+  color:var(--color-text-muted)!important;
+  font-size:.65rem!important;
+  letter-spacing:.12em!important;
+}
+header.arnova-site-header .nav-links>a{color:var(--color-text)!important;background:transparent!important}
+header.arnova-site-header .nav-links>a[aria-current="page"]{box-shadow:inset 0 -2px 0 var(--color-accent)!important}
+header.arnova-site-header .nav-links .pill{
+  background:var(--color-bg-cta)!important;
+  color:var(--color-text-on-cta)!important;
+  border-radius:var(--space-radius-pill)!important;
+  padding:.7rem 1.15rem!important;
+  font-weight:750!important;
+}
+header.arnova-site-header .theme-toggle{
+  background:var(--color-bg-elevated)!important;
+  color:var(--color-text)!important;
+  border:1px solid var(--color-border)!important;
+}
+
+@media(prefers-reduced-transparency:reduce){
+  header.arnova-site-header,
+  header.arnova-site-header.is-scrolled{
+    background:var(--color-bg)!important;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+    border-bottom-color:var(--color-border);
+  }
+}

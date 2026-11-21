@@ -1,0 +1,4 @@
+/* Shared design tokens.
+   Signal Slate (option 3) is the chosen scheme.
+   Swap this import to tokens-option-1.css or tokens-option-2.css only if a previous direction is needed. */
+@import url("tokens-option-3.css");

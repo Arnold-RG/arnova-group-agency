@@ -1,0 +1,151 @@
+/* Self-hosted Signal Slate type. */
+@font-face{
+  font-family:"Instrument Sans";
+  src:url("../assets/fonts/InstrumentSans-Variable.woff2") format("woff2");
+  font-weight:400 700;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:"Syne";
+  src:url("../assets/fonts/Syne-Variable.woff2") format("woff2");
+  font-weight:400 800;
+  font-style:normal;
+  font-display:swap;
+}
+
+/* Arnova Group Agency — Option 3: Signal Slate
+   Swap by pointing css/tokens.css at this file. */
+
+:root{
+  --color-bg:#F7F7F5;
+  --color-bg-subtle:#ECECE8;
+  --color-bg-elevated:#FFFFFF;
+  --color-bg-hero:#161618;
+  --color-bg-cta:#161618;
+  /* Filled buttons sitting on --color-bg-hero. Light --color-bg-cta matches the hero, so these are separate. Paper fill on the hero is 16.85:1; text is 16.85:1. */
+  --color-bg-hero-cta:#F7F7F5;
+  --color-text-on-hero-cta:#161618;
+  --color-bg-highlight:#E4F1F4;
+  --color-bg-table-header:#ECECE8;
+  --color-text:#161618;
+  --color-text-muted:#5A5A5E;
+  --color-text-on-hero:#F7F7F5;
+  --color-text-on-hero-muted:#B8B8BC;
+  --color-text-on-cta:#F7F7F5;
+  --color-text-accent:#0A5A6C;
+  --color-border:#D8D8D4;
+  --color-border-strong:#B8B8B4;
+  --color-border-highlight:#0C6F86;
+  --color-accent:#0C6F86;
+  --color-accent-hover:#0A5A6C;
+  --color-accent-text:#0A5A6C;
+  /* Text on --color-accent fills. Navy #122033 where that pair is at least 4.5:1; a light paper tint on darker accents. */
+  --color-text-on-accent:#F7F7F5;
+  --color-focus:#0C6F86;
+  --color-mark-yes:#0D7A4C;
+  --color-mark-no:#9B2C2C;
+  --color-shadow:rgba(22,22,24,.10);
+  --color-badge-bg:#E4F1F4;
+  --color-badge-text:#0A5A6C;
+  --color-link:#0A5A6C;
+  --color-link-hover:#161618;
+
+  /* Mobile dock: frosted glass bar and the active-tab pill. */
+  --color-dock-glass:color-mix(in srgb,var(--color-bg-elevated) 86%,transparent);
+  --color-dock-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-dock-pill:color-mix(in srgb,var(--color-accent) 20%,var(--color-bg-elevated));
+  --color-dock-item:var(--color-text-muted);
+  --color-dock-item-active:var(--color-accent-text);
+
+  /* Live mobile nav (glassy bar + centre FAB). */
+  --color-nav-glow:#3FA4BB;
+  --color-fab-bg:#3FA4BB;
+  --color-fab-text:#111113;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+  --color-nav-item:var(--color-text-muted);
+  --color-nav-item-active:var(--color-accent-text);
+  --color-nav-indicator:var(--color-nav-glow);
+  --color-nav-mask:#000000;
+
+  --space-2xs:.25rem;
+  --space-xs:.5rem;
+  --space-sm:.75rem;
+  --space-md:1rem;
+  --space-lg:1.5rem;
+  --space-xl:2rem;
+  --space-2xl:3rem;
+  --space-3xl:4.5rem;
+  --space-gutter:clamp(1.125rem,4vw,2.5rem);
+  --space-wrap:70rem;
+  --space-card-gap:1.25rem;
+  --space-header-offset:76px;
+  --space-header-offset-narrow:66px;
+  --space-dock-offset:calc(144px + env(safe-area-inset-bottom,0px));
+  --space-radius-sm:.5rem;
+  --space-radius-md:.75rem;
+  --space-radius-lg:1.25rem;
+  --space-radius-pill:999px;
+
+  --font-sans:"Instrument Sans","Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --font-display:"Syne","Source Sans 3","Segoe UI",sans-serif;
+
+  --text-xs:.75rem;
+  --text-sm:.875rem;
+  --text-md:1rem;
+  --text-lg:1.125rem;
+  --text-xl:1.25rem;
+  --text-2xl:1.5rem;
+  --text-3xl:clamp(1.75rem,2.4vw,2.25rem);
+  --text-4xl:clamp(2.25rem,5vw,3.5rem);
+  --text-5xl:clamp(2.75rem,6.5vw,4.5rem);
+  --space-section:clamp(4rem,8vw,7rem);
+  --font-leading-tight:1.15;
+  --font-leading-body:1.6;
+  color-scheme:light;
+}
+
+html[data-theme="dark"]{
+  --color-bg:#111113;
+  --color-bg-subtle:#18181B;
+  --color-bg-elevated:#1C1C1F;
+  --color-bg-hero:#0B0B0D;
+  --color-bg-cta:#3FA4BB;
+  /* Teal fill on the dark hero is 6.78:1; --color-text-on-hero-cta on that fill is 6.50:1. */
+  --color-bg-hero-cta:#3FA4BB;
+  --color-text-on-hero-cta:#111113;
+  --color-bg-highlight:#1A2A30;
+  --color-bg-table-header:#1C1C1F;
+  --color-text:#F4F4F1;
+  --color-text-muted:#B8B8BC;
+  --color-text-on-hero:#F4F4F1;
+  --color-text-on-hero-muted:#B8B8BC;
+  --color-text-on-cta:#111113;
+  --color-text-accent:#7EC8D6;
+  --color-border:#3A3A3E;
+  --color-border-strong:#5A5A5E;
+  --color-border-highlight:#3FA4BB;
+  --color-accent:#3FA4BB;
+  --color-accent-hover:#7EC8D6;
+  --color-accent-text:#7EC8D6;
+  --color-text-on-accent:#122033;
+  --color-focus:#3FA4BB;
+  --color-mark-yes:#3CB37A;
+  --color-mark-no:#F0A8A0;
+  --color-shadow:rgba(0,0,0,.35);
+  --color-badge-bg:#1A2A30;
+  --color-badge-text:#7EC8D6;
+  --color-link:#7EC8D6;
+  --color-link-hover:#F4F4F1;
+
+  --color-nav-glow:#3FA4BB;
+  --color-fab-bg:#3FA4BB;
+  --color-fab-text:#111113;
+  --color-nav-glass:color-mix(in srgb,var(--color-bg-elevated) 82%,transparent);
+  --color-nav-glass-solid:var(--color-bg-elevated);
+  --color-nav-border:color-mix(in srgb,var(--color-border) 80%,transparent);
+
+  color-scheme:dark;
+}

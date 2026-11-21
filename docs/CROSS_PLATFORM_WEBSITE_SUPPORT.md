@@ -22,7 +22,7 @@ The GitHub Actions workflow `.github/workflows/concept-platform-checks.yml` vali
 
 ## Existing repositories
 
-- `Arnold-RG/vira`: static website and demos, no runtime installation needed.
+- `Arnold-RG/arnova-group-agency`: static website and demos, no runtime installation needed.
 - `Arnold-RG/Boutique-la-difference`: HTML/CSS/JavaScript business shop, expected browser-based experience; business-specific UX and cart require separate device testing.
 - `Arnold-RG/hamwe`: React/Vite website with routes and booking logic; production build and browser testing required.
 - `Arnold-RG/study-atlas`: static study portal with browser JavaScript; its client-side features require browser compatibility checks.

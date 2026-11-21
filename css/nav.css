@@ -1,0 +1,549 @@
+/* Anchor landings: sit below the sticky header. Use scroll-margin only
+   (html scroll-padding-top is 0) so hash jumps and scrollIntoView do not double. */
+#top,#about,#services,#work,#process,#pricing,#faq,#contact,#privacy,
+#daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
+[id^="service-"],[id^="concept-"]{
+  scroll-margin-top:var(--space-header-offset);
+}
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  #top,#about,#services,#work,#process,#pricing,#faq,#contact,#privacy,
+  #daily-care,#payments,#payment-methods,#one-time,#monthly,#yearly,
+  [id^="service-"],[id^="concept-"]{
+    scroll-margin-top:var(--space-header-offset-narrow);
+  }
+}
+
+/* Live mobile navigation: glassy pill bar, notched centre FAB, sliding indicator.
+   Linked from each page that carries .arnova-mobile-dock. Colours come only
+   from tokens. */
+
+.arnova-mobile-dock,
+.arnova-dock-sheet{display:none}
+
+@media(max-width:900px),(max-width:1100px) and (max-height:500px) and (orientation:landscape){
+  .arnova-mobile-dock{
+    --nav-bar-h:64px;
+    --nav-fab:64px;
+    --nav-inset:12px;
+    --nav-notch:38px;
+    --nav-indicator-x:50%;
+    --nav-indicator-opacity:0;
+    position:fixed;
+    left:50%;
+    bottom:calc(var(--nav-inset) + env(safe-area-inset-bottom,0px));
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:430px;
+    z-index:2147483002;
+    display:block;
+    pointer-events:none;
+    filter:drop-shadow(0 12px 28px var(--color-shadow));
+  }
+  .arnova-mobile-dock__bar,
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button,
+  .arnova-mobile-dock__fab{pointer-events:auto}
+
+  .arnova-mobile-dock__bar{
+    position:relative;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-around;
+    height:var(--nav-bar-h);
+    padding:6px 6px 8px;
+    box-sizing:border-box;
+    border-radius:32px;
+    isolation:isolate;
+    background:var(--color-nav-glass);
+    border:1px solid var(--color-nav-border);
+    backdrop-filter:blur(22px) saturate(180%);
+    -webkit-backdrop-filter:blur(22px) saturate(180%);
+    -webkit-mask-image:radial-gradient(circle var(--nav-notch) at 50% 0,transparent calc(var(--nav-notch) - .5px),var(--color-nav-mask) var(--nav-notch));
+    mask-image:radial-gradient(circle var(--nav-notch) at 50% 0,transparent calc(var(--nav-notch) - .5px),var(--color-nav-mask) var(--nav-notch));
+    -webkit-mask-size:100% 100%;
+    mask-size:100% 100%;
+    -webkit-mask-repeat:no-repeat;
+    mask-repeat:no-repeat;
+  }
+
+  .arnova-mobile-dock__indicator{
+    position:absolute;
+    left:0;
+    bottom:7px;
+    width:22px;
+    height:3px;
+    border-radius:var(--space-radius-pill);
+    background:var(--color-nav-indicator);
+    box-shadow:0 0 10px var(--color-nav-glow),0 0 18px color-mix(in srgb,var(--color-nav-glow) 55%,transparent);
+    transform:translateX(var(--nav-indicator-x)) translateX(-50%);
+    opacity:var(--nav-indicator-opacity);
+    pointer-events:none;
+    z-index:2;
+    transition:transform .38s cubic-bezier(.22,1,.36,1),opacity .22s ease;
+  }
+
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{
+    appearance:none;
+    border:0;
+    background:transparent;
+    position:relative;
+    z-index:3;
+    flex:1 1 0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2px;
+    min-width:48px;
+    min-height:48px;
+    margin-bottom:2px;
+    padding:4px 2px;
+    color:var(--color-nav-item);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:11px;
+    font-weight:600;
+    line-height:1.15;
+    letter-spacing:0;
+    white-space:nowrap;
+    overflow:visible;
+    border-radius:16px;
+    transition:color .2s ease,transform .28s cubic-bezier(.34,1.6,.54,1),box-shadow .2s ease;
+  }
+  .arnova-mobile-dock__bar a svg,
+  .arnova-mobile-dock__bar button svg{
+    width:20px;
+    height:20px;
+    flex:0 0 auto;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .arnova-mobile-dock__fab-space{
+    flex:0 0 calc(var(--nav-notch) * 2);
+    width:calc(var(--nav-notch) * 2);
+    min-width:calc(var(--nav-notch) * 2);
+    pointer-events:none;
+  }
+  .arnova-mobile-dock__bar a:hover,
+  .arnova-mobile-dock__bar button:hover{
+    color:var(--color-nav-item-active);
+  }
+  .arnova-mobile-dock__bar a[aria-current="page"],
+  .arnova-mobile-dock__bar button[aria-current="page"],
+  .arnova-mobile-dock__bar button[aria-expanded="true"]{
+    color:var(--color-nav-item-active);
+  }
+  .arnova-mobile-dock.is-sheet-open .arnova-mobile-dock__bar a[aria-current="page"]{
+    color:var(--color-nav-item);
+  }
+  .arnova-mobile-dock.is-sheet-open .arnova-mobile-dock__bar button[aria-expanded="true"]{
+    color:var(--color-nav-item-active);
+  }
+  .arnova-mobile-dock__bar a:focus-visible,
+  .arnova-mobile-dock__bar button:focus-visible,
+  .arnova-mobile-dock__fab:focus-visible{
+    outline:3px solid var(--color-focus);
+    outline-offset:3px;
+  }
+
+  /* Ripple */
+  .arnova-mobile-dock__bar a::after,
+  .arnova-mobile-dock__bar button::after,
+  .arnova-mobile-dock__fab::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:color-mix(in srgb,var(--color-nav-glow) 45%,transparent);
+    transform:translate(-50%,-50%) scale(0);
+    opacity:0;
+    pointer-events:none;
+  }
+  .arnova-mobile-dock__bar a:active,
+  .arnova-mobile-dock__bar button:active,
+  .arnova-mobile-dock__bar a.is-pressed,
+  .arnova-mobile-dock__bar button.is-pressed{
+    transform:scale(.92);
+  }
+  .arnova-mobile-dock__bar a:active::after,
+  .arnova-mobile-dock__bar button:active::after,
+  .arnova-mobile-dock__bar a.is-pressed::after,
+  .arnova-mobile-dock__bar button.is-pressed::after,
+  .arnova-mobile-dock__fab:active::after,
+  .arnova-mobile-dock__fab.is-pressed::after{
+    animation:arnova-nav-ripple .48s ease-out;
+  }
+  .arnova-mobile-dock__bar a:active,
+  .arnova-mobile-dock__bar button:active,
+  .arnova-mobile-dock__bar a.is-pressed,
+  .arnova-mobile-dock__bar button.is-pressed{
+    box-shadow:0 0 0 4px color-mix(in srgb,var(--color-nav-glow) 22%,transparent);
+  }
+
+  .arnova-mobile-dock__fab{
+    position:absolute;
+    left:50%;
+    top:0;
+    z-index:4;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:var(--nav-fab);
+    height:var(--nav-fab);
+    min-width:48px;
+    min-height:48px;
+    transform:translate(-50%,-46%);
+    border-radius:50%;
+    background:var(--color-fab-bg);
+    color:var(--color-fab-text);
+    text-decoration:none;
+    box-shadow:
+      0 0 0 3px color-mix(in srgb,var(--color-nav-glow) 35%,transparent),
+      0 0 18px var(--color-nav-glow),
+      0 8px 18px var(--color-shadow);
+    animation:arnova-fab-breathe 2.8s ease-in-out infinite;
+    transition:transform .3s cubic-bezier(.34,1.6,.54,1),box-shadow .2s ease;
+  }
+  .arnova-mobile-dock__fab svg{
+    width:26px;
+    height:26px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .arnova-mobile-dock__fab:hover,
+  .arnova-mobile-dock__fab:focus-visible{
+    box-shadow:
+      0 0 0 5px color-mix(in srgb,var(--color-nav-glow) 40%,transparent),
+      0 0 28px var(--color-nav-glow),
+      0 8px 18px var(--color-shadow);
+  }
+  .arnova-mobile-dock__fab:active,
+  .arnova-mobile-dock__fab.is-pressed{
+    transform:translate(-50%,-46%) scale(.94);
+    animation:none;
+    box-shadow:
+      0 0 0 6px color-mix(in srgb,var(--color-nav-glow) 40%,transparent),
+      0 0 32px var(--color-nav-glow),
+      0 6px 14px var(--color-shadow);
+  }
+  .arnova-mobile-dock__fab[aria-current="page"]{
+    box-shadow:
+      0 0 0 4px color-mix(in srgb,var(--color-nav-glow) 50%,transparent),
+      0 0 24px var(--color-nav-glow),
+      0 8px 18px var(--color-shadow);
+  }
+  /* Downward glow into the notch */
+  .arnova-mobile-dock__fab::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:72%;
+    width:52px;
+    height:42px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse at top,color-mix(in srgb,var(--color-nav-glow) 70%,transparent),transparent 72%);
+    pointer-events:none;
+    z-index:-1;
+  }
+
+  .arnova-visually-hidden{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    clip-path:inset(50%);
+    white-space:nowrap;
+    border:0;
+  }
+
+  /* Sheet */
+  .arnova-dock-sheet{
+    display:block;
+    position:fixed;
+    inset:0;
+    z-index:2147483000;
+    pointer-events:none;
+  }
+  .arnova-dock-sheet[hidden]{display:none}
+  .arnova-dock-sheet.is-open{pointer-events:auto}
+  .arnova-dock-sheet__backdrop{
+    position:absolute;
+    inset:0;
+    background:color-mix(in srgb,var(--color-bg-hero) 45%,transparent);
+    border:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    appearance:none;
+    cursor:pointer;
+  }
+  .arnova-dock-sheet__panel{
+    position:absolute;
+    left:50%;
+    bottom:var(--space-dock-offset);
+    transform:translateX(-50%);
+    width:calc(100% - 24px);
+    max-width:430px;
+    max-height:min(70vh,calc(100dvh - var(--space-header-offset-narrow) - var(--space-dock-offset) - 16px));
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-sizing:border-box;
+    padding:var(--space-sm) var(--space-md) 0;
+    background:var(--color-bg-elevated);
+    color:var(--color-text);
+    border:1px solid var(--color-border);
+    border-radius:var(--space-radius-lg) var(--space-radius-lg) var(--space-radius-md) var(--space-radius-md);
+    box-shadow:0 16px 40px var(--color-shadow);
+  }
+  .arnova-dock-sheet__panel::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:56px;
+    height:36px;
+    pointer-events:none;
+    background:linear-gradient(to bottom,transparent,var(--color-bg-elevated));
+    opacity:0;
+    transition:opacity .2s ease;
+  }
+  .arnova-dock-sheet__panel.has-more-below::after{opacity:1}
+  .arnova-dock-sheet__head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:var(--space-sm);
+    margin-bottom:var(--space-xs);
+    flex:0 0 auto;
+    background:var(--color-bg-elevated);
+    z-index:1;
+    padding-top:var(--space-xs);
+  }
+  .arnova-dock-sheet__head h2{
+    margin:0;
+    font-family:var(--font-display);
+    font-size:var(--text-xl);
+    font-weight:650;
+  }
+  .arnova-dock-sheet__close{
+    appearance:none;
+    border:1px solid var(--color-border);
+    background:var(--color-bg-subtle);
+    color:var(--color-text);
+    min-width:48px;
+    min-height:48px;
+    border-radius:var(--space-radius-pill);
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:700;
+    padding:0 var(--space-sm);
+  }
+  .arnova-dock-sheet__close:focus-visible,
+  .arnova-dock-sheet__footer a:focus-visible,
+  .arnova-dock-sheet__list a:focus-visible{
+    outline:3px solid var(--color-focus);
+    outline-offset:2px;
+  }
+  .arnova-dock-sheet__list{
+    list-style:none;
+    margin:0;
+    padding:0 0 8px;
+    display:flex;
+    flex-direction:column;
+    flex:1 1 auto;
+    min-height:0;
+    overflow:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .arnova-dock-sheet__list a{
+    display:flex;
+    align-items:center;
+    min-height:48px;
+    padding:var(--space-xs) var(--space-2xs);
+    color:var(--color-text);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:600;
+    border-bottom:1px solid var(--color-border);
+  }
+  .arnova-dock-sheet__list a:last-child{border-bottom:0}
+  .arnova-dock-sheet__list a:hover,
+  .arnova-dock-sheet__list a:focus-visible{color:var(--color-text-accent)}
+  .arnova-dock-sheet__footer{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 calc(var(--space-md) * -1);
+    padding:var(--space-xs) var(--space-md);
+    border-top:1px solid var(--color-border);
+    background:var(--color-bg-elevated);
+    z-index:1;
+  }
+  .arnova-dock-sheet__footer a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:var(--space-xs);
+    min-height:48px;
+    padding:0 var(--space-sm);
+    color:var(--color-nav-item-active);
+    text-decoration:none;
+    font-family:var(--font-sans);
+    font-size:var(--text-sm);
+    font-weight:700;
+    border-radius:var(--space-radius-pill);
+  }
+  .arnova-dock-sheet__footer a svg{
+    width:20px;
+    height:20px;
+    flex:0 0 auto;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .arnova-dock-sheet__footer a:hover,
+  .arnova-dock-sheet__footer a:focus-visible{color:var(--color-text-accent)}
+}
+
+@media(max-width:360px){
+  .arnova-mobile-dock{
+    width:calc(100% - 16px);
+    --nav-bar-h:56px;
+    --nav-fab:56px;
+    --nav-inset:8px;
+    --nav-notch:34px;
+  }
+  .arnova-mobile-dock__bar{padding:6px 4px 8px;border-radius:28px}
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{font-size:11px;padding:4px 1px}
+  .arnova-mobile-dock__fab{transform:translate(-50%,-32%)}
+  .arnova-mobile-dock__fab:hover,
+  .arnova-mobile-dock__fab:active,
+  .arnova-mobile-dock__fab.is-pressed{transform:translate(-50%,-32%) scale(.94)}
+  .arnova-dock-sheet__panel{width:calc(100% - 16px)}
+}
+
+/* Compact short / landscape: lower bar, smaller FAB, icon-only labels. */
+@media(max-width:900px) and (max-height:500px),
+      (max-width:1100px) and (max-height:500px) and (orientation:landscape),
+      (max-width:900px) and (orientation:landscape){
+  :root{
+    --space-dock-offset:calc(96px + env(safe-area-inset-bottom,0px));
+  }
+  .arnova-mobile-dock{
+    --nav-bar-h:52px;
+    --nav-fab:52px;
+    --nav-inset:8px;
+    --nav-notch:32px;
+    width:min(460px,calc(100% - 24px));
+  }
+  .arnova-mobile-dock__bar{padding:2px 6px 6px;border-radius:24px}
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button{
+    min-width:48px;
+    min-height:48px;
+    padding:4px;
+    gap:0;
+  }
+  .arnova-mobile-dock__bar a span,
+  .arnova-mobile-dock__bar button span{
+    position:absolute;
+    width:1px;
+    height:1px;
+    padding:0;
+    margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    clip-path:inset(50%);
+    white-space:nowrap;
+    border:0;
+  }
+  .arnova-mobile-dock__fab{transform:translate(-50%,-42%)}
+  .arnova-mobile-dock__fab:active,
+  .arnova-mobile-dock__fab.is-pressed{transform:translate(-50%,-42%) scale(.94)}
+  .arnova-mobile-dock__fab svg{width:22px;height:22px}
+  .arnova-mobile-dock__indicator{bottom:6px}
+}
+
+@keyframes arnova-nav-ripple{
+  0%{transform:translate(-50%,-50%) scale(.2);opacity:.55}
+  100%{transform:translate(-50%,-50%) scale(6);opacity:0}
+}
+@keyframes arnova-fab-breathe{
+  0%,100%{
+    box-shadow:
+      0 0 0 3px color-mix(in srgb,var(--color-nav-glow) 32%,transparent),
+      0 0 16px var(--color-nav-glow),
+      0 8px 18px var(--color-shadow);
+  }
+  50%{
+    box-shadow:
+      0 0 0 6px color-mix(in srgb,var(--color-nav-glow) 42%,transparent),
+      0 0 28px var(--color-nav-glow),
+      0 8px 18px var(--color-shadow);
+  }
+}
+
+@media(prefers-reduced-transparency:reduce){
+  .arnova-mobile-dock__bar{
+    background:var(--color-nav-glass-solid);
+    border-color:var(--color-border);
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .arnova-mobile-dock__fab,
+  .arnova-mobile-dock__fab:hover,
+  .arnova-mobile-dock__fab:focus-visible,
+  .arnova-mobile-dock__fab:active,
+  .arnova-mobile-dock__fab.is-pressed,
+  .arnova-mobile-dock__fab[aria-current="page"]{
+    background:var(--color-fab-bg);
+    box-shadow:0 8px 18px var(--color-shadow);
+  }
+  .arnova-mobile-dock__fab::before{background:none}
+  .arnova-dock-sheet__backdrop{background:var(--color-bg-hero)}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .arnova-mobile-dock__bar{background:var(--color-nav-glass-solid)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .arnova-mobile-dock__indicator,
+  .arnova-mobile-dock__bar a,
+  .arnova-mobile-dock__bar button,
+  .arnova-mobile-dock__fab,
+  .arnova-dock-sheet__backdrop,
+  .arnova-dock-sheet__panel,
+  .arnova-dock-sheet__panel::after{transition:none!important;animation:none!important}
+  .arnova-mobile-dock__fab{animation:none}
+  .arnova-mobile-dock__bar a:active,
+  .arnova-mobile-dock__bar button:active,
+  .arnova-mobile-dock__bar a.is-pressed,
+  .arnova-mobile-dock__bar button.is-pressed,
+  .arnova-mobile-dock__fab:active,
+  .arnova-mobile-dock__fab.is-pressed{transform:none}
+  .arnova-mobile-dock__bar a:active::after,
+  .arnova-mobile-dock__bar button:active::after,
+  .arnova-mobile-dock__bar a.is-pressed::after,
+  .arnova-mobile-dock__bar button.is-pressed::after,
+  .arnova-mobile-dock__fab:active::after,
+  .arnova-mobile-dock__fab.is-pressed::after{animation:none}
+}
