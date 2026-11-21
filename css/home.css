@@ -609,14 +609,21 @@
 }
 
 .arnova-editorial-hero{
-  min-height:min(900px, 100svh);
-  padding-top:clamp(3.5rem, 8vh, 6rem);
-  padding-bottom:clamp(3rem, 6vh, 5rem);
+  box-sizing:border-box;
+  min-height:calc(100svh - var(--space-header-offset));
+  padding-block:clamp(2rem, 5vh, 4rem);
   background:var(--color-bg-hero);
   color:var(--color-text-on-hero);
   overflow:hidden;
 }
-.arnova-editorial-hero .arnova-hero-content{display:block}
+/* Restore the shared .wrap gutter that .arnova-hero-content{width:100%} otherwise removes,
+   so the hero copy lines up with the header logo. */
+.arnova-editorial-hero .arnova-hero-content{
+  display:block;
+  width:min(var(--space-wrap),calc(100% - 2 * var(--space-gutter)));
+  margin-inline:auto;
+  box-sizing:border-box;
+}
 .arnova-hero-copy{
   display:flex;
   flex-direction:column;
@@ -642,6 +649,10 @@
   text-wrap:balance;
 }
 .arnova-hero-line{display:block}
+@media(max-width:360px){
+  .arnova-editorial-hero h1.arnova-hero-headline .arnova-hero-line{white-space:nowrap}
+}
+
 .arnova-hero-object{
   position:relative;
   justify-self:center;
@@ -858,8 +869,9 @@
     gap:0;
   }
   .arnova-editorial-hero h1.arnova-hero-headline{
-    font-size:clamp(1.85rem, 9vw, 2.25rem);
+    font-size:clamp(2rem, 10.5vw, 2.55rem);
     line-height:1.02;
+    letter-spacing:-.035em;
   }
   .arnova-hero-copy{gap:var(--space-xs)}
   .arnova-editorial-hero .hero-lead{font-size:.95rem;line-height:1.4}
